@@ -1,0 +1,152 @@
+.store-gallery {
+  margin-top: 30px !important;
+  .img-store {
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  .img-thumbnail {
+    cursor: pointer;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    width: 300px !important;
+  }
+  .img-thumbnail.active {
+    border: 2px solid palevioletred;
+  }
+  .store-heading {
+    .product-header {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 36px;
+      color: rgb(3, 172, 14);
+    }
+    .subtitle {
+      font-size: 14px;
+      line-height: 21px;
+      color: #979797;
+    }
+    .b-rating {
+      border: none;
+      width: 30%;
+      padding: 10px 0;
+      margin-top: -10px;
+    }
+    .price {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 40px;
+      margin-bottom: 10px;
+      color: #ff7158;
+    }
+    .btn-success {
+      width: 210px;
+      height: 45px;
+      background-color: rgb(3, 172, 14);
+    }
+  }
+  .description {
+    .content-store {
+      margin: 40px 0 50px;
+      .nav-link {
+        margin-bottom: 20px;
+        color: rgb(3, 172, 14);
+      }
+      .nav-pills {
+        .nav-item {
+          a.nav-link {
+            padding: 0 40px 0 0px;
+          }
+          a.nav-link.active {
+            background-color: transparent;
+            &::before {
+              content: "";
+              position: absolute;
+              top: 15px;
+              width: 90px;
+              height: 9px;
+              background-color: rgba(245, 62, 123, 0.301) !important;
+            }
+          }
+          .detail {
+            color: rgb(3, 172, 14);
+            font-weight: 500;
+            font-size: 18px;
+            position: relative;
+          }
+        }
+      }
+      .tab-content {
+        span.text-descripsi {
+          line-height: 30px;
+          font-size: 18px;
+        }
+        table {
+          thead {
+            background-color: rgba(3, 172, 14, 0.692);
+          }
+          tbody {
+            &:hover {
+              background-color: rgba(3, 172, 14, 0.411) !important;
+            }
+          }
+        }
+      }
+
+      .readmore {
+        cursor: pointer;
+        color: rgb(3, 172, 14);
+        margin-left: 10px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+      h3 {
+        font-size: 18px;
+        font-weight: 500;
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 25px;
+          width: 120px;
+          margin-left: 3px;
+          height: 2px;
+          background-color: palevioletred;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1979.98px) {
+  .store-gallery {
+    margin-top: 30px !important;
+    .img-store {
+      cursor: pointer;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+    .img-thumbnail {
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .img-thumbnail.active {
+      border: 2px solid palevioletred;
+    }
+    .store-heading {
+      margin-top: 20px;
+    }
+    .description {
+      margin: 20px 0 30px;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .store-gallery {
+    .description {
+      .detail {
+        margin: 30px 0 30px;
+      }
+    }
+  }
+}

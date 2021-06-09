@@ -1,0 +1,28 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+#app {
+  padding: 0 85px;
+}
+
+.mt-global {
+  margin-top: 140px !important;
+}
+
+@media (max-width: 1199.98px) {
+  #app {
+    padding: 0 50px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #app {
+    padding: 0 20px !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #app {
+    padding: 0 15px !important;
+  }
+}

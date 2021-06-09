@@ -1,0 +1,16 @@
+.store-breadcrumbs {
+  font-size: 18px;
+  .breadcrumb {
+    background-color: transparent;
+    padding: 15px 5px;
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    padding: 0 1.5rem 0 1.5rem;
+  }
+  a {
+    color: #979797 !important;
+  }
+  .breadcrumb-item.active {
+    color: #0c0d36;
+  }
+}
