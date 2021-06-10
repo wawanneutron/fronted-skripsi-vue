@@ -17,10 +17,22 @@
     <section class="store-gallery">
       <div class="row justify-content-between">
         <div class="col-lg-8">
+          <transition
+            v-if="state.photoActive == 0"
+            name="slide-fade"
+            mode="out-in"
+          >
+            <img :src="product.image" class="img-store w-100" />
+          </transition>
+
+          <transition v-if="state.headerActive" name="slide-fade" mode="out-in">
+            <img :src="product.image" class="img-store w-100" />
+          </transition>
+
           <transition name="slide-fade" mode="out-in">
             <img
-              :src="photos[photoActive].url"
-              :key="photos[photoActive].url"
+              :src="state.photoActive"
+              :key="state.photoActive"
               class="img-store w-100"
             />
           </transition>
@@ -29,14 +41,24 @@
           <div class="row justify-content-center">
             <div
               class="col-5 col-md-3 col-lg-12"
-              v-for="(photo, index) in photos"
+              v-for="(item, index) of gallery"
               :key="index"
             >
-              <main @click="changeActive(index)">
+              <main @click="changeActive(item.image)">
                 <img
                   class="w-100 img-thumbnail"
-                  :src="photo.url"
+                  :src="item.image"
                   :class="{ active: index == photoActive }"
+                />
+              </main>
+            </div>
+            <div class="col-5 col-md-3 col-lg-12">
+              <main @click="headerActive(product.image)">
+                <img
+                  :src="product.image"
+                  alt=""
+                  class="w-100 img-thumbnail"
+                  :class="{ active: product.image == headerActive }"
                 />
               </main>
             </div>
@@ -46,9 +68,19 @@
       <section class="store-heading">
         <div class="row row-d">
           <div class="col-lg-6">
-            <div class="product-header">Nike Jordan</div>
-            <div class="subtitle">Tenang gak sampe jual ginjal</div>
-            <div class="price">$897</div>
+            <div class="product-header mb-2">{{ product.title }}</div>
+            <button
+              class="btn btn-sm"
+              style="color: #ff2f00; border-color: #ff2f00"
+            >
+              DISKON {{ product.discount }} %
+            </button>
+            <s class="ml-3" style="text-decoration-color: red">
+              Rp. {{ moneyFormat(calculateDiscount(product)) }}
+            </s>
+            <div class="font-weight-bold mt-3 mr-4 price">
+              Rp. {{ moneyFormat(product.price) }}
+            </div>
           </div>
           <div class="col-lg-3">
             <router-link
@@ -98,26 +130,7 @@
                   role="tabpanel"
                   aria-labelledby="pills-detail-tab"
                 >
-                  <span class="text-descripsi" v-if="!readMoreActivited">
-                    {{ longText.slice(0, 200) }}
-                  </span>
-
-                  <span
-                    v-if="readMoreActivited"
-                    v-html="longText"
-                    class="text-descripsi"
-                  ></span>
-                  <span
-                    class="readmore"
-                    v-if="!readMoreActivited"
-                    @click="readmoreActive"
-                  >
-                    Lihat selengkapnya
-                  </span>
-
-                  <a class="readmore" v-else @click="shortText"
-                    >Lihat Lebih Sedikit</a
-                  >
+                  <span class="text-descripsi" v-html="product.content"> </span>
                 </div>
                 <div
                   class="tab-pane fade"
@@ -245,30 +258,6 @@
                     >Info Penting</a
                   >
                 </li>
-                <li class="nav-item" role="presentation">
-                  <a
-                    class="nav-link detail"
-                    id="pills-diskusi-tab"
-                    data-toggle="pill"
-                    href="#pills-diskusi"
-                    role="tab"
-                    aria-controls="pills-diskusi"
-                    aria-selected="false"
-                    >Diskusi</a
-                  >
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a
-                    class="nav-link detail"
-                    id="pills-ulasan-tab"
-                    data-toggle="pill"
-                    href="#pills-ulasan"
-                    role="tab"
-                    aria-controls="pills-ulasan"
-                    aria-selected="false"
-                    >Ulasan</a
-                  >
-                </li>
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div
@@ -302,82 +291,6 @@
                     </ul>
                   </div>
                 </div>
-                <div
-                  class="tab-pane fade"
-                  id="pills-diskusi"
-                  role="tabpanel"
-                  aria-labelledby="pills-diskusi-tab"
-                >
-                  <div class="media mb-5">
-                    <img
-                      src="https://ui-avatars.com/api/?name=wawan"
-                      class="rounded-circle mr-3"
-                    />
-                    <div class="media-body">
-                      <h5 class="mt-0">Wawan Setiawan</h5>
-                      <p>
-                        Standing on the frontline when the bombs start to fall.
-                        Heaven is jealous of our love, angels are crying from up
-                        above. Can't
-                      </p>
-                      <div class="media mt-5">
-                        <a class="mr-3" href="#">
-                          <img
-                            src="https://ui-avatars.com/api/?name=neutron"
-                            class="rounded-circle"
-                          />
-                        </a>
-                        <div class="media-body">
-                          <h5 class="mt-0">Neutron</h5>
-                          <p>
-                            Greetings loved ones let's take a journey. Yes, we
-                            make angels cry, raining down on earth from up
-                            above. Give you something good to celebrate. I used
-                            to bite my tongue and
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="media">
-                    <img
-                      src="https://ui-avatars.com/api/?name=fajrin"
-                      class="rounded-circle mr-3"
-                    />
-                    <div class="media-body">
-                      <h5 class="mt-0">Fajrin</h5>
-                      <p>Standinare crying from up above. Can't</p>
-                      <div class="media mt-5">
-                        <a class="mr-3" href="#">
-                          <img
-                            src="https://ui-avatars.com/api/?name=mraz"
-                            class="rounded-circle"
-                          />
-                        </a>
-                        <div class="media-body">
-                          <h5 class="mt-0">mraz</h5>
-                          <p>
-                            Greetings loved ones let's take a journey. Yes, we
-                            make angels cry, raining dused to bite my tongue and
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="tab-pane fade"
-                  id="pills-ulasan"
-                  role="tabpanel"
-                  aria-labelledby="pills-ulasan-tab"
-                >
-                  <h3>Ulasan (250)</h3>
-                  <span>Sepatu Nike-Jordan</span>
-                  <h1>48.5 / <span>5</span></h1>
-                  <p>(250) ulasan</p>
-                  <br />
-                  <h2>Coming soon</h2>
-                </div>
               </div>
             </main>
           </div>
@@ -389,48 +302,54 @@
         <span class="text-product-header">Lainnya di toko ini</span>
       </div>
     </section>
-    <Products></Products>
   </div>
 </template>
 
-<script>
-import Products from "../components/Products";
-export default {
-  name: "detail",
-  data: () => ({
-    rating: 3,
-    photoActive: 0,
-    photos: [
-      {
-        id: 1,
-        url: "/images/pic_detail1.jpg",
-      },
-      {
-        id: 2,
-        url: "/images/pic_detail2.png",
-      },
-      {
-        id: 3,
-        url: "/images/pic_detail3.jpg",
-      },
-    ],
-    readMoreActivited: false,
-    longText: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum provident porro deserunt illo numquam distinctio odit. A aut distinctio quasi error minima et? Nulla blanditiis minus inventore illo praesentium? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel sapiente nostrum consectetur? Facere maiores dicta nihil velit! Voluptatem quos ducimus, nisi dicta molestias, atque vel ea, consequuntur laboriosam minima  ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum provident porro deserunt illo numquam distinctio odit. A aut distinctio quasi error minima et? Nulla blanditiis minus inventore illo praesentium? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel sapiente nostrum consectetur? Facere maiores dicta nihil velit! Voluptatem quos ducimus, nisi dicta molestias,r sit amet consectetur adipisicing elit. Asperiores dolorum provident porro deserunt illo numquam distinctio odit. A aut distinctio quasi error minima et? Nulla blanditiis minus inventore illo praesentium? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel sapiente nostrum consectetur? Facere maiores dicta nihil velit! Voluptatem quos ducimus, nisi dicta molestias, atque vel ea, consequuntur laboriosam minima  ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolorum provident porro deserunt illo numquam distinctio odit. A aut distinctio quasi error minima et? Nulla blanditiis minus inventore illo praesentium? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel sapiente nostrum consectetur? Facere maiores dicta nihil velit! Voluptatem quos ducimus, nisi dicta molest atque vel ea, consequuntur laboriosam minim facere.`,
-  }),
-  components: {
-    Products,
-  },
 
-  methods: {
-    changeActive(id) {
-      this.photoActive = id;
-    },
-    readmoreActive() {
-      this.readMoreActivited = true;
-    },
-    shortText() {
-      this.readMoreActivited = false;
-    },
+<script>
+import { useStore } from "vuex";
+import { computed, onMounted, reactive } from "@vue/runtime-core";
+import { useRoute } from "vue-router";
+export default {
+  setup() {
+    const store = useStore();
+    const route = useRoute();
+
+    const state = reactive({
+      photoActive: [],
+      headerActive: "",
+    });
+    onMounted(() => {
+      store.dispatch("product/getDetailProduct", route.params.slug);
+    });
+
+    const product = computed(() => {
+      return store.state.product.productDetail;
+    });
+
+    const gallery = computed(() => {
+      return store.getters["product/getGallery"];
+    });
+
+    const changeActive = (id) => {
+      state.headerActive = null;
+      state.photoActive = id;
+    };
+
+    const headerActive = (id) => {
+      state.photoActive = null;
+      state.headerActive = id;
+    };
+
+    return {
+      store,
+      route,
+      product,
+      state,
+      gallery,
+      changeActive,
+      headerActive,
+    };
   },
 };
 </script>

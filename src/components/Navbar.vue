@@ -25,7 +25,7 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/category">Categories</router-link>
+          <router-link class="nav-link" to="#">Term of Service</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/about">About</router-link>
@@ -47,7 +47,7 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/category">Categories</router-link>
+          <router-link class="nav-link" to="#">Term of Service</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/about">About</router-link>
@@ -83,7 +83,7 @@
         <router-link class="nav-link active" to="/"
           >Home <span class="sr-only">(current)</span></router-link
         >
-        <router-link class="nav-link" to="/category">Categories</router-link>
+        <router-link class="nav-link" to="#">Term of Service</router-link>
         <router-link class="nav-link" to="/about">About</router-link>
       </div>
       <ul class="navbar-nav nav-profile d-block d-lg-none" v-if="!guest">
