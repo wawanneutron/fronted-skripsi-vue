@@ -18,7 +18,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <ul class="navbar-nav ml-auto" v-if="guest">
+      <ul class="navbar-nav ml-auto" v-if="!token">
         <li class="nav-item">
           <router-link class="nav-link active" to="/"
             >Home <span class="sr-only">(current)</span></router-link
@@ -31,16 +31,18 @@
           <router-link class="nav-link" to="/about">About</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/auth">Sign up</router-link>
+          <router-link class="nav-link" :to="{ name: 'register' }"
+            >Sign up</router-link
+          >
         </li>
         <li class="nav-item">
-          <router-link class="btn btn-success btn-lg" to="/auth"
+          <router-link class="btn btn-success btn-lg" :to="{ name: 'login' }"
             >Sign in</router-link
           >
         </li>
       </ul>
       <!-- desktopo auth -->
-      <ul class="navbar-nav ml-auto d-none d-lg-flex" v-if="!guest">
+      <ul class="navbar-nav ml-auto d-none d-lg-flex" v-if="token">
         <li class="nav-item">
           <router-link class="nav-link active" to="/"
             >Home <span class="sr-only">(current)</span></router-link
@@ -53,7 +55,7 @@
           <router-link class="nav-link" to="/about">About</router-link>
         </li>
       </ul>
-      <ul class="navbar-nav nav-profile d-none d-lg-flex" v-if="!guest">
+      <ul class="navbar-nav nav-profile d-none d-lg-flex" v-if="token">
         <li class="nav-item dropdown">
           <img
             src="/images/user_pc.jpg"
@@ -63,12 +65,18 @@
             role="button"
             data-toggle="dropdown"
           />
-          Hi, Wawan
+          Hi, {{ user.name }}
           <div class="dropdown-menu">
             <a href="#" class="dropdown-item"> Dashboard</a>
             <a href="#" class="dropdown-item">Settings</a>
             <hr />
-            <router-link to="/auth" class="dropdown-item">Logout</router-link>
+            <button
+              class="dropdown-item"
+              data-toggle="modal"
+              data-target="#myModal"
+            >
+              Logout
+            </button>
           </div>
         </li>
         <li class="nav-item">
@@ -96,7 +104,7 @@
             role="button"
             data-toggle="dropdown"
           />
-          Hi, Wawan
+          Hi, Wawan sdcsd
           <div class="dropdown-menu">
             <a href="#" class="dropdown-item"> Dashboard</a>
             <a href="#" class="dropdown-item">Settings</a>
@@ -107,16 +115,85 @@
       </ul>
     </div>
   </nav>
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Logout</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h4>Yakin ingin keluar ?</h4>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Close
+          </button>
+          <button
+            @click="logout"
+            type="button"
+            class="btn btn-danger"
+            data-dismiss="modal"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default {
   name: "Navbar",
+
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    const token = computed(() => {
+      return store.getters["auth/isLoggedIn"];
+    });
+
+    const user = computed(() => {
+      return store.getters["auth/getUser"];
+    });
+
+    // method logout
+    let logout = () => {
+      // panggil action logout di dalam module auth
+      store.dispatch("auth/logout").then(() => {
+        // jika berhasil akan diarahkan keraouter login
+        router.push({
+          name: "login",
+        });
+      });
+    };
+
+    return {
+      token,
+      store,
+      logout,
+      user,
+    };
+  },
+
   data: () => ({
-    guest: false,
     showNavbar: true,
     lastScrollPosition: 0,
   }),
+
   mounted() {
     window.addEventListener("scroll", this.onScroll);
   },

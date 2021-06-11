@@ -13,7 +13,17 @@ const routes = [
   {
     path: "/register",
     name: "register",
-    component: () => import("@/views/auth/Daftar.vue"),
+    component: () => import("@/views/auth/Register.vue"),
+  },
+  {
+    path: "/register-success",
+    name: "register-success",
+    component: () => import("@/views/success/Register.vue"),
+  },
+  {
+    path: "/login-success",
+    name: "login-success",
+    component: () => import("@/views/success/Login.vue"),
   },
   {
     path: "/",
