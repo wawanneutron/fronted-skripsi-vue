@@ -34,24 +34,27 @@
             <tbody>
               <tr v-for="(cart, index) in carts" :key="index">
                 <td class="align-middle" style="width: 20%">
-                  <img :src="cart.url" class="cart-image" />
+                  <img :src="cart.product.image" class="cart-image" />
                 </td>
                 <td class="align-middle" style="width: 20%">
-                  <div class="product-name">{{ cart.name }}</div>
+                  <div class="product-name">{{ cart.product.name }}</div>
                 </td>
                 <td class="align-middle" style="width: 20%">
                   <div class="product-price">
-                    Rp. {{ cart.price.toLocaleString("id-ID") }}
+                    Rp. {{ cart.product.price.toLocaleString("id-ID") }}
                   </div>
                   <div class="product-price-coret">
-                    Rp. {{ cart.priceCoret.toLocaleString("id-ID") }}
+                    Rp.
+                    {{
+                      calculateDiscount(cart.product).toLocaleString("id-ID")
+                    }}
                   </div>
                 </td>
                 <td class="align-middle" style="width: 20%">
-                  <div class="product-quantity">{{ cart.qty }}</div>
+                  <div class="product-quantity">{{ cart.quantity }}</div>
                 </td>
                 <td style="width: 20%" class="align-middle">
-                  <a href="#" class="btn btn btn-remove-cart">Remove</a>
+                  <button @click.prevent="removeCart(cart.id)" class="btn btn btn-remove-cart">Remove</button>
                 </td>
               </tr>
             </tbody>
@@ -190,38 +193,31 @@
   </div>
 </template>
 
-
-
 <script>
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
 export default {
-  name: "cart",
-  data: () => ({
-    carts: [
-      {
-        id: 1,
-        url: "/images/pic_detail1.jpg",
-        name: "Sofat ternyaman",
-        price: 2080000,
-        priceCoret: 2600000,
-        qty: 3,
-      },
-      {
-        id: 2,
-        url: "/images/pic_detail3.jpg",
-        name: "Sofat ternyaman",
-        price: 2080000,
-        priceCoret: 2600000,
-        qty: 3,
-      },
-      {
-        id: 3,
-        url: "/images/pic_detail5.jpg",
-        name: "Sofat ternyaman",
-        price: 2080000,
-        priceCoret: 2600000,
-        qty: 3,
-      },
-    ],
-  }),
+  setup() {
+    const store = useStore();
+
+    const carts = computed(() => {
+      return store.getters["cart/getCart"];
+    });
+    console.log(store.getters["cart/getCart"]);
+
+     /* function hapus data cart */
+    const removeCart = (cart_id) => {
+      if (confirm("Do you want to delete ?")) {
+        store.dispatch("cart/removeCart", cart_id);
+      }
+    };
+
+    return {
+      store,
+      carts,
+      removeCart
+      
+    };
+  },
 };
 </script>

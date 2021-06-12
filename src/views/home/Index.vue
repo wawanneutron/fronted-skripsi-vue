@@ -59,8 +59,16 @@
             <div class="product-text">
               <p>{{ product.title }}</p>
             </div>
+            <div class="discount" style="color: #999">
+              <s>Rp. {{ moneyFormat(product.price) }} </s>
+            </div>
+            <span
+              style="background-color: darkorange"
+              class="badge badge-pill badge-success text-white float-right"
+              >DISKON {{ product.discount }} %</span
+            >
             <div class="product-price">
-              <p>Rp. {{ moneyFormat(product.price) }}</p>
+              <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
             </div>
           </router-link>
         </div>

@@ -139,6 +139,13 @@ body {
   margin-top: 30px !important;
 }
 
+.store-gallery .product-price-coret {
+  text-decoration: line-through;
+  color: crimson;
+  font-weight: 400;
+  font-size: 16px;
+}
+
 .store-gallery .img-store {
   cursor: pointer;
   border-radius: 8px;
@@ -233,6 +240,10 @@ body {
 
 .store-gallery .description .content-store .tab-content table tbody:hover {
   background-color: rgba(3, 172, 14, 0.411) !important;
+}
+
+.store-gallery .description .content-store .tab-content table.table-detail tbody:hover {
+  background-color: transparent !important;
 }
 
 .store-gallery .description .content-store .readmore {
@@ -535,22 +546,31 @@ body {
   margin-bottom: 20px;
 }
 
-.component-product:hover {
+.col-product .component-product:hover {
   text-decoration: none;
 }
 
-.component-product .product-thumbnail {
+.col-product .component-product span.badge {
+  margin-top: -40px;
+}
+
+.col-product .component-product .discount {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.col-product .component-product .product-thumbnail {
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
 }
 
-.component-product .product-thumbnail:hover img {
+.col-product .component-product .product-thumbnail:hover img {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
 }
 
-.component-product .product-thumbnail img {
+.col-product .component-product .product-thumbnail img {
   width: 100%;
   background-position: center;
   background-size: cover;
@@ -559,13 +579,13 @@ body {
   transition: all 0.7s ease;
 }
 
-.component-product .product-text {
+.col-product .component-product .product-text {
   font-size: 18px;
   color: #0c0d36;
   margin-top: 12px;
 }
 
-.component-product .product-price {
+.col-product .component-product .product-price {
   margin-top: -10px;
   font-weight: 500;
   font-size: 16px;
@@ -587,6 +607,50 @@ body {
   font-weight: 700;
   font-size: 24px;
   color: rgba(49, 53, 59, 0.96);
+}
+
+@media (max-width: 510px) {
+  .col-product {
+    padding: 0 7px;
+  }
+  .col-product .component-product span {
+    float: none !important;
+    margin-bottom: 15px;
+  }
+  .col-product .component-product .discount {
+    font-size: 15px;
+  }
+  .col-product .component-product:hover {
+    text-decoration: none;
+  }
+  .col-product .component-product .product-thumbnail {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .col-product .component-product .product-thumbnail:hover img {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+  .col-product .component-product .product-thumbnail img {
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+  }
+  .col-product .component-product .product-text {
+    font-size: 18px;
+    color: #0c0d36;
+    margin-top: 12px;
+  }
+  .col-product .component-product .product-price {
+    margin-top: -10px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #ff7158;
+  }
 }
 
 .store-breadcrumbs {

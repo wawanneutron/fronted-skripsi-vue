@@ -1,4 +1,10 @@
 .store-gallery {
+  .product-price-coret {
+    text-decoration: line-through;
+    color: crimson;
+    font-weight: 400;
+    font-size: 16px;
+  }
   margin-top: 30px !important;
   .img-store {
     cursor: pointer;
@@ -87,6 +93,13 @@
           tbody {
             &:hover {
               background-color: rgba(3, 172, 14, 0.411) !important;
+            }
+          }
+        }
+        table.table-detail {
+          tbody {
+            &:hover {
+              background-color: transparent !important;
             }
           }
         }

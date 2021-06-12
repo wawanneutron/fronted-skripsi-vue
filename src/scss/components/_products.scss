@@ -1,37 +1,44 @@
 .col-product {
   margin-bottom: 20px;
-}
-.component-product {
-  &:hover {
-    text-decoration: none;
-  }
-  .product-thumbnail {
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
+  .component-product {
     &:hover {
+      text-decoration: none;
+    }
+    span.badge {
+      margin-top: -40px;
+    }
+    .discount {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .product-thumbnail {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      &:hover {
+        img {
+          transform: scale(1.5);
+        }
+      }
       img {
-        transform: scale(1.5);
+        width: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transition: all 0.7s ease;
       }
     }
-    img {
-      width: 100%;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      transition: all 0.7s ease;
+    .product-text {
+      font-size: 18px;
+      color: #0c0d36;
+      margin-top: 12px;
     }
-  }
-  .product-text {
-    font-size: 18px;
-    color: #0c0d36;
-    margin-top: 12px;
-  }
-  .product-price {
-    margin-top: -10px;
-    font-weight: 500;
-    font-size: 16px;
-    color: #ff7158;
+    .product-price {
+      margin-top: -10px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #ff7158;
+    }
   }
 }
 
@@ -50,4 +57,52 @@
   font-weight: 700;
   font-size: 24px;
   color: rgba(49, 53, 59, 0.96);
+}
+
+@media (max-width: 510px) {
+  .col-product {
+    padding: 0 7px;
+
+    .component-product {
+      span {
+        float: none !important;
+        margin-bottom: 15px;
+      }
+      .discount {
+        font-size: 15px;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+      .product-thumbnail {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+        &:hover {
+          img {
+            transform: scale(1.5);
+          }
+        }
+        img {
+          width: 100%;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          transition: all 0.7s ease;
+        }
+      }
+      .product-text {
+        font-size: 18px;
+        color: #0c0d36;
+        margin-top: 12px;
+      }
+      .product-price {
+        margin-top: -10px;
+        font-weight: 500;
+        font-size: 16px;
+        color: #ff7158;
+      }
+    }
+  }
 }

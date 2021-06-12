@@ -69,27 +69,40 @@
         <div class="row row-d">
           <div class="col-lg-6">
             <div class="product-header mb-2">{{ product.title }}</div>
-            <button
-              class="btn btn-sm"
-              style="color: #ff2f00; border-color: #ff2f00"
-            >
-              DISKON {{ product.discount }} %
-            </button>
-            <s class="ml-3" style="text-decoration-color: red">
-              Rp. {{ moneyFormat(calculateDiscount(product)) }}
-            </s>
-            <div class="font-weight-bold mt-3 mr-4 price">
+            <s class="product-price-coret" style="text-decoration-color: red">
               Rp. {{ moneyFormat(product.price) }}
+            </s>
+            <br />
+            <span class="badge badge-success mr-3">
+              DISKON {{ product.discount }} %
+            </span>
+
+            <div class="font-weight-bold mt-3 mr-4 price">
+              Rp. {{ moneyFormat(calculateDiscount(product)) }}
             </div>
           </div>
-          <div class="col-lg-3">
-            <router-link
-              :to="{ path: '/cart' }"
+          <div class="col-lg-3" v-if="product.stock == 0">
+            <button
+              class="btn btn-danger"
+              data-toggle="modal"
+              data-target="#kosong"
+            >
+              Stock Kosong
+            </button>
+          </div>
+          <div class="col-lg-3" v-if="product.stock > 0">
+            <button
               class="btn btn-success"
-              title="add to cart"
+              @click.prevent="
+                addToCart(
+                  product.id,
+                  calculateDiscount(product),
+                  product.weight
+                )
+              "
             >
               Add to Cart
-            </router-link>
+            </button>
           </div>
         </div>
       </section>
@@ -130,7 +143,56 @@
                   role="tabpanel"
                   aria-labelledby="pills-detail-tab"
                 >
-                  <span class="text-descripsi" v-html="product.content"> </span>
+                  <table class="table table-detail table-borderless mt-3">
+                    <tbody>
+                      <tr>
+                        <td width="20%">Diskon</td>
+                        <td>:</td>
+                        <td width="80%">
+                          <button
+                            class="btn btn-sm"
+                            style="color: #ff2f00; border-color: #ff2f00"
+                          >
+                            DISKON {{ product.discount }} %
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Berat</td>
+                        <td>:</td>
+                        <td>
+                          <span
+                            class="badge badge-pill badge-success"
+                            style="
+                              font-size: 14px;
+                              border-radius: 0.3rem;
+                              padding: 0.25em 0.5em 0.2em;
+                            "
+                          >
+                            {{ product.weight }} gram</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Stock Barang</td>
+                        <td>:</td>
+                        <td>
+                          <span
+                            class="badge badge-pill badge-warning"
+                            style="
+                              font-size: 14px;
+                              border-radius: 0.3rem;
+                              padding: 0.25em 0.5em 0.2em;
+                            "
+                          >
+                            {{ product.stock }} stock</span
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3 class="mt-5 mb-3">Deskripsi Product</h3>
+                  <div v-html="product.content"></div>
                 </div>
                 <div
                   class="tab-pane fade"
@@ -142,8 +204,8 @@
                     class="alert alert-warning alert-dismissible fade show"
                     role="alert"
                   >
-                    <strong>Hay Wawan!</strong> Kamu perlu menghubung penjual
-                    mengenai ketersdiaan ukuran
+                    <strong>Hay {{ user.name }}!</strong> Kamu perlu menghubungi
+                    penjual mengenai ketersdiaan ukuran
                     <button
                       type="button"
                       class="close"
@@ -297,11 +359,34 @@
         </div>
       </section>
     </section>
-    <section class="page-content header-title" data-aos="fade-up">
-      <div class="row">
-        <span class="text-product-header">Lainnya di toko ini</span>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="kosong"
+    data-backdrop="static"
+    data-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="kosongLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="kosongLabel">Stock Kosong</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">Maaf stock barang sedang ksosong</div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 
@@ -309,11 +394,12 @@
 <script>
 import { useStore } from "vuex";
 import { computed, onMounted, reactive } from "@vue/runtime-core";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 export default {
   setup() {
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
 
     const state = reactive({
       photoActive: [],
@@ -331,6 +417,10 @@ export default {
       return store.getters["product/getGallery"];
     });
 
+    const user = computed(() => {
+      return store.getters["auth/getUser"];
+    });
+
     const changeActive = (id) => {
       state.headerActive = null;
       state.photoActive = id;
@@ -341,6 +431,25 @@ export default {
       state.headerActive = id;
     };
 
+    // function addToCart
+    const addToCart = (product_id, price, weight) => {
+      // check token terlebih dahulu
+      const token = computed(() => {
+        store.dispatch["auth/isLoggedIn"];
+      });
+      // cek token
+      if (!token) {
+        router.push({ name: "login" });
+      }
+      // panggil action addToCart di module cart
+      store.dispatch("cart/addToCart", {
+        product_id: product_id,
+        price: price,
+        weight: weight,
+        quantity: 1,
+      });
+    };
+
     return {
       store,
       route,
@@ -349,6 +458,8 @@ export default {
       gallery,
       changeActive,
       headerActive,
+      user,
+      addToCart,
     };
   },
 };

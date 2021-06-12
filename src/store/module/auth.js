@@ -80,6 +80,17 @@ const auth = {
             // commit  data user ke mutation
             commit("GET_USER", user);
 
+            /* 
+              commit cart total dan cart count ke state yang ada di module cart
+            */
+            Api.get("/cart").then((response) => {
+              commit("cart/GET_CART", response.data.cart, { root: true }); //root lintas modul
+            });
+
+            Api.get("/cart/total").then((response) => {
+              commit("cart/TOTAL_CART", response.data.total, { root: true }); //root lintas modul
+            });
+
             // resolve ke komponent dengan hasil response
             resolve(response);
           })

@@ -81,7 +81,7 @@
             </button>
           </div>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="countCart !== 0">
           <router-link
             to="/cart"
             class="nav-link btn cart btn-md d-inline-block mt-2 ml-3"
@@ -92,8 +92,8 @@
             "
           >
             <img src="/images/ic_cart_filed.svg" class="mr-3" />
-            <div class="cart-badge">3</div>
-            Rp. 52.000
+            <div class="cart-badge">{{ countCart }}</div>
+            Rp. {{ moneyFormat(totalCart) }}
           </router-link>
         </li>
       </ul>
@@ -171,7 +171,7 @@
 </template>
 
 <script>
-import { computed } from "@vue/runtime-core";
+import { computed, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 export default {
@@ -189,8 +189,28 @@ export default {
       return store.getters["auth/getUser"];
     });
 
+    let countCart = computed(() => {
+      return store.getters["cart/countCart"];
+    });
+
+    let totalCart = computed(() => {
+      return store.getters["cart/totalCart"];
+    });
+
+    onMounted(() => {
+      // check state token
+      const token = store.state.auth.token;
+
+      if (!token) {
+        return;
+      }
+      // ketika halaman di load akan menjalankana ction dimodule cart
+      store.dispatch("cart/countCart");
+      store.dispatch("cart/cartTotal");
+    });
+
     // method logout
-    let logout = () => {
+    const logout = () => {
       // panggil action logout di dalam module auth
       store.dispatch("auth/logout").then(() => {
         // jika berhasil akan diarahkan keraouter login
@@ -205,9 +225,12 @@ export default {
       store,
       logout,
       user,
+      countCart,
+      totalCart,
     };
   },
 
+  // navbar collapse
   data: () => ({
     showNavbar: true,
     lastScrollPosition: 0,
