@@ -12,8 +12,10 @@
               silahkan cari barang yang kamu suka
             </p>
             <div>
-              <a href="/dashboard.html" class="btn btn-success w-50 mt-4"
-                >My Dashboard</a
+              <router-link
+                :to="{ name: 'dashboard' }"
+                class="btn btn-success w-50 mt-4"
+                >My Dashboard</router-link
               >
             </div>
             <div>

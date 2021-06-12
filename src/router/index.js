@@ -19,16 +19,41 @@ const routes = [
     path: "/register-success",
     name: "register-success",
     component: () => import("@/views/success/Register.vue"),
+    // check is loggedIn
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/login-success",
     name: "login-success",
     component: () => import("@/views/success/Login.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/",
     name: "home",
     component: () => import("@/views/home/Index.vue"),
+  },
+  {
+    path: "/customer/dashboard",
+    name: "dashboard",
+    component: () => import("@/views/dashboard/Index.vue"),
+    // check is loggedIn
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/customer/order/:snap_token",
+    name: "detail_order",
+    component: () => import("@/views/dashboard/Show.vue"),
+    // check is loggedIn
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/terms",
@@ -37,7 +62,7 @@ const routes = [
   },
   {
     path: "/about",
-    name: "About",
+    name: "about",
     component: () => import("../views/About.vue"),
   },
   {
@@ -71,7 +96,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes, // <-- routes
-  store,
+});
+
+// define route for handle Authentication
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    // cek nilai dari getters isLoggedIn d module auth vuex
+    if (store.getters["auth/isLoggedIn"]) {
+      next();
+      return;
+    }
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;

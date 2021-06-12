@@ -8,7 +8,7 @@
               <li class="breadcrumb-item">
                 <router-link to="/">Home</router-link>
               </li>
-              <li class="breadcrumb-item  active">Cart</li>
+              <li class="breadcrumb-item active">Cart</li>
             </ol>
           </nav>
         </div>
@@ -19,7 +19,7 @@
         <i class="fa fa-shopping-cart mr-2"></i>
         Order Details
       </div>
-      <div class="row " data-aos="fade-up">
+      <div class="row" data-aos="fade-up">
         <div class="col-12 table-responsive">
           <table class="table table-borderless table-cart">
             <thead>
@@ -33,13 +33,13 @@
             </thead>
             <tbody>
               <tr v-for="(cart, index) in carts" :key="index">
-                <td class=" align-middle" style="width: 20%">
+                <td class="align-middle" style="width: 20%">
                   <img :src="cart.url" class="cart-image" />
                 </td>
-                <td class=" align-middle" style="width: 20%">
+                <td class="align-middle" style="width: 20%">
                   <div class="product-name">{{ cart.name }}</div>
                 </td>
-                <td class=" align-middle" style="width: 20%">
+                <td class="align-middle" style="width: 20%">
                   <div class="product-price">
                     Rp. {{ cart.price.toLocaleString("id-ID") }}
                   </div>
@@ -47,7 +47,7 @@
                     Rp. {{ cart.priceCoret.toLocaleString("id-ID") }}
                   </div>
                 </td>
-                <td class=" align-middle" style="width: 20%">
+                <td class="align-middle" style="width: 20%">
                   <div class="product-quantity">{{ cart.qty }}</div>
                 </td>
                 <td style="width: 20%" class="align-middle">
@@ -56,28 +56,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-      <div class="text-product-header mt-4" data-aos="fade-up">
-        <i class="fas fa-money-check-alt"></i>
-        Payment informations
-      </div>
-      <div class="row payment-informations mt-5" data-aos="fade-in">
-        <div class="col-6 col-lg-3 mb-3">
-          <div class="number">9 (pcs)</div>
-          <div class="sub-title">Jumlah Pemesanan</div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="number">Rp. 120.000</div>
-          <div class="gram">(1000) gram</div>
-          <div class="sub-title">Ongkos Kirim</div>
-        </div>
-        <div class="col-6 col-lg-3">
-          <div class="number">Rp. 567.000</div>
-          <div class="sub-title">Subtotal</div>
-        </div>
-        <div class="col-12 col-lg-3">
-          <a href="#" class=" btn btn-block btn-success">Checkout Now</a>
         </div>
       </div>
     </section>
@@ -95,18 +73,18 @@
             <label for="name">Full Name</label>
             <input
               type="text"
-              class=" form-control mb-4"
+              class="form-control mb-4"
               placeholder="your full name"
               id="name"
             />
           </div>
         </div>
         <div class="col-md-6">
-          <div class=" form-group">
+          <div class="form-group">
             <label for="mobile">Mobile/Whatsapp</label>
             <input
               type="text"
-              class=" form-control "
+              class="form-control"
               placeholder="0877584586"
               id="mobile"
             />
@@ -115,7 +93,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="provinces">Provinces</label>
-            <select name="provinces" class=" form-control mb-4" id="provinces">
+            <select name="provinces" class="form-control mb-4" id="provinces">
               <option selected>Banten</option>
             </select>
           </div>
@@ -123,7 +101,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <label for="city">City / Districts</label>
-            <select name="city" class=" form-control" id="city">
+            <select name="city" class="form-control" id="city">
               <option selected>Kab. Tangerang</option>
             </select>
           </div>
@@ -133,7 +111,7 @@
             <label for="code">Postal Code</label>
             <input
               type="number"
-              class=" form-control"
+              class="form-control"
               id="code"
               placeholder="15720"
             />
@@ -144,7 +122,7 @@
             <label for="address">Full Address</label>
             <textarea
               name="address"
-              class=" form-control mb-4"
+              class="form-control mb-4"
               id="address"
               rows="5"
             ></textarea>
@@ -185,8 +163,34 @@
         </div>
       </div>
     </section>
+    <section class="payment-informations store-cart card card-body mt-3">
+      <div class="text-product-header mt-4" data-aos="fade-up">
+        <i class="fas fa-money-check-alt"></i>
+        Payment informations
+      </div>
+      <div class="row payment-informations mt-5" data-aos="fade-in">
+        <div class="col-6 col-lg-3 mb-3">
+          <div class="number">9 (pcs)</div>
+          <div class="sub-title">Jumlah Pemesanan</div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="number">Rp. 120.000</div>
+          <div class="gram">(1000) gram</div>
+          <div class="sub-title">Ongkos Kirim</div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="number">Rp. 567.000</div>
+          <div class="sub-title">Subtotal</div>
+        </div>
+        <div class="col-12 col-lg-3">
+          <a href="#" class="btn btn-block btn-success">Checkout Now</a>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
+
+
 
 <script>
 export default {

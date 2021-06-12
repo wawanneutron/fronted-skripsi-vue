@@ -1,5 +1,6 @@
 <template>
   <!--page-login -->
+  <Navbar></Navbar>
   <div class="page-content page-auth">
     <section class="section-store-auth" data-aos="fade-up">
       <div class="container">
@@ -79,6 +80,7 @@
 import { reactive, ref } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+
 export default {
   setup() {
     const store = useStore();

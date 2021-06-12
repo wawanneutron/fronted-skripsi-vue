@@ -67,7 +67,9 @@
           />
           Hi, {{ user.name }}
           <div class="dropdown-menu">
-            <a href="#" class="dropdown-item"> Dashboard</a>
+            <router-link :to="{ name: 'dashboard' }" class="dropdown-item">
+              Dashboard</router-link
+            >
             <a href="#" class="dropdown-item">Settings</a>
             <hr />
             <button
@@ -80,21 +82,30 @@
           </div>
         </li>
         <li class="nav-item">
-          <router-link to="/cart" class="nav-link cart d-inline-block mt-2">
-            <img src="/images/ic_cart_filed.svg" />
+          <router-link
+            to="/cart"
+            class="nav-link btn cart btn-md d-inline-block mt-2 ml-3"
+            style="
+              color: #0c0d36;
+              background-color: #eff0f3;
+              border-color: #ff7158;
+            "
+          >
+            <img src="/images/ic_cart_filed.svg" class="mr-3" />
             <div class="cart-badge">3</div>
+            Rp. 52.000
           </router-link>
         </li>
       </ul>
       <!-- mobile auth -->
-      <div class="navbar-nav ml-auto d-block d-lg-none" v-if="!guest">
+      <div class="navbar-nav ml-auto d-block d-lg-none" v-if="token">
         <router-link class="nav-link active" to="/"
           >Home <span class="sr-only">(current)</span></router-link
         >
         <router-link class="nav-link" to="#">Term of Service</router-link>
         <router-link class="nav-link" to="/about">About</router-link>
       </div>
-      <ul class="navbar-nav nav-profile d-block d-lg-none" v-if="!guest">
+      <ul class="navbar-nav nav-profile d-block d-lg-none" v-if="token">
         <li class="nav-item dropdown">
           <img
             src="/images/user_pc.jpg"
@@ -104,12 +115,20 @@
             role="button"
             data-toggle="dropdown"
           />
-          Hi, Wawan sdcsd
+          Hi, {{ user.name }}
           <div class="dropdown-menu">
-            <a href="#" class="dropdown-item"> Dashboard</a>
+            <router-link :to="{ name: 'dashboard' }" class="dropdown-item">
+              Dashboard</router-link
+            >
             <a href="#" class="dropdown-item">Settings</a>
             <hr />
-            <a href="#" class="dropdown-item">Logout</a>
+            <button
+              data-toggle="modal"
+              data-target="#myModal"
+              class="dropdown-item"
+            >
+              Logout
+            </button>
           </div>
         </li>
       </ul>
