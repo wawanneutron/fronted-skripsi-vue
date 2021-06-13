@@ -77,7 +77,7 @@ const cart = {
       Api.defaults.headers.common["Authorization"] = "Bearer " + token;
 
       Api.get("/cart/total-weight").then((response) => {
-        commit("TOTAL_CART", response.data.total);
+        commit("CART_WEIGHT", response.data.total);
       });
     },
 
@@ -117,6 +117,10 @@ const cart = {
 
     totalCart(state) {
       return state.cartTotal;
+    },
+
+    cartWeight(state) {
+      return state.cartWeight;
     },
   },
 };
