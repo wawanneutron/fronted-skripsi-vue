@@ -311,10 +311,12 @@
 import { computed, onMounted, reactive } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import Api from "../../api/Api";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
 
     const carts = computed(() => {
       return store.getters["cart/getCart"];
@@ -333,9 +335,6 @@ export default {
       return store.getters["cart/cartWeight"];
     });
 
-    onMounted(() => {
-      store.dispatch("cart/cartTotal");
-    });
     const totalCart = computed(() => {
       return store.getters["cart/totalCart"];
     });
@@ -452,6 +451,36 @@ export default {
 
     // fungsi buttonCheckout
     const checkout = () => {
+      if (state.name && state.phone && state.address && cartWeight.value) {
+        // define variable
+        let data = {
+          courier: state.courier,
+          service_courier: state.service_courier,
+          cost_courier: state.cost_courier,
+          cartWeight: cartWeight.value,
+          name: state.name,
+          phone: state.phone,
+          province_id: state.province_id,
+          city_id: state.city_id,
+          address: state.address,
+          grandTotal: state.grandTotal,
+        };
+
+        store
+          .dispatch("cart/checkout", data)
+          .then((response) => {
+            router.push({
+              name: "detail_order",
+              params: {
+                snap_token: response[0].snap_token,
+              },
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+
       // check validasi
       if (!state.name) {
         validation.name = true;
