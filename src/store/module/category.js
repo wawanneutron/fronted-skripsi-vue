@@ -6,7 +6,8 @@ const category = {
   state: {
     categoriesHome: [],
     categoriesAll: [],
-    productOnCategory: [],
+    productCategory: [],
+    category: {},
   },
   mutations: {
     GET_CATEGORIES_HOME(state, categories) {
@@ -15,8 +16,11 @@ const category = {
     GET_CATEGORIES_ALL(state, categories) {
       state.categoriesAll = categories;
     },
-    GET_PRODUCT_ON_CATEGORY(state, products) {
-      state.productOnCategory = products;
+    GET_PRODUCT_CATEGORY(state, product) {
+      state.productCategory = product; // terima hasil dari respon API
+    },
+    GET_CATEGORY(state, category) {
+      state.category = category;
     },
   },
   actions: {
@@ -40,6 +44,16 @@ const category = {
           console.log(error);
         });
     },
+    getProductCategory({ commit }, slug) {
+      Api.get(`/category-show/${slug}`)
+        .then((response) => {
+          commit("GET_PRODUCT_CATEGORY", response.data.product);
+          commit("GET_CATEGORY", response.data.category);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
   getters: {
     getCategoriesHome(state) {
@@ -47,6 +61,12 @@ const category = {
     },
     getAllCategories(state) {
       return state.categoriesAll;
+    },
+    getProductCategory(state) {
+      return state.productCategory;
+    },
+    getCategory(state) {
+      return state.category;
     },
   },
 };

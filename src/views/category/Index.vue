@@ -15,7 +15,13 @@
           :key="category.id"
           data-aos="fade-up"
         >
-          <router-link to="/category" class="component-categories d-block">
+          <router-link
+            :to="{
+              name: 'category_show',
+              params: { slug: category.slug },
+            }"
+            class="component-categories d-block"
+          >
             <div class="categories-image">
               <img :src="category.image" class="w-100" />
             </div>

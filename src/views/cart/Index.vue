@@ -90,7 +90,7 @@
       data-aos="fade-in"
     >
       <div class="row">
-        <div class="col-lg-6 shadow payment-informations store-cart mb-4">
+        <div class="col-lg-6 payment-informations store-cart mb-4">
           <div class="text-product-header" data-aos="fade-up">
             <i class="fas fa-money-check-alt"></i>
             Payment informations
@@ -124,7 +124,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 shadow">
+        <div class="col-lg-6">
           <div class="text-product-header">
             <i class="fas fa-shipping-fast mr-2"></i>
             Shipping Details
@@ -251,39 +251,34 @@
                 :key="index"
               >
                 <input
-                  class="form-check-input mr-2"
+                  class="form-check-input mr-2 mb-3"
                   type="radio"
                   :id="item.service"
                   :value="item.cost[0].value + '|' + item.service"
                   v-model="state.costService"
                   @change="getCostService"
                 />
-                <label class="form-check-label" :for="item.service">
-                  {{ item.service }} - Rp. {{ moneyFormat(item.cost[0].value) }}
+                <label class="form-check-label mb-3" :for="item.service">
+                  {{ item.service }} - Rp.
+                  {{ moneyFormat(item.cost[0].value) }} ({{
+                    state.courier !== "pos"
+                      ? item.cost[0].etd + " Hari Pengiriman"
+                      : item.cost[0].etd + " Pengiriman"
+                  }})
                 </label>
               </div>
-            </div>
-            <!-- estimasi -->
-            <!-- <div class="col-lg-12">
-              <div v-if="state.etd">
-                <div class="text-courier mb-2">Estimasi Sampai</div>
-                <br />
-                <span v-if="state.courier_type == 'pos'"
-                  >{{ state.costs[0].cost[0].etd }} Pengiriman</span
+              <!-- jika tidak ada pengiriman kekota tujuan -->
+              <div class="alert alert-danger" v-if="state.dataService == 0">
+                <span
+                  >Pengiriman {{ state.courier.toUpperCase() }} tidak ada</span
                 >
-                <span v-else
-                  >{{
-                    state.costs == 0
-                      ? ((state.etd = false),
-                        (state.courier_cost = 0),
-                        (state.grandTotal = 0))
-                      : state.costs[0].cost[0].etd + " Hari Pengiriman"
-                  }}
-                </span>
+                <!-- kembalikan data sebelum dihitung oleh ongkir dan subtotal -->
+                <div class="d-none">
+                  {{ (state.cost_courier = 0) }}
+                  {{ (state.grandTotal = 0) }}
+                </div>
               </div>
-              <hr />
-            </div> -->
-            <!-- full address -->
+            </div>
             <div class="col-12 mt-3">
               <div class="form-group">
                 <label for="address">Full Address</label>

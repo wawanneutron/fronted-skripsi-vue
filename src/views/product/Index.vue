@@ -1,4 +1,5 @@
 <template>
+  <slider />
   <div class="page-content mt-global">
     <section class="header-title" data-aos="fade-up">
       <div class="row">
@@ -32,9 +33,17 @@
   </div>
 </template>
 <script>
-import { computed, onMounted } from "@vue/runtime-core";
+import { computed, defineAsyncComponent, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";
+
+const sliders = defineAsyncComponent(() =>
+  import("../../components/Carousel.vue")
+);
+
 export default {
+  components: {
+    slider: sliders,
+  },
   setup() {
     const store = useStore();
 

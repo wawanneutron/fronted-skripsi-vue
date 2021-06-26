@@ -58,7 +58,7 @@
       <ul class="navbar-nav nav-profile d-none d-lg-flex" v-if="token">
         <li class="nav-item dropdown">
           <img
-            src="/images/user_pc.jpg"
+            :src="`https://ui-avatars.com/api/?name=${user.name}&background=1f1235&color=ffffff`"
             alt="user"
             class="rounded-circle mr-2 profile-picture shadow"
             id="navbarDropdown"
@@ -104,11 +104,26 @@
         >
         <router-link class="nav-link" to="#">Term of Service</router-link>
         <router-link class="nav-link" to="/about">About</router-link>
+        <li class="nav-item" v-if="countCart !== 0">
+          <router-link
+            to="/cart"
+            class="nav-link btn cart btn-md d-inline-block mt-2 ml-3"
+            style="
+              color: #0c0d36;
+              background-color: #eff0f3;
+              border-color: #ff7158;
+            "
+          >
+            <img src="/images/ic_cart_filed.svg" class="mr-3" />
+            <div class="cart-badge">{{ countCart }}</div>
+            Rp. {{ moneyFormat(totalCart) }}
+          </router-link>
+        </li>
       </div>
       <ul class="navbar-nav nav-profile d-block d-lg-none" v-if="token">
         <li class="nav-item dropdown">
           <img
-            src="/images/user_pc.jpg"
+            :src="`https://ui-avatars.com/api/?name=${user.name}&background=1f1235&color=ffffff`"
             alt="user"
             class="rounded-circle mr-2 profile-picture shadow"
             id="navbarDropdown"

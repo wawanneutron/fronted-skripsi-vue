@@ -21,7 +21,7 @@
             :key="index"
           >
             <router-link
-              to="/category-all"
+              :to="{ name: 'category_show', params: { slug: category.slug } }"
               class="component-categories d-block"
             >
               <div class="categories-image">

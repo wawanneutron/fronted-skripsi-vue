@@ -3,30 +3,69 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 col-img" data-aos="zoom-in">
-          <div id="storeCarousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li
-                class="active"
-                data-target="#storeCarousel"
-                data-slide-to="0"
-              ></li>
-              <li data-target="#storeCarousel" data-slide-to="1"></li>
-              <li data-target="#storeCarousel" data-slide-to="2"></li>
-            </ol>
+          <div id="carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="/images/banner.jpg" alt="" class="d-block w-100" />
-              </div>
-              <div class="carousel-item">
-                <img src="/images/banner2.jpg" alt="" class="d-block w-100" />
-              </div>
-              <div class="carousel-item">
-                <img src="/images/banner3.jpg" alt="" class="d-block w-100" />
+              <div
+                class="carousel-item"
+                v-for="(slider, id) in sliders"
+                :class="{ active: id == 0 }"
+                :key="slider.id"
+              >
+                <a :href="slider.link" target="_blank">
+                  <img :src="slider.image" class="d-block w-100 rounded-lg" />
+                </a>
               </div>
             </div>
+            <a
+              class="carousel-control-prev"
+              href="#carousel"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carousel"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+<script>
+import { computed, onMounted } from "@vue/runtime-core";
+import { useStore } from "vuex";
+
+export default {
+  setup() {
+    const store = useStore();
+
+    onMounted(() => {
+      return store.dispatch("slider/getSliders");
+    });
+
+    const sliders = computed(() => {
+      return store.getters["slider/getSliders"];
+    });
+
+    return {
+      store,
+      sliders,
+    };
+  },
+};
+</script>

@@ -434,10 +434,8 @@ export default {
     // function addToCart
     const addToCart = (product_id, price, weight) => {
       // check token terlebih dahulu
-      const token = computed(() => {
-        store.dispatch["auth/isLoggedIn"];
-      });
-      // cek token
+      const token = store.state.auth.token;
+
       if (!token) {
         router.push({ name: "login" });
       }

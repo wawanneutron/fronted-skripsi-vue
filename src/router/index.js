@@ -71,6 +71,11 @@ const routes = [
     component: () => import("../views/category/Index.vue"),
   },
   {
+    path: "/category/:slug",
+    name: "category_show",
+    component: () => import("../views/category/Show.vue"),
+  },
+  {
     path: "/product-all",
     name: "Product",
     component: () => import("../views/product/Index.vue"),
@@ -98,10 +103,10 @@ const router = createRouter({
   routes, // <-- routes
 });
 
-// define route for handle Authentication
+// define route for handle authentication
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    // cek nilai dari getters isLoggedIn d module auth vuex
+    // cek nilai dari getters isLoggedIn di module auth
     if (store.getters["auth/isLoggedIn"]) {
       next();
       return;
