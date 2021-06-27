@@ -4,12 +4,16 @@
     <div class="page-content">
       <section class="header-title" data-aos="fade-up">
         <div class="row">
-          <span class="text-product-header">Trend Categories</span>
+          <div class="col-md-12 col-12">
+            <span class="text-product-header">Kategori Terlaris</span>
+          </div>
         </div>
-        <div class="row">
-          <router-link class="show-all" to="/category-all"
-            >Show all categories</router-link
-          >
+        <div class="row mb-3">
+          <div class="col-12">
+            <router-link class="show-all" to="/category-all"
+              >Tampilkan kategori lainnya</router-link
+            >
+          </div>
         </div>
       </section>
       <section class="store-trend-categories">
@@ -32,14 +36,18 @@
           </div>
         </div>
       </section>
-      <section class="header-title" data-aos="fade-up">
+      <section class="header-title mt-4" data-aos="fade-up">
         <div class="row">
-          <span class="text-product-header">New Products</span>
+          <div class="col-md-6 col-12">
+            <span class="text-product-header">Product Terbaru</span>
+          </div>
         </div>
-        <div class="row">
-          <router-link class="show-all" to="/product-all"
-            >Show All New Products</router-link
-          >
+        <div class="row mb-4">
+          <div class="col-12 col-md-8">
+            <router-link class="show-all" to="/product-all"
+              >Tampilkan product lainnya</router-link
+            >
+          </div>
         </div>
       </section>
       <div class="row">
