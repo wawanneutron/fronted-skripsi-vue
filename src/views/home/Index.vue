@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <section class="details-header"></section>
+  <main id="home">
     <Carousel />
     <div class="page-content">
       <section class="header-title" data-aos="fade-up">
@@ -82,7 +83,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 <script>
 import { computed, defineAsyncComponent, onMounted } from "vue";

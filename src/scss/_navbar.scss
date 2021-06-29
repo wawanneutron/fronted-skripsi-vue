@@ -1,9 +1,10 @@
 .navbar {
-  background: #eff0f3 !important;
+  background: #fffffe;
   transform: translate3d(0, 0, 0);
   transition: 0.5s all ease-out;
-  margin: 0px;
-  padding: 30px 85px 30px;
+  margin: 0 70px;
+  padding: 10px 15px;
+  border-radius: 0 0 8px 8px;
   .navbar-nav {
     .nav-link {
       color: #0c0d36;

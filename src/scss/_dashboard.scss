@@ -1,39 +1,75 @@
-.dashboard-customer,
-.dashboard-customer-show {
+// show dashboard
+#dashboard-show {
+  .store-breadcrumbs {
+    margin-top: -510px !important;
+  }
+  .dashboard-heading-show {
+    margin-top: -100px;
+    margin-bottom: 50px;
+    .dashboard-title {
+      font-style: normal;
+      font-weight: normal;
+      color: #fffffe;
+    }
+    .dashboard-subtitle {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 16px;
+      color: #9191a9;
+    }
+  }
+  // dashboard-transactions
+  .dashboard-content-show {
+    h5 {
+      color: #232946;
+    }
+    margin-bottom: 100px !important;
+    .product-title {
+      font-weight: normal;
+      font-size: 16px;
+      color: #c5c5c5;
+      line-height: 28px;
+    }
+    .product-subtitle {
+      line-height: 30px;
+      font-weight: 500;
+      font-size: 18px;
+      color: #232946;
+      margin-bottom: 20px;
+    }
+  }
+  .card-list {
+    background: #e5e5e5;
+    margin-bottom: 10px;
+    .card-body {
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 40px;
+      color: #0c0d36;
+
+      .img-list {
+        width: 70px !important;
+      }
+    }
+  }
+}
+
+// dashboard
+#dashboard {
+  .store-breadcrumbs {
+    .breadcrumb {
+      margin-top: -80px !important;
+    }
+  }
   .dashboard-heading {
     .sub {
       margin-top: 20px;
-    }
-    .store-breadcrumbs {
-      background: #e5e5e5;
-      margin-bottom: 50px;
-      font-size: 15px;
-
-      .breadcrumb {
-        margin: 0;
-        background-color: transparent;
-        padding: 10px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-      .breadcrumb-item + .breadcrumb-item::before {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-
-      .breadcrumb-item.active {
-        font-weight: 500;
-        color: #0c0d36;
-      }
-      a {
-        color: #979797;
-      }
     }
 
     .dashboard-title {
       font-style: normal;
       font-weight: normal;
-      color: #0c0d36;
+      color: #fffffe;
     }
     .dashboard-subtitle {
       font-style: normal;

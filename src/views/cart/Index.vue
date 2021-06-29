@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <section class="details-header"></section>
+  <div id="cart">
     <section class="mt-global store-breadcrumbs">
       <div class="row">
         <div class="col-12">
