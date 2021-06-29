@@ -1,5 +1,5 @@
 <template>
-  <section class="store-carousel img-carousel">
+  <section class="img-carousel">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 col-img" data-aos="zoom-in">

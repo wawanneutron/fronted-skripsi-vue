@@ -1,0 +1,33 @@
+footer {
+  background: #0f0e17;
+  color: #fffffe;
+  .child {
+    color: #a7a9be;
+  }
+  .row-footer {
+    padding: 20px 0 50px 0;
+    line-height: 30px;
+
+    .child {
+      margin-bottom: 20px;
+      a {
+        color: #ff8906;
+        font-weight: 500;
+        text-decoration: underline;
+      }
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+    }
+    .header {
+      font-weight: 500;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+  }
+  span.sub-footer {
+    font-size: 12px;
+    font-weight: lighter;
+  }
+}

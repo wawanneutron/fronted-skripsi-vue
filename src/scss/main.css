@@ -5,7 +5,6 @@
 #cart,
 #dashboard,
 #dashboard-show,
-#home,
 #category {
   margin-top: -400px;
 }
@@ -224,15 +223,46 @@ body {
   color: #2e2f3e;
 }
 
-.store-gallery {
-  margin-top: 30px !important;
+.store-gallery .table-detail {
+  color: #2e2f3e;
+  font-weight: 500;
+}
+
+.store-gallery .table-detail .badge-stock {
+  background: #0f0e17;
+  color: #fffffe;
+  font-weight: lighter;
+}
+
+.store-gallery .table-detail .badge-berat {
+  background: #f25f4c;
+  color: #fffffe;
+  font-weight: lighter;
+}
+
+.store-gallery .card-details-mobile {
+  padding: 0;
+  margin-top: 30px;
+}
+
+.store-gallery .card-details-mobile .store-heading h5 {
+  margin-bottom: 20px;
+}
+
+.store-gallery .card-details-mobile .store-heading .product-header {
+  font-size: 25px;
+}
+
+.store-gallery .badge-custom {
+  background: #e53170;
+  color: #fffffe;
+  padding: 6px;
 }
 
 .store-gallery .product-price-coret {
-  text-decoration: line-through;
-  color: crimson;
-  font-weight: 400;
-  font-size: 16px;
+  color: #e53170;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .store-gallery .img-store {
@@ -247,12 +277,19 @@ body {
 }
 
 .store-gallery .img-thumbnail.active {
-  border: 2px solid palevioletred;
+  border: 2px solid #e53170;
+}
+
+.store-gallery .store-heading h5 {
+  margin: -20px 0 0 0;
+  color: #2e2f3e;
+  font-weight: 600;
+  font-size: 18px;
 }
 
 .store-gallery .store-heading .product-header {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
   line-height: 36px;
   color: #0f0e17;
 }
@@ -263,19 +300,11 @@ body {
   color: #979797;
 }
 
-.store-gallery .store-heading .b-rating {
-  border: none;
-  width: 30%;
-  padding: 10px 0;
-  margin-top: -10px;
-}
-
 .store-gallery .store-heading .price {
   font-weight: 500;
-  font-size: 18px;
-  line-height: 40px;
+  font-size: 20px;
   margin-bottom: 10px;
-  color: #ff7158;
+  color: #e53170;
 }
 
 .store-gallery .store-heading .btn-checkout {
@@ -283,6 +312,7 @@ body {
   height: 45px;
   background-color: #ff8906;
   color: #fffffe;
+  font-weight: lighter;
 }
 
 .store-gallery .description .content-store {
@@ -308,7 +338,7 @@ body {
   top: 15px;
   width: 90px;
   height: 9px;
-  background-color: rgba(245, 62, 123, 0.301) !important;
+  background-color: rgba(197, 16, 76, 0.267) !important;
 }
 
 .store-gallery .description .content-store .nav-pills .nav-item .detail {
@@ -337,7 +367,8 @@ body {
 
 .store-gallery .description .content-store .readmore {
   cursor: pointer;
-  color: #03ac0e;
+  color: #e53170;
+  text-decoration: underline;
   margin-left: 10px;
   font-size: 18px;
   font-weight: 500;
@@ -356,7 +387,7 @@ body {
   width: 120px;
   margin-left: 3px;
   height: 2px;
-  background-color: palevioletred;
+  background-color: #e53170;
 }
 
 @media (max-width: 1979.98px) {
@@ -384,9 +415,52 @@ body {
 }
 
 @media (max-width: 767.98px) {
+  .breadcrumb {
+    margin-top: -50px;
+  }
   .store-gallery .description .detail {
     margin: 30px 0 30px;
   }
+}
+
+footer {
+  background: #0f0e17;
+  color: #fffffe;
+}
+
+footer .child {
+  color: #a7a9be;
+}
+
+footer .row-footer {
+  padding: 20px 0 50px 0;
+  line-height: 30px;
+}
+
+footer .row-footer .child {
+  margin-bottom: 20px;
+}
+
+footer .row-footer .child a {
+  color: #ff8906;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+footer .row-footer .child ul {
+  padding: 0;
+  list-style: none;
+}
+
+footer .row-footer .header {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+footer span.sub-footer {
+  font-size: 12px;
+  font-weight: lighter;
 }
 
 .card {
@@ -598,7 +672,7 @@ body {
 }
 
 .img-carousel {
-  margin-top: 150px;
+  margin-top: 120px;
 }
 
 .img-carousel .col-img {
@@ -606,34 +680,7 @@ body {
 }
 
 .img-carousel img {
-  height: 500px;
-}
-
-@media (max-width: 1199.98px) {
-  .img-carousel {
-    margin-top: 120px;
-  }
-  .img-carousel img {
-    height: 450px;
-  }
-}
-
-@media (max-width: 767.98px) {
-  .img-carousel {
-    margin-top: 110px;
-  }
-  .img-carousel img {
-    height: 300px;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .img-carousel {
-    margin-top: 95px;
-  }
-  .img-carousel img {
-    height: 270px;
-  }
+  max-height: 450px;
 }
 
 .category-all {
@@ -806,7 +853,11 @@ body {
 }
 
 .store-breadcrumbs .breadcrumb-item + .breadcrumb-item::before {
-  padding: 0 1.5rem 0 1.5rem;
+  padding: 0 1rem 0 1rem;
+}
+
+.store-breadcrumbs li.breadcrumb-item {
+  margin-bottom: 15px !important;
 }
 
 .store-breadcrumbs a {

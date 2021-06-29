@@ -1,5 +1,4 @@
 <template>
-  <section class="details-header"></section>
   <main id="home">
     <Carousel />
     <div class="page-content">

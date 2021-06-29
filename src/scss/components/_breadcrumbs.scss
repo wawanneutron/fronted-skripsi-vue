@@ -6,7 +6,10 @@
     padding: 15px 5px;
   }
   .breadcrumb-item + .breadcrumb-item::before {
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1rem 0 1rem;
+  }
+  li.breadcrumb-item {
+    margin-bottom: 15px !important;
   }
   a {
     // color: #979797 !important;

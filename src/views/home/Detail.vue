@@ -21,7 +21,7 @@
       <div class="row justify-content-around">
         <!-- product image -->
         <div class="col-md-6">
-          <div class="card card-details">
+          <div class="card">
             <!-- card header -->
             <transition
               name="slide-fade"
@@ -47,6 +47,88 @@
                     :class="{ active: index == photoActive }"
                   />
                 </main>
+              </div>
+            </div>
+            <!-- product detail mobile -->
+            <div class="d-md-none d-block">
+              <div class="card card-details-mobile">
+                <section class="store-heading">
+                  <h5>🏷️ Details Product</h5>
+                  <div class="product-header mb-2">{{ product.title }}</div>
+                  <s
+                    class="product-price-coret"
+                    style="text-decoration-color: red"
+                  >
+                    Rp. {{ moneyFormat(product.price) }}
+                  </s>
+                  <br />
+                  <span class="badge badge-custom mr-3">
+                    💰 DISKON {{ product.discount }} %
+                  </span>
+
+                  <div class="mt-3 mr-4 price">
+                    Rp. {{ moneyFormat(calculateDiscount(product)) }}
+                  </div>
+                  <table class="table table-detail table-borderless mt-3">
+                    <tbody>
+                      <tr>
+                        <td>Berat</td>
+                        <td>:</td>
+                        <td>
+                          <span
+                            class="badge badge-pill badge-berat"
+                            style="
+                              font-size: 14px;
+                              border-radius: 0.3rem;
+                              padding: 0.25em 0.5em 0.2em;
+                            "
+                          >
+                            {{ product.weight }} gram</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Stock Barang</td>
+                        <td>:</td>
+                        <td>
+                          <span
+                            class="badge badge-pill badge-stock"
+                            style="
+                              font-size: 14px;
+                              border-radius: 0.3rem;
+                              padding: 0.25em 0.5em 0.2em;
+                            "
+                          >
+                            {{ product.stock }} stock</span
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div v-if="product.stock == 0">
+                    <button
+                      class="btn btn-danger"
+                      data-toggle="modal"
+                      data-target="#kosong"
+                    >
+                      Stock Kosong
+                    </button>
+                  </div>
+                  <div v-if="product.stock > 0">
+                    <button
+                      class="btn btn-checkout"
+                      @click.prevent="
+                        addToCart(
+                          product.id,
+                          calculateDiscount(product),
+                          product.weight
+                        )
+                      "
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </section>
               </div>
             </div>
             <!-- description -->
@@ -85,7 +167,6 @@
                     role="tabpanel"
                     aria-labelledby="pills-detail-tab"
                   >
-                    <h3 class="mt-5 mb-3">Deskripsi Product</h3>
                     <div class="content" v-html="product.content"></div>
                   </div>
                   <div
@@ -249,92 +330,86 @@
             </section>
           </div>
         </div>
-        <div class="col-md-5">
+        <!-- product detail desktop -->
+        <div class="col-md-5 d-none d-md-flex">
           <div class="card card-details">
             <section class="store-heading">
-              <h5>Details Products</h5>
-              <div class="product-header mb-2">{{ product.title }}</div>
-              <s class="product-price-coret" style="text-decoration-color: red">
-                Rp. {{ moneyFormat(product.price) }}
-              </s>
-              <br />
-              <span class="badge badge-success mr-3">
-                DISKON {{ product.discount }} %
-              </span>
+              <h5>🏷️ Details Product</h5>
+              <div class="card-body">
+                <div class="product-header mb-2">{{ product.title }}</div>
+                <s
+                  class="product-price-coret"
+                  style="text-decoration-color: red"
+                >
+                  Rp. {{ moneyFormat(product.price) }}
+                </s>
+                <br />
+                <span class="badge badge-custom mr-3">
+                  💰 DISKON {{ product.discount }} %
+                </span>
 
-              <div class="font-weight-bold mt-3 mr-4 price">
-                Rp. {{ moneyFormat(calculateDiscount(product)) }}
-              </div>
-              <table class="table table-detail table-borderless mt-3">
-                <tbody>
-                  <tr>
-                    <td width="20%">Diskon</td>
-                    <td>:</td>
-                    <td width="80%">
-                      <button
-                        class="btn btn-sm"
-                        style="color: #ff2f00; border-color: #ff2f00"
-                      >
-                        DISKON {{ product.discount }} %
-                      </button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Berat</td>
-                    <td>:</td>
-                    <td>
-                      <span
-                        class="badge badge-pill badge-success"
-                        style="
-                          font-size: 14px;
-                          border-radius: 0.3rem;
-                          padding: 0.25em 0.5em 0.2em;
-                        "
-                      >
-                        {{ product.weight }} gram</span
-                      >
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Stock Barang</td>
-                    <td>:</td>
-                    <td>
-                      <span
-                        class="badge badge-pill badge-warning"
-                        style="
-                          font-size: 14px;
-                          border-radius: 0.3rem;
-                          padding: 0.25em 0.5em 0.2em;
-                        "
-                      >
-                        {{ product.stock }} stock</span
-                      >
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <div v-if="product.stock == 0">
-                <button
-                  class="btn btn-danger"
-                  data-toggle="modal"
-                  data-target="#kosong"
-                >
-                  Stock Kosong
-                </button>
-              </div>
-              <div v-if="product.stock > 0">
-                <button
-                  class="btn btn-checkout"
-                  @click.prevent="
-                    addToCart(
-                      product.id,
-                      calculateDiscount(product),
-                      product.weight
-                    )
-                  "
-                >
-                  Add to Cart
-                </button>
+                <div class="mt-3 mr-4 price">
+                  Rp. {{ moneyFormat(calculateDiscount(product)) }}
+                </div>
+                <table class="table table-detail table-borderless mt-3">
+                  <tbody>
+                    <tr>
+                      <td>Berat</td>
+                      <td>:</td>
+                      <td>
+                        <span
+                          class="badge badge-pill badge-berat"
+                          style="
+                            font-size: 14px;
+                            border-radius: 0.3rem;
+                            padding: 0.25em 0.5em 0.2em;
+                          "
+                        >
+                          {{ product.weight }} gram</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Stock Barang</td>
+                      <td>:</td>
+                      <td>
+                        <span
+                          class="badge badge-pill badge-stock"
+                          style="
+                            font-size: 14px;
+                            border-radius: 0.3rem;
+                            padding: 0.25em 0.5em 0.2em;
+                          "
+                        >
+                          {{ product.stock }} stock</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div v-if="product.stock == 0">
+                  <button
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-target="#kosong"
+                  >
+                    Stock Kosong
+                  </button>
+                </div>
+                <div v-if="product.stock > 0">
+                  <button
+                    class="btn btn-checkout"
+                    @click.prevent="
+                      addToCart(
+                        product.id,
+                        calculateDiscount(product),
+                        product.weight
+                      )
+                    "
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </section>
           </div>
