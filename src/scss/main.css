@@ -469,17 +469,48 @@ footer span.sub-footer {
   border-radius: 8px;
 }
 
-.store-cart .table-cart {
-  margin-top: 30px;
-  color: rgba(49, 53, 59, 0.96);
-  font-size: 18px;
+.store-cart .text-product-header {
+  font-size: 20px;
+  color: #0f0e17;
   font-weight: 500;
 }
 
-.store-cart .table-cart .cart-image {
+.store-cart .table-cart {
+  margin-top: 30px;
+  color: #2e2f3e;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.store-cart .table-cart .card-img {
+  min-width: 130px;
+  padding: 3px;
+}
+
+.store-cart .table-cart .card-img:hover {
+  border: 1px solid #fd4771;
+  padding: 1.5px;
   border-radius: 8px;
-  max-width: 200px;
-  min-width: 100px;
+}
+
+.store-cart .table-cart .cart-image {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.store-cart .table-cart .cart-image:hover img {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+.store-cart .table-cart .cart-image img {
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.7s ease;
+  transition: all 0.7s ease;
 }
 
 .store-cart .table-cart .product-price-coret {
@@ -735,6 +766,7 @@ footer span.sub-footer {
 }
 
 .col-product {
+  padding: 0 20px;
   margin-bottom: 20px;
 }
 
@@ -747,7 +779,9 @@ footer span.sub-footer {
 }
 
 .col-product .component-product .discount {
-  font-size: 16px;
+  color: #e53170;
+  font-weight: 500;
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
@@ -773,15 +807,16 @@ footer span.sub-footer {
 
 .col-product .component-product .product-text {
   font-size: 18px;
-  color: #0c0d36;
+  color: #2e2f3e;
+  font-weight: 500;
   margin-top: 12px;
 }
 
 .col-product .component-product .product-price {
   margin-top: -10px;
   font-weight: 500;
-  font-size: 16px;
-  color: #ff7158;
+  font-size: 15px;
+  color: #0f0e17;
 }
 
 .show-all {
@@ -808,7 +843,8 @@ footer span.sub-footer {
     margin-bottom: 15px;
   }
   .col-product .component-product .discount {
-    font-size: 15px;
+    font-size: 14px;
+    margin-top: -10px;
   }
   .col-product .component-product:hover {
     text-decoration: none;
@@ -838,8 +874,8 @@ footer span.sub-footer {
   .col-product .component-product .product-price {
     margin-top: -10px;
     font-weight: 500;
-    font-size: 16px;
-    color: #ff7158;
+    font-size: 15px;
+    color: #0f0e17;
   }
 }
 

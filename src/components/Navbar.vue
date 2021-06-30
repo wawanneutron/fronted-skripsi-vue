@@ -155,7 +155,7 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Logout</h4>
+          <h5 class="modal-title">Logout</h5>
           <button type="button" class="close" data-dismiss="modal">
             &times;
           </button>
@@ -163,7 +163,7 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <h4>Yakin ingin keluar ?</h4>
+          <h5>Yakin ingin keluar aplikasi ?</h5>
         </div>
 
         <!-- Modal footer -->

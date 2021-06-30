@@ -17,8 +17,8 @@
     </section>
     <section class="store-cart card card-body shadow">
       <div class="text-product-header">
-        <i class="fa fa-shopping-cart mr-2"></i>
-        Order Details
+        <!-- <i class="fa fa-shopping-cart mr-2"></i> -->
+        🛍️ Order Details
       </div>
       <div class="row" data-aos="fade-up">
         <div class="col-12 table-responsive">
@@ -35,8 +35,19 @@
             </thead>
             <tbody>
               <tr v-for="(cart, index) in carts" :key="index">
-                <td class="align-middle mb-5" style="width: 20%">
-                  <img :src="cart.product.image" class="cart-image" />
+                <td class="align-middle mb-5">
+                  <div class="card-img">
+                    <router-link
+                      :to="{
+                        name: 'detail',
+                        params: { slug: cart.product.slug },
+                      }"
+                    >
+                      <div class="cart-image">
+                        <img :src="cart.product.image" />
+                      </div>
+                    </router-link>
+                  </div>
                 </td>
                 <td class="align-middle" style="width: 20%">
                   <div class="product-name">{{ cart.product.title }}</div>
@@ -70,16 +81,6 @@
                   </button>
                 </td>
               </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td class="total-cart" colspan="5">
-                  Jumlah : Rp. {{ moneyFormat(totalCart) }}
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -91,44 +92,64 @@
       data-aos="fade-in"
     >
       <div class="row">
-        <div class="col-lg-6 payment-informations store-cart mb-4">
-          <div class="text-product-header" data-aos="fade-up">
-            <i class="fas fa-money-check-alt"></i>
-            Payment informations
-          </div>
-          <div class="alert alert-info mt-4">
-            Ini adalah jumlah yang akan anda bayarkan
-          </div>
-          <div class="row payment-informations mt-5" data-aos="fade-in">
-            <div class="col-6 col-lg-3 mb-3">
-              <div class="number">{{ countCart }} (pcs)</div>
-              <div class="sub-title">Jumlah Pemesanan</div>
+        <!-- payment informations desktop -->
+        <div
+          class="col-lg-6 payment-informations store-cart mb-4 d-none d-lg-flex"
+        >
+          <div class="header-information">
+            <div class="text-product-header" data-aos="fade-up">
+              <!-- <i class="fas fa-money-check-alt"></i> -->
+              💰 Payment informations
             </div>
-            <div class="col-6 col-lg-4">
-              <div class="number">
-                Rp. {{ moneyFormat(state.cost_courier) }}
+            <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
+              Ini adalah jumlah yang akan anda bayarkan
+            </div>
+            <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
+              Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
+              lengkap
+            </div>
+            <div class="row payment-informations mt-5" data-aos="fade-in">
+              <div class="col-6 col-lg-3 mb-3">
+                <div class="number">{{ countCart }} (pcs)</div>
+                <div class="sub-title">Jumlah Pemesanan</div>
               </div>
-              <div class="gram">({{ cartWeight }} gram)</div>
-              <div class="sub-title">Ongkos Kirim</div>
-            </div>
-            <div class="col-12 col-lg-5">
-              <div class="number">Rp. {{ moneyFormat(state.grandTotal) }}</div>
-              <div class="sub-title">Subtotal</div>
-            </div>
-            <div class="col-12 col-lg-12 mt-4 mb-4" v-if="state.buttonCheckout">
-              <button
-                @click.prevent="checkout"
-                class="btn btn-block btn-success"
+              <div class="col-6 col-lg-4">
+                <div class="number">
+                  Rp. {{ moneyFormat(state.cost_courier) }}
+                </div>
+                <div class="gram">({{ cartWeight }} gram)</div>
+                <div class="sub-title">Ongkos Kirim</div>
+              </div>
+              <div class="col-12 col-lg-5" v-if="state.grandTotal == 0">
+                <div class="number">Rp. {{ moneyFormat(totalCart) }}</div>
+                <div class="sub-title">Total</div>
+              </div>
+              <div class="col-12 col-lg-5" v-else>
+                <div class="number">
+                  Rp. {{ moneyFormat(state.grandTotal) }}
+                </div>
+                <div class="sub-title">Subtotal</div>
+              </div>
+
+              <div
+                class="col-12 col-lg-12 mt-4 mb-4"
+                v-if="state.buttonCheckout"
               >
-                Checkout Now
-              </button>
+                <button
+                  @click.prevent="checkout"
+                  class="btn btn-lg btn-block btn-success"
+                >
+                  Checkout Now
+                </button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
+        <!-- shipping details -->
+        <div class="col-lg-6 store-cart">
           <div class="text-product-header">
-            <i class="fas fa-shipping-fast mr-2"></i>
-            Shipping Details
+            <!-- <i class="fas fa-shipping-fast mr-2"></i> -->
+            📝 Shipping Details
           </div>
           <div class="row mt-5">
             <div class="col-md-6">
@@ -294,6 +315,60 @@
                 <div v-if="validation.address" class="alert alert-danger">
                   Masukan alamt lengkap anda
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- payment informations mobile -->
+        <div
+          class="
+            col-lg-6
+            payment-informations
+            store-cart
+            mb-4
+            d-lg-none d-block
+          "
+        >
+          <div class="header-information">
+            <div class="text-product-header" data-aos="fade-up">
+              <!-- <i class="fas fa-money-check-alt"></i> -->
+              💰 Payment informations
+            </div>
+            <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
+              Ini adalah jumlah yang akan anda bayarkan
+            </div>
+            <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
+              Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
+              lengkap
+            </div>
+            <div class="row payment-informations mt-5" data-aos="fade-in">
+              <div class="col-6 col-lg-3 mb-3">
+                <div class="number">{{ countCart }} (pcs)</div>
+                <div class="sub-title">Jumlah Pemesanan</div>
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="number">
+                  Rp. {{ moneyFormat(state.cost_courier) }}
+                </div>
+                <div class="gram">({{ cartWeight }} gram)</div>
+                <div class="sub-title">Ongkos Kirim</div>
+              </div>
+              <div class="col-12 col-lg-5">
+                <div class="number">
+                  Rp. {{ moneyFormat(state.grandTotal) }}
+                </div>
+                <div class="sub-title">Subtotal</div>
+              </div>
+              <div
+                class="col-12 col-lg-12 mt-4 mb-4"
+                v-if="state.buttonCheckout"
+              >
+                <button
+                  @click.prevent="checkout"
+                  class="btn btn-lg btn-block btn-success"
+                >
+                  Checkout Now
+                </button>
               </div>
             </div>
           </div>

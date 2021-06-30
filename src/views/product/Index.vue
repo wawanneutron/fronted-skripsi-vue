@@ -50,7 +50,7 @@
               <div class="product-text">
                 <p>{{ product.title }}</p>
               </div>
-              <div class="discount" style="color: #999">
+              <div class="discount">
                 <s>Rp. {{ moneyFormat(product.price) }} </s>
               </div>
               <span
@@ -89,7 +89,7 @@
               <div class="product-text">
                 <p>{{ product.title }}</p>
               </div>
-              <div class="discount" style="color: #999">
+              <div class="discount">
                 <s>Rp. {{ moneyFormat(product.price) }} </s>
               </div>
               <span
