@@ -1,6 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,600&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400&display=swap");
 @import url("https://use.fontawesome.com/releases/v5.15.3/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  /* #232946 */
+}
+
 #detail,
 #cart,
 #dashboard,
@@ -21,10 +27,6 @@
   min-height: 700px;
   background: #232946;
   margin-top: 0px;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
 }
 
 .chat-box {
@@ -763,6 +765,87 @@ footer span.sub-footer {
 
 #category-show {
   margin-top: -400px !important;
+}
+
+.header-search {
+  margin-top: -50px;
+}
+
+.header-search .text-product-header {
+  line-height: 35px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #0f0e17;
+}
+
+.header-search .col-search {
+  padding: 0;
+}
+
+.header-search .search_box {
+  margin-top: 15px;
+  background: #643fef;
+  position: relative;
+  padding: 15px;
+  border-radius: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header-search .search_box .search_btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #7a5cf0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.header-search .search_box .input_search {
+  outline: none;
+  border: 0;
+  background: #7a5cf0;
+  border-radius: 50px;
+  padding: 15px 20px;
+  width: 100%;
+  height: 50px;
+  position: relative;
+  color: #fff;
+}
+
+.header-search ::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.header-search :-ms-input-placeholder {
+  color: #fff;
+}
+
+.header-search ::-ms-input-placeholder {
+  color: #fff;
+}
+
+.header-search ::placeholder {
+  color: #fff;
+}
+
+.header-search ::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.header-search :-ms-input-placeholder {
+  color: #fff;
 }
 
 .col-product {

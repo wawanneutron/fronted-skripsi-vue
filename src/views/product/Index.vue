@@ -2,22 +2,26 @@
   <main id="product">
     <slider />
     <div class="page-content product-all mt-global">
-      <section class="header-title" data-aos="fade-up">
-        <div class="row mb-5">
-          <div class="col-md-7 mb-3">
+      <section class="header-search" data-aos="fade-up">
+        <div class="row mb-5 justify-content-center text-center">
+          <div class="col-md-8 col-search mb-3">
             <span class="text-product-header all-category-product"
               >Belanja Kebutuhan mu Sekarang...</span
             >
+            <div class="search_box">
+              <div class="search_btn"><i class="fas fa-search"></i></div>
+              <input
+                type="text"
+                :placeholder="`Hay ${username.name} mau nyari apa`"
+                class="input_search"
+                v-model="keyword"
+                @input="search"
+              />
+            </div>
           </div>
-          <div class="col-md-5">
-            <input
-              type="text"
-              :placeholder="`Hay ${username.name} mau nyari apa`"
-              class="form-control"
-              v-model="keyword"
-              @input="search"
-            />
-          </div>
+          <!-- <div class="col-md-7 justify-content-center">
+            
+          </div> -->
         </div>
       </section>
       <section class="store-new-products">
@@ -108,11 +112,8 @@
   </main>
 </template>
 
-<style>
-.product-all {
-  margin-top: 70px !important;
-}
-</style>
+
+
 <script>
 import { computed, defineAsyncComponent, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";

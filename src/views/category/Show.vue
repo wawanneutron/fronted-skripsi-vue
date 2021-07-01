@@ -41,7 +41,7 @@
         <div class="row mt-4 justify-content-center" v-if="products.length > 0">
           <div
             class="col-6 col-md-3 col-lg-3 col-product"
-            v-for="(product, index) of products"
+            v-for="(product, index) in products"
             :key="index"
             data-aos="fade-up"
           >
@@ -55,7 +55,7 @@
               <div class="product-text">
                 <p>{{ product.title }}</p>
               </div>
-              <div class="discount" style="color: #999">
+              <div class="discount">
                 <s>Rp. {{ moneyFormat(product.price) }} </s>
               </div>
               <span

@@ -5,7 +5,7 @@
       <section class="header-title" data-aos="fade-up">
         <div class="row">
           <div class="col-md-12 col-12">
-            <span class="text-product-header">Kategori Terlaris</span>
+            <span class="text-product-header">Belanja Makin Mudah</span>
           </div>
         </div>
         <div class="row mb-3">
@@ -36,16 +36,63 @@
           </div>
         </div>
       </section>
+      <!-- product terlaris -->
       <section class="header-title mt-4" data-aos="fade-up">
         <div class="row">
           <div class="col-md-6 col-12">
-            <span class="text-product-header">Product Terbaru</span>
+            <span class="text-product-header">Product Terlaris</span>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12 col-md-8">
+            <!-- <router-link class="show-all" to="/product-all"
+              >Tampilkan product terlaris lainnya
+            </router-link> -->
+          </div>
+        </div>
+      </section>
+      <div class="row">
+        <div
+          class="col-6 col-md-3 col-product"
+          v-for="(product, index) in terlaris"
+          :key="index"
+          data-aos="fade-up"
+        >
+          <router-link
+            :to="{ name: 'detail', params: { slug: product.slug } }"
+            class="component-product"
+          >
+            <div class="product-thumbnail">
+              <img :src="product.image" class="w-100" />
+            </div>
+            <div class="product-text">
+              <p>{{ product.title }}</p>
+            </div>
+            <div class="discount">
+              <s>Rp. {{ moneyFormat(product.price) }} </s>
+            </div>
+            <span
+              style="background-color: darkorange"
+              class="badge badge-pill badge-success text-white float-right"
+              >DISKON {{ product.discount }} %</span
+            >
+            <div class="product-price">
+              <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+            </div>
+          </router-link>
+        </div>
+      </div>
+      <!-- product random -->
+      <section class="header-title mt-4" data-aos="fade-up">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <span class="text-product-header">Belanja kebutuhanmu</span>
           </div>
         </div>
         <div class="row mb-4">
           <div class="col-12 col-md-8">
             <router-link class="show-all" to="/product-all"
-              >Tampilkan product lainnya</router-link
+              >Tampilkan semua product</router-link
             >
           </div>
         </div>
@@ -99,28 +146,30 @@ export default {
   setup() {
     const store = useStore();
 
-    // panggil action getCategoriesHome di module category vuex
+    // pertama kali dijalnkan render onMounted  dengan data actions di module  vuex
     onMounted(() => {
       store.dispatch("category/getCategoriesHome");
     });
-
     onMounted(() => {
       store.dispatch("product/getProductsHome");
     });
 
+    // get data  dari module  di vuex
     const products = computed(() => {
       return store.getters["product/getProductsHome"];
     });
-
-    // get data getCategoriesHome dari module category di vuex
     const categories = computed(() => {
       return store.getters["category/getCategoriesHome"];
+    });
+    const terlaris = computed(() => {
+      return store.getters["product/getProductsTerlaris"];
     });
 
     return {
       store,
       categories,
       products,
+      terlaris,
     };
   },
 };

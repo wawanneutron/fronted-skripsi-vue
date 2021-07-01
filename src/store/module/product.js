@@ -5,6 +5,7 @@ const product = {
 
   state: {
     productsHome: [],
+    productsTerlaris: [],
     productsAll: [],
     productDetail: {},
     gallery: [],
@@ -12,6 +13,9 @@ const product = {
   mutations: {
     GET_PRODUCT_HOME(state, products) {
       state.productsHome = products; //asign hasil response dengan data
+    },
+    GET_PRODUCT_TERLARIS(state, terlaris) {
+      state.productsTerlaris = terlaris;
     },
     GET_PRODUCT_ALL(state, products) {
       state.productsAll = products; //asign hasil response dengan data
@@ -28,6 +32,7 @@ const product = {
       Api.get("/products-home")
         .then((response) => {
           commit("GET_PRODUCT_HOME", response.data.product);
+          commit("GET_PRODUCT_TERLARIS", response.data.terlaris);
         })
         .catch((error) => {
           console.log(error);
@@ -36,7 +41,7 @@ const product = {
     getProductsAll({ commit }) {
       Api.get("/products")
         .then((response) => {
-          commit("GET_PRODUCT_ALL", response.data.product);
+          commit("GET_PRODUCT_ALL", response.data.product.data);
         })
         .catch((error) => {
           console.log(error);
@@ -56,6 +61,9 @@ const product = {
   getters: {
     getProductsHome(state) {
       return state.productsHome;
+    },
+    getProductsTerlaris(state) {
+      return state.productsTerlaris;
     },
     getProductsAll(state) {
       return state.productsAll;
