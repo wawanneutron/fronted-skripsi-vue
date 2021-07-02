@@ -6,7 +6,7 @@
         <div class="row mb-5 justify-content-center text-center">
           <div class="col-md-8 col-search mb-3">
             <span class="text-product-header all-category-product"
-              >Belanja Kebutuhan mu Sekarang...</span
+              >Cari Barang Kebutuhan Yuk..</span
             >
             <div class="search_box">
               <div class="search_btn"><i class="fas fa-search"></i></div>

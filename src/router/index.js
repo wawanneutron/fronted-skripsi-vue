@@ -101,6 +101,10 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes, // <-- routes
+  // scroll fix top ketika di klik
+  scrollBehavior() {
+    document.getElementById("app").scrollIntoView();
+  },
 });
 
 // define route for handle authentication

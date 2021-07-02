@@ -1,5 +1,6 @@
 <template>
   <nav
+    id="app"
     class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
     :class="{ 'navbar-hidden': !showNavbar }"
   >
