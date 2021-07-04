@@ -569,6 +569,37 @@ footer span.sub-footer {
   }
 }
 
+#dashboard-show .card-img {
+  max-width: 250px;
+  padding: 3px;
+}
+
+#dashboard-show .card-img:hover {
+  border: 1px solid #fd4771;
+  padding: 1.5px;
+  border-radius: 8px;
+}
+
+#dashboard-show .card-img .image-detail-order {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+#dashboard-show .card-img .image-detail-order:hover img {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+#dashboard-show .card-img .image-detail-order img {
+  width: 100% !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all 0.7s ease;
+  transition: all 0.7s ease;
+}
+
 #dashboard-show .store-breadcrumbs {
   margin-top: -510px !important;
 }

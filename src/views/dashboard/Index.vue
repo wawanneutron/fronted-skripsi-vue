@@ -66,14 +66,42 @@
                 >
                   <div class="container-fluid">
                     <div class="dashboard-heading">
-                      <p class="dashboard-subtitle">
-                        Selamat Datang Wawan Setiawan
-                      </p>
-                      <div class="alert alert-info">
+                      <div
+                        class="alert alert-info alert-dismissible fade show"
+                        role="alert"
+                      >
                         <p>
+                          <b>Selamat Datang {{ user.name }}</b>
                           Jika anda sudah melakukan transaksi, silahkan tracking
                           resi anda di menu My transactions
                         </p>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="alert"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div
+                        class="alert alert-warning alert-dismissible fade show"
+                        role="alert"
+                      >
+                        <p>
+                          Kami akan mengirimkan email notifikasi beserta detail
+                          pembayran ke email
+                          <b>{{ user.email }}</b> jika anda sudah melakukan
+                          proses chackout.
+                        </p>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="alert"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -197,9 +225,12 @@ export default {
       // panggil getter dengan nama getOrder di module order vuex
       return store.getters["order/getOrder"];
     });
+    // panggil user
+    const user = store.state.auth.user;
     return {
       store,
       orders,
+      user,
     };
   },
 };

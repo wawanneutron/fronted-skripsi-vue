@@ -119,178 +119,188 @@
           </div>
           <!-- end notifikasi -->
           <div class="col-12 order-details">
-              <div class="row mb-3">
-                <div class="col-12">
-                  <div class="card shadow">
-                    <h5 class="font-weight-bold">
-                      <i class="fas fa-shopping-cart mr-2"></i>Details Order
-                    </h5>
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-12 col-sm-8 col-md-12 col-lg-12">
-                          <div class="row">
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">No Invoice</div>
-                              <div class="product-subtitle">
-                                {{ detailOrder.invoice }}
-                              </div>
+            <div class="row mb-3">
+              <div class="col-12">
+                <div class="card shadow">
+                  <h5 class="font-weight-bold">
+                    <i class="fas fa-shopping-cart mr-2"></i>Details Order
+                  </h5>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-12 col-sm-8 col-md-12 col-lg-12">
+                        <div class="row">
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">No Invoice</div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.invoice }}
                             </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">Customer Name</div>
-                              <div class="product-subtitle">
-                                {{ detailOrder.name }}
-                              </div>
+                          </div>
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">Customer Name</div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.name }}
                             </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">
-                                Information Corurier
-                              </div>
-                              <div class="product-subtitle">
-                                {{ detailOrder.courier }} /
-                                {{ detailOrder.service }} / Rp.
-                                {{ moneyFormat(detailOrder.cost_courier) }}
-                              </div>
+                          </div>
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">
+                              Information Corurier
                             </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">No Telp/ Whatsapp</div>
-                              <div class="product-subtitle">
-                                {{ detailOrder.phone }}
-                              </div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.courier }} /
+                              {{ detailOrder.service }} / Rp.
+                              {{ moneyFormat(detailOrder.cost_courier) }}
                             </div>
+                          </div>
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">No Telp/ Whatsapp</div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.phone }}
+                            </div>
+                          </div>
 
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">Total Pembelian</div>
-                              <div class="product-subtitle">
-                                Rp. {{ moneyFormat(detailOrder.grand_total) }}
-                              </div>
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">Total Pembelian</div>
+                            <div class="product-subtitle">
+                              Rp. {{ moneyFormat(detailOrder.grand_total) }}
                             </div>
+                          </div>
 
-                            <!-- tombol pembayaran -->
-                            <div
-                              class="col-12 col-sm-6 col-md-6 col-lg-4"
-                              v-if="detailOrder.status == 'pending'"
+                          <!-- tombol pembayaran -->
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'pending'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              @click.prevent="payment(detailOrder.snap_token)"
+                              type="submit"
+                              class="btn btn-warning mt-2 mb-3"
                             >
-                              <div class="product-title">Payment Status</div>
-                              <button
-                                @click.prevent="payment(detailOrder.snap_token)"
-                                type="submit"
-                                class="btn btn-warning mt-2 mb-3"
-                              >
-                                <i
-                                  class="fas fa-spinner fa-spin mr-2 fa-lg"
-                                ></i>
-                                Bayar Sekarang
-                              </button>
-                            </div>
-                            <div
-                              class="col-12 col-sm-6 col-md-6 col-lg-4"
-                              v-if="detailOrder.status == 'payment-success'"
+                              <i class="fas fa-spinner fa-spin mr-2 fa-lg"></i>
+                              Bayar Sekarang
+                            </button>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'payment-success'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              type="submit"
+                              class="btn btn-success mt-2 mb-3"
                             >
-                              <div class="product-title">Payment Status</div>
-                              <button
-                                type="submit"
-                                class="btn btn-success mt-2 mb-3"
-                              >
-                                Pembayaran Terverifikasi
-                                <i class="fas fa-check-circle ml-2 fa-lg"></i>
-                              </button>
-                            </div>
-                            <div
-                              class="col-12 col-sm-6 col-md-6 col-lg-4"
-                              v-if="detailOrder.status == 'process'"
+                              Pembayaran Terverifikasi
+                              <i class="fas fa-check-circle ml-2 fa-lg"></i>
+                            </button>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'process'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              type="submit"
+                              class="btn btn-info mt-2 mb-3"
                             >
-                              <div class="product-title">Payment Status</div>
-                              <button
-                                type="submit"
-                                class="btn btn-info mt-2 mb-3"
-                              >
-                                <i class="fas fa-sync fa-spin mr-2"></i>
-                                Barang diproses
-                              </button>
-                            </div>
-                            <div
-                              class="col-12 col-sm-6 col-md-6 col-lg-4"
-                              v-if="detailOrder.status == 'shipping'"
+                              <i class="fas fa-sync fa-spin mr-2"></i>
+                              Barang diproses
+                            </button>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'shipping'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              type="submit"
+                              class="btn btn-warning mt-2 mb-3"
                             >
-                              <div class="product-title">Payment Status</div>
-                              <button
-                                type="submit"
-                                class="btn btn-warning mt-2 mb-3"
-                              >
-                                <i class="fas fa-truck fa-spin mr-2"></i>
-                                Barang Sedang Dikirim
-                              </button>
-                            </div>
-                            <div
-                              class="col-12 col-sm-6 col-md-6 col-lg-4"
-                              v-if="detailOrder.status == 'success'"
+                              <i class="fas fa-truck fa-spin mr-2"></i>
+                              Barang Sedang Dikirim
+                            </button>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'success'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              type="submit"
+                              class="btn btn-success mt-2 mb-3"
                             >
-                              <div class="product-title">Payment Status</div>
-                              <button
-                                type="submit"
-                                class="btn btn-success mt-2 mb-3"
-                              >
-                                <i class="far fa-check-circle mr-2 fa-lg"></i>
-                                Pesanan Selesai
-                              </button>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">Provinsi</div>
-                              <div class="product-subtitle">
-                                {{ kota.name }}
-                              </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-4">
-                              <div class="product-title">Kabupaten/Kota</div>
-                              <div class="product-subtitle">
-                                {{ provinsi.name }}
-                              </div>
-                            </div>
-                            <div
-                              class="col-12 col-sm-6 col-md-6 col-lg-4"
-                              v-if="
-                                detailOrder.status == 'shipping' ||
-                                detailOrder.status == 'success'
-                              "
+                              <i class="far fa-check-circle mr-2 fa-lg"></i>
+                              Pesanan Selesai
+                            </button>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'failed'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              type="submit"
+                              class="btn btn-danger mt-2 mb-3"
                             >
-                              <div class="product-title">No Resi</div>
-                              <div class="product-subtitle">
-                                {{ detailOrder.resi }}
-                              </div>
+                              Pembayaran Gagal
+                            </button>
+                          </div>
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">Provinsi</div>
+                            <div class="product-subtitle">
+                              {{ kota.name }}
                             </div>
-                            <div class="col-12 col-sm-6 col-md-6 col-lg-12">
-                              <div class="product-title">Alamat lengkap</div>
-                              <div class="product-subtitle">
-                                {{ detailOrder.address }}
-                              </div>
+                          </div>
+                          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+                            <div class="product-title">Kabupaten/Kota</div>
+                            <div class="product-subtitle">
+                              {{ provinsi.name }}
+                            </div>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="
+                              detailOrder.status == 'shipping' ||
+                              detailOrder.status == 'success'
+                            "
+                          >
+                            <div class="product-title">No Resi</div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.resi }}
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6 col-md-6">
+                            <div class="product-title">Alamat lengkap</div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.address }}
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
 
-                      <div
-                        class="row"
-                        v-if="
-                          detailOrder.status == 'shipping' ||
-                          detailOrder.status == 'success'
-                        "
-                      >
-                        <div class="col-12 text-right">
-                          <button
-                            @click.prevent="cekResi"
-                            type="submit"
-                            class="btn btn-info mt-4"
-                            data-toggle="modal"
-                            data-target=".bd-example-modal-lg"
-                          >
-                            Check Resi Anda
-                          </button>
-                        </div>
+                    <div
+                      class="row"
+                      v-if="
+                        detailOrder.status == 'shipping' ||
+                        detailOrder.status == 'success'
+                      "
+                    >
+                      <div class="col-12 text-right">
+                        <button
+                          @click.prevent="cekResi"
+                          type="submit"
+                          class="btn btn-info mt-4"
+                          data-toggle="modal"
+                          data-target=".bd-example-modal-lg"
+                        >
+                          Check Resi Anda
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
           <div class="col-12">
             <div class="card">
@@ -305,7 +315,21 @@
               >
                 <div class="row">
                   <div class="col-12 col-sm-4 col-md-4 col-lg-4">
-                    <img :src="item.image" alt="" class="w-75 mb-3" />
+                    <div class="card-img">
+                      <router-link
+                        :to="{
+                          name: 'detail',
+                          params: { slug: item.product.slug },
+                        }"
+                      >
+                        <div class="image-detail-order">
+                          <img
+                            :src="item.product.gallery[0].image"
+                            alt="image detail"
+                          />
+                        </div>
+                      </router-link>
+                    </div>
                   </div>
                   <div class="col-12 col-sm-8 col-md-8 col-lg-8">
                     <div class="row">

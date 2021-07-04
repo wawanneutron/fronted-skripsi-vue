@@ -52,7 +52,11 @@
         </div>
       </section>
       <div class="row">
+        <div class="col-12" v-if="terlaris == ''">
+          <div class="text-center alert alert-warning">Kosong</div>
+        </div>
         <div
+          v-else
           class="col-6 col-md-3 col-product"
           v-for="(product, index) in terlaris"
           :key="index"
@@ -63,7 +67,7 @@
             class="component-product"
           >
             <div class="product-thumbnail">
-              <img :src="product.image" class="w-100" />
+              <img :src="product.gallery" class="w-100" />
             </div>
             <div class="product-text">
               <p>{{ product.title }}</p>
@@ -109,7 +113,7 @@
             class="component-product"
           >
             <div class="product-thumbnail">
-              <img :src="product.image" class="w-100" />
+              <img :src="product.gallery[0].image" class="w-100" />
             </div>
             <div class="product-text">
               <p>{{ product.title }}</p>
@@ -158,6 +162,9 @@ export default {
     const products = computed(() => {
       return store.getters["product/getProductsHome"];
     });
+    const gallery = computed(() => {
+      return store.getters["product/getGallery"];
+    });
     const categories = computed(() => {
       return store.getters["category/getCategoriesHome"];
     });
@@ -170,6 +177,7 @@ export default {
       categories,
       products,
       terlaris,
+      gallery,
     };
   },
 };

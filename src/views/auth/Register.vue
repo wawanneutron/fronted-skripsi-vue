@@ -41,7 +41,7 @@
                 <label for="">Password</label>
                 <input
                   type="password"
-                  class="form-control is-invalid"
+                  class="form-control"
                   name="password"
                   v-model="user.password"
                   id="password"
@@ -58,7 +58,7 @@
                 <label for="">Confirm Password</label>
                 <input
                   type="password"
-                  class="form-control is-invalid"
+                  class="form-control"
                   name="confirm"
                   v-model="user.password_confirmation"
                   id="confirm"

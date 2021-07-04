@@ -44,7 +44,7 @@
                       }"
                     >
                       <div class="cart-image">
-                        <img :src="cart.product.image" />
+                        <img :src="cart.product.gallery[0].image" />
                       </div>
                     </router-link>
                   </div>

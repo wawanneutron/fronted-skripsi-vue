@@ -1,5 +1,32 @@
 // show dashboard
 #dashboard-show {
+  .card-img {
+    max-width: 250px;
+    padding: 3px;
+    &:hover {
+      border: 1px solid #fd4771;
+      padding: 1.5px;
+      border-radius: 8px;
+    }
+    .image-detail-order {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+
+      &:hover {
+        img {
+          transform: scale(1.5);
+        }
+      }
+      img {
+        width: 100% !important;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        transition: all 0.7s ease;
+      }
+    }
+  }
   .store-breadcrumbs {
     margin-top: -510px !important;
   }

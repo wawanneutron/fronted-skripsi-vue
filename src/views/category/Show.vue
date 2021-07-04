@@ -50,7 +50,7 @@
               class="component-product"
             >
               <div class="product-thumbnail">
-                <img :src="product.image" class="w-100" />
+                <img :src="product.gallery[0].image" class="w-100" />
               </div>
               <div class="product-text">
                 <p>{{ product.title }}</p>
