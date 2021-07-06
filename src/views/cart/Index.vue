@@ -142,6 +142,17 @@
                   Checkout Now
                 </button>
               </div>
+              <div
+                class="col-12 col-lg-12 mt-4 mb-4"
+                v-if="state.disabled_checkout"
+              >
+                <button
+                  @click.prevent="checkout"
+                  class="btn btn-lg disabled btn-block btn-success"
+                >
+                  Checkout Now
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -313,7 +324,7 @@
                   placeholder="Alamat Lengkap&#10;&#10;Contoh: kp. Pete Ds. Pete - kecamatan Tigaraksa Kab. Tangerang"
                 ></textarea>
                 <div v-if="validation.address" class="alert alert-danger">
-                  Masukan alamt lengkap anda
+                  Masukan alamat lengkap anda
                 </div>
               </div>
             </div>
@@ -353,7 +364,11 @@
                 <div class="gram">({{ cartWeight }} gram)</div>
                 <div class="sub-title">Ongkos Kirim</div>
               </div>
-              <div class="col-12 col-lg-5">
+              <div class="col-12 col-lg-5" v-if="state.grandTotal == 0">
+                <div class="number">Rp. {{ moneyFormat(totalCart) }}</div>
+                <div class="sub-title">Total</div>
+              </div>
+              <div class="col-12 col-lg-5" v-else>
                 <div class="number">
                   Rp. {{ moneyFormat(state.grandTotal) }}
                 </div>
@@ -414,6 +429,17 @@ export default {
     const removeCart = (cart_id) => {
       if (confirm("Do you want to delete ?")) {
         store.dispatch("cart/removeCart", cart_id);
+        // set semua jadi nol dan hitung ulang
+        state.province_id = "";
+        state.city_id = "";
+        state.courier = "";
+        state.costService = "";
+        state.cost_courier = "";
+        state.service_courier = "";
+        state.grandTotal = 0;
+        state.disabled_checkout = true;
+        state.buttonCheckout = false;
+        state.service = false;
       }
     };
 
@@ -435,6 +461,7 @@ export default {
       service: false,
       etd: false,
       buttonCheckout: false,
+      disabled_checkout: false,
       dataService: [],
       costService: "",
       cost_courier: "",
@@ -504,6 +531,8 @@ export default {
     // fungsi mendapatkan
     const getCostService = () => {
       state.buttonCheckout = true;
+      state.disabled_checkout = false;
+
       // ubah string menjadi array
       let shipping = state.costService.split("|");
       state.cost_courier = shipping[0];
