@@ -1,4 +1,7 @@
 // text header
+.categories-image img {
+  border-radius: 10px;
+}
 .category-all {
   margin-top: -15px !important;
 }
@@ -34,7 +37,7 @@
   .categories-text {
     font-size: 1.14286rem;
     text-align: center;
-    color: rgba(49, 53, 59, 0.96);
+    color: #0f0e17;
     margin-top: 12px;
   }
 }

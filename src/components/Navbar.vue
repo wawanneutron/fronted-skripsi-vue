@@ -86,11 +86,6 @@
           <router-link
             to="/cart"
             class="nav-link btn cart btn-md d-inline-block mt-2 ml-3"
-            style="
-              color: #0c0d36;
-              background-color: #eff0f3;
-              border-color: #ff7158;
-            "
           >
             <img src="/images/ic_cart_filed.svg" class="mr-3" />
             <div class="cart-badge">{{ countCart }}</div>
@@ -109,11 +104,6 @@
           <router-link
             to="/cart"
             class="nav-link btn cart btn-md d-inline-block mt-2 ml-3"
-            style="
-              color: #0c0d36;
-              background-color: #eff0f3;
-              border-color: #ff7158;
-            "
           >
             <img src="/images/ic_cart_filed.svg" class="mr-3" />
             <div class="cart-badge">{{ countCart }}</div>
