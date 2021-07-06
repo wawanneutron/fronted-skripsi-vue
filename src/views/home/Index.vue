@@ -67,7 +67,7 @@
             class="component-product"
           >
             <div class="product-thumbnail">
-              <img :src="product.gallery" class="w-100" />
+              <img :src="product.gallery[0].image" class="w-100" />
             </div>
             <div class="product-text">
               <p>{{ product.title }}</p>
@@ -121,11 +121,21 @@
             <div class="discount">
               <s>Rp. {{ moneyFormat(product.price) }} </s>
             </div>
-            <span
-              style="background-color: darkorange"
-              class="badge badge-pill badge-success text-white float-right"
-              >DISKON {{ product.discount }} %</span
-            >
+            <div>
+              <span
+                v-if="product.discount == null"
+                style="background-color: darkorange"
+                class="badge badge-pill badge-success text-white float-right"
+              >
+                DISKON 0 %
+              </span>
+              <span
+                v-else
+                style="background-color: darkorange"
+                class="badge badge-pill badge-success text-white float-right"
+                >DISKON {{ product.discount }} %</span
+              >
+            </div>
             <div class="product-price">
               <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
             </div>
