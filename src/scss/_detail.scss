@@ -91,6 +91,7 @@
         margin-bottom: 20px;
         // color: rgb(3, 172, 14);
         color: #2e2f3e;
+        padding-right: 20px !important;
       }
       .nav-pills {
         .nav-item {
@@ -99,13 +100,14 @@
           }
           a.nav-link.active {
             background-color: transparent;
+            color: #e53170;
             &::before {
               content: "";
               position: absolute;
               top: 15px;
               width: 90px;
               height: 9px;
-              background-color: rgba(197, 16, 76, 0.267) !important;
+              background-color: rgba(197, 16, 76, 0.151) !important;
             }
           }
           .detail {
@@ -123,11 +125,11 @@
         }
         table {
           thead {
-            background-color: rgba(3, 172, 14, 0.692);
+            background: #f8f5f2;
           }
           tbody {
             &:hover {
-              background-color: rgba(3, 172, 14, 0.411) !important;
+              background: #f8f5f2;
             }
           }
         }

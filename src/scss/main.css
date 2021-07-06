@@ -335,6 +335,7 @@ body {
 .store-gallery .description .content-store .nav-link {
   margin-bottom: 20px;
   color: #2e2f3e;
+  padding-right: 20px !important;
 }
 
 .store-gallery .description .content-store .nav-pills .nav-item a.nav-link {
@@ -343,6 +344,7 @@ body {
 
 .store-gallery .description .content-store .nav-pills .nav-item a.nav-link.active {
   background-color: transparent;
+  color: #e53170;
 }
 
 .store-gallery .description .content-store .nav-pills .nav-item a.nav-link.active::before {
@@ -351,7 +353,7 @@ body {
   top: 15px;
   width: 90px;
   height: 9px;
-  background-color: rgba(197, 16, 76, 0.267) !important;
+  background-color: rgba(197, 16, 76, 0.151) !important;
 }
 
 .store-gallery .description .content-store .nav-pills .nav-item .detail {
@@ -367,11 +369,11 @@ body {
 }
 
 .store-gallery .description .content-store .tab-content table thead {
-  background-color: rgba(3, 172, 14, 0.692);
+  background: #f8f5f2;
 }
 
 .store-gallery .description .content-store .tab-content table tbody:hover {
-  background-color: rgba(3, 172, 14, 0.411) !important;
+  background: #f8f5f2;
 }
 
 .store-gallery .description .content-store .tab-content table.table-detail tbody:hover {

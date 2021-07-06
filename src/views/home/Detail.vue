@@ -144,7 +144,7 @@
                       role="tab"
                       aria-controls="pills-detail"
                       aria-selected="true"
-                      >Descripsi Product</a
+                      >Deskripsi</a
                     >
                   </li>
                   <li class="nav-item" role="presentation">
@@ -156,7 +156,10 @@
                       role="tab"
                       aria-controls="pills-size"
                       aria-selected="false"
-                      >Size Product</a
+                      v-if="
+                        category.name == 'Olahraga' || category.name == 'Sepatu'
+                      "
+                      >Ukuran Sepatu</a
                     >
                   </li>
                 </ul>
@@ -174,6 +177,9 @@
                     id="pills-size"
                     role="tabpanel"
                     aria-labelledby="pills-size-tab"
+                    v-if="
+                      category.name == 'Olahraga' || category.name == 'Sepatu'
+                    "
                   >
                     <div
                       class="alert alert-warning alert-dismissible fade show"
@@ -466,6 +472,10 @@ export default {
       return store.getters["product/getDetailProduct"];
     });
 
+    const category = computed(() => {
+      return store.getters["product/getCategory"];
+    });
+
     const gallery = computed(() => {
       return store.getters["product/getGallery"];
     });
@@ -498,6 +508,7 @@ export default {
       gallery,
       user,
       addToCart,
+      category,
     };
   },
   data: () => ({
