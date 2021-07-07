@@ -44,6 +44,8 @@ const auth = {
             Api.defaults.headers.common["Authorization"] = "Bearer " + token;
             // commit ke mutation
             commit("AUTH_SUCCESS", token, user);
+            // commit  data user ke mutation
+            commit("GET_USER", user);
             // resolve ke komponen dengan  hasil respon
             resolve(response);
           })

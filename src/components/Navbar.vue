@@ -191,10 +191,6 @@ export default {
       return store.getters["auth/isLoggedIn"];
     });
 
-    const user = computed(() => {
-      return store.getters["auth/getUser"];
-    });
-
     let countCart = computed(() => {
       return store.getters["cart/countCart"];
     });
@@ -206,13 +202,16 @@ export default {
     onMounted(() => {
       // check state token
       const token = store.state.auth.token;
-
       if (!token) {
         return;
       }
       // ketika halaman di load akan menjalankana ction dimodule cart
       store.dispatch("cart/countCart");
       store.dispatch("cart/cartTotal");
+    });
+
+    const user = computed(() => {
+      return store.state.auth.user;
     });
 
     // method logout

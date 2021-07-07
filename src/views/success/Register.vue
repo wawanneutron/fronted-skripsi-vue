@@ -37,3 +37,21 @@
   margin-top: 110px;
 }
 </style>
+
+<script>
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
+export default {
+  setup() {
+    const store = useStore();
+    const user = computed(() => {
+      return store.state.auth.user;
+    });
+    console.log(user);
+    return {
+      store,
+      user,
+    };
+  },
+};
+</script>

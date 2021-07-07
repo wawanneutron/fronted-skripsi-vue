@@ -13,7 +13,7 @@
             <nav>
               <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                  <router-link :to="{ path: '/' }">Home</router-link>
+                  <router-link :to="{ name: 'home' }">Home</router-link>
                 </li>
 
                 <li class="breadcrumb-item active">Dashboard</li>
