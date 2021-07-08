@@ -15,11 +15,12 @@
     font-size: 17px;
     font-weight: 500;
     .card-img {
-      min-width: 130px;
+      min-width: 100px;
+      max-width: 170px;
       padding: 3px;
       &:hover {
         border: 1px solid #fd4771;
-        padding: 1.5px;
+        padding: 2px;
         border-radius: 8px;
       }
     }

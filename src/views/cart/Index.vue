@@ -49,19 +49,19 @@
                     </router-link>
                   </div>
                 </td>
-                <td class="align-middle" style="width: 20%">
+                <td class="align-middle">
                   <div class="product-name">{{ cart.product.title }}</div>
                 </td>
 
-                <td class="align-middle" style="width: 20%">
+                <td class="align-middle">
                   <div class="product-quantity">{{ cart.quantity }} (pcs)</div>
                 </td>
-                <td class="align-middle" style="width: 20%">
+                <td class="align-middle">
                   <div class="product-quantity">
                     {{ cart.product.weight }}(gram)
                   </div>
                 </td>
-                <td class="align-middle" style="width: 20%">
+                <td class="align-middle">
                   <div class="product-price">
                     Rp.
                     {{
@@ -72,7 +72,7 @@
                     Rp. {{ cart.product.price.toLocaleString("id-ID") }}
                   </div>
                 </td>
-                <td style="width: 20%" class="align-middle">
+                <td class="align-middle">
                   <button
                     @click.prevent="removeCart(cart.id)"
                     class="btn btn btn-remove-cart"
@@ -130,7 +130,31 @@
                 </div>
                 <div class="sub-title">Subtotal</div>
               </div>
-
+              <!-- catatn pembelian desktop-->
+              <div class="col-12 mt-3" v-if="state.note">
+                <div class="form-group">
+                  <label for="address">Catatan pembelian</label>
+                  <textarea
+                    @click="show_button()"
+                    v-model="state.note_pembelian"
+                    name="address"
+                    class="form-control mb-4"
+                    id="address"
+                    rows="5"
+                    placeholder="Note: Sepatu warna cream uk 42"
+                  ></textarea>
+                  <div
+                    v-if="validation.note_pembelian"
+                    class="alert alert-danger"
+                  >
+                    <i style="font-weight: 300; font-size: 16px"
+                      >Masukan catatan, untuk mengurangi kesalahan dalam
+                      pengiriman</i
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- button chackout -->
               <div
                 class="col-12 col-lg-12 mt-4 mb-4"
                 v-if="state.buttonCheckout"
@@ -312,10 +336,12 @@
                 </div>
               </div>
             </div>
+            <!-- full address -->
             <div class="col-12 mt-3">
-              <div class="form-group">
+              <div class="form-group" v-if="state.full_address">
                 <label for="address">Full Address</label>
                 <textarea
+                  @click="show_note()"
                   name="address"
                   class="form-control mb-4"
                   id="address"
@@ -328,6 +354,7 @@
                 </div>
               </div>
             </div>
+            <!-- catatn pembelian -->
           </div>
         </div>
         <!-- payment informations mobile -->
@@ -374,6 +401,31 @@
                 </div>
                 <div class="sub-title">Subtotal</div>
               </div>
+              <!-- catatn pembelian mobile -->
+              <div class="col-12 mt-3" v-if="state.note">
+                <div class="form-group">
+                  <label for="address">Catatan pembelian</label>
+                  <textarea
+                    @click="show_button()"
+                    v-model="state.note_pembelian"
+                    name="address"
+                    class="form-control mb-4"
+                    id="address"
+                    rows="5"
+                    placeholder="Note: Sepatu warna cream uk 42"
+                  ></textarea>
+                  <div
+                    v-if="validation.note_pembelian"
+                    class="alert alert-danger"
+                  >
+                    <i style="font-weight: 300; font-size: 16px"
+                      >Masukan catatan, untuk mengurangi kesalahan dalam
+                      pengiriman</i
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- button chackout -->
               <div
                 class="col-12 col-lg-12 mt-4 mb-4"
                 v-if="state.buttonCheckout"
@@ -437,6 +489,7 @@ export default {
         state.cost_courier = "";
         state.service_courier = "";
         state.grandTotal = 0;
+        state.courier_deliv = false;
         state.disabled_checkout = true;
         state.buttonCheckout = false;
         state.service = false;
@@ -452,6 +505,7 @@ export default {
       name: "",
       phone: "",
       address: "",
+      note_pembelian: "",
       provinces: [],
       province_id: "",
       cities: [],
@@ -462,18 +516,15 @@ export default {
       etd: false,
       buttonCheckout: false,
       disabled_checkout: false,
+      full_address: false,
+      note: false,
       dataService: [],
       costService: "",
       cost_courier: "",
       service_courier: "",
       grandTotal: 0,
     });
-    // validasi
-    const validation = reactive({
-      name: false,
-      phone: false,
-      address: false,
-    });
+
     // mounted data provinces
     const provinces = onMounted(() => {
       Api.get("/rajaongkir/provinces")
@@ -527,11 +578,19 @@ export default {
           console.log(error);
         });
     };
-
+    // fungsi menampilkan catatatn dan button chackout
+    const show_note = () => {
+      state.note = true;
+    };
+    const show_button = () => {
+      state.buttonCheckout = true;
+    };
     // fungsi mendapatkan
     const getCostService = () => {
-      state.buttonCheckout = true;
+      // state.buttonCheckout = true;
       state.disabled_checkout = false;
+      state.buttonCheckout = true;
+      state.full_address = true;
 
       // ubah string menjadi array
       let shipping = state.costService.split("|");
@@ -549,9 +608,23 @@ export default {
       });
     };
 
+    // validasi form
+    const validation = reactive({
+      name: false,
+      phone: false,
+      address: false,
+      note_pembelian: false,
+    });
+
     // fungsi buttonCheckout
     const checkout = () => {
-      if (state.name && state.phone && state.address && cartWeight.value) {
+      if (
+        state.name &&
+        state.phone &&
+        state.address &&
+        state.note_pembelian &&
+        cartWeight.value
+      ) {
         // define variable
         let data = {
           courier: state.courier,
@@ -563,6 +636,7 @@ export default {
           province_id: state.province_id,
           city_id: state.city_id,
           address: state.address,
+          note_pembelian: state.note_pembelian,
           grandTotal: state.grandTotal,
         };
 
@@ -591,6 +665,9 @@ export default {
       if (!state.address) {
         validation.address = true;
       }
+      if (!state.note_pembelian) {
+        validation.note_pembelian = true;
+      }
     };
 
     return {
@@ -608,6 +685,8 @@ export default {
       getOngkir,
       getCostService,
       checkout,
+      show_button,
+      show_note,
     };
   },
 };

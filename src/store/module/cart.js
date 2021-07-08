@@ -127,6 +127,7 @@ const cart = {
           province: data.province_id,
           city: data.city_id,
           address: data.address,
+          note: data.note_pembelian,
           grand_total: data.grandTotal,
         })
           .then((response) => {

@@ -241,6 +241,7 @@
                               type="submit"
                               class="btn btn-danger mt-2 mb-3"
                             >
+                              <i class="fas fa-times-circle mr-2 fa-lg"></i>
                               Pembayaran Gagal
                             </button>
                           </div>
@@ -269,9 +270,18 @@
                             </div>
                           </div>
                           <div class="col-12 col-sm-6 col-md-6">
-                            <div class="product-title">Alamat lengkap</div>
+                            <div class="product-title">Alamat Lengkap</div>
                             <div class="product-subtitle">
                               {{ detailOrder.address }}
+                            </div>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 alert alert-info"
+                            v-if="detailOrder.note != null"
+                          >
+                            <div class="product-title">Catatan Pembelian</div>
+                            <div class="product-subtitle">
+                              {{ detailOrder.note }}
                             </div>
                           </div>
                         </div>
@@ -346,13 +356,60 @@
                           <span style="font-size: 15px">(pcs)</span>
                         </div>
                       </div>
-                      <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                      <div
+                        class="col-12 col-sm-6 col-md-6 col-lg-6"
+                        v-if="detailOrder.status == 'pending'"
+                      >
+                        <div class="product-title">Payment Status</div>
+                        <div class="product-subtitle text-warning">
+                          {{ detailOrder.status }}
+                        </div>
+                      </div>
+                      <div
+                        class="col-12 col-sm-6 col-md-6 col-lg-6"
+                        v-if="detailOrder.status == 'failed'"
+                      >
                         <div class="product-title">Payment Status</div>
                         <div class="product-subtitle text-danger">
                           {{ detailOrder.status }}
                         </div>
                       </div>
-
+                      <div
+                        class="col-12 col-sm-6 col-md-6 col-lg-6"
+                        v-if="detailOrder.status == 'expired'"
+                      >
+                        <div class="product-title">Payment Status</div>
+                        <div class="product-subtitle text-danger">
+                          {{ detailOrder.status }}
+                        </div>
+                      </div>
+                      <div
+                        class="col-12 col-sm-6 col-md-6 col-lg-6"
+                        v-if="detailOrder.status == 'success'"
+                      >
+                        <div class="product-title">Payment Status</div>
+                        <div class="product-subtitle text-success">
+                          {{ detailOrder.status }}
+                        </div>
+                      </div>
+                      <div
+                        class="col-12 col-sm-6 col-md-6 col-lg-6"
+                        v-if="detailOrder.status == 'payment-success'"
+                      >
+                        <div class="product-title">Payment Status</div>
+                        <div class="product-subtitle text-success">
+                          {{ detailOrder.status }}
+                        </div>
+                      </div>
+                      <div
+                        class="col-12 col-sm-6 col-md-6 col-lg-6"
+                        v-if="detailOrder.status == 'shipping'"
+                      >
+                        <div class="product-title">Payment Status</div>
+                        <div class="product-subtitle text-warning">
+                          {{ detailOrder.status }}
+                        </div>
+                      </div>
                       <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="product-title">Price</div>
                         <div class="product-subtitle">

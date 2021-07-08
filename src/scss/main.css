@@ -498,13 +498,14 @@ footer span.sub-footer {
 }
 
 .store-cart .table-cart .card-img {
-  min-width: 130px;
+  min-width: 100px;
+  max-width: 170px;
   padding: 3px;
 }
 
 .store-cart .table-cart .card-img:hover {
   border: 1px solid #fd4771;
-  padding: 1.5px;
+  padding: 2px;
   border-radius: 8px;
 }
 
