@@ -101,9 +101,9 @@
               <!-- <i class="fas fa-money-check-alt"></i> -->
               💰 Payment informations
             </div>
-            <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
+            <!-- <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
               Ini adalah jumlah yang akan anda bayarkan
-            </div>
+            </div> -->
             <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
               Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
               lengkap
@@ -372,9 +372,9 @@
               <!-- <i class="fas fa-money-check-alt"></i> -->
               💰 Payment informations
             </div>
-            <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
+            <!-- <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
               Ini adalah jumlah yang akan anda bayarkan
-            </div>
+            </div> -->
             <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
               Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
               lengkap

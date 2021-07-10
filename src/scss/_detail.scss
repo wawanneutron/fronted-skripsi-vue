@@ -193,9 +193,6 @@
 }
 
 @media (max-width: 767.98px) {
-  .breadcrumb {
-    margin-top: -50px;
-  }
   .store-gallery {
     // margin-top: -50px !important;
     .description {
@@ -203,5 +200,8 @@
         margin: 30px 0 30px;
       }
     }
+  }
+  .product-header {
+    font-size: 21px !important;
   }
 }

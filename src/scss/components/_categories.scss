@@ -48,3 +48,16 @@
   // .product-on-category {
   // }
 }
+
+@media (max-width: 774px) {
+  #category-show {
+    span.text-product-header {
+      font-size: 18px;
+    }
+    div.alert {
+      h4 {
+        font-size: 18px;
+      }
+    }
+  }
+}

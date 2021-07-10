@@ -8,9 +8,11 @@ body {
 #detail,
 #cart,
 #dashboard,
-#dashboard-show,
 #category {
   margin-top: -400px;
+}
+#dashboard-show {
+  margin-top: 100px;
 }
 
 .details-header {
@@ -22,7 +24,7 @@ body {
 
 .details-header-show {
   padding: 0 !important;
-  min-height: 700px;
+  min-height: 600px;
   background: #232946;
   margin-top: 0px;
 }

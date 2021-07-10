@@ -21,15 +21,22 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <ul class="navbar-nav ml-auto" v-if="!token">
         <li class="nav-item">
-          <router-link class="nav-link active" to="/"
+          <router-link class="nav-link active" :to="{ name: 'home' }"
             >Home <span class="sr-only">(current)</span></router-link
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="#">Term of Service</router-link>
+          <router-link class="nav-link" :to="{ name: 'Product' }"
+            >Products <span class="sr-only">(current)</span></router-link
+          >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/about">About</router-link>
+          <router-link class="nav-link" :to="{ name: 'Category' }"
+            >Categories <span class="sr-only">(current)</span></router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="#">Term of Service</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" :to="{ name: 'register' }"
@@ -45,15 +52,27 @@
       <!-- desktopo auth -->
       <ul class="navbar-nav ml-auto d-none d-lg-flex" v-if="token">
         <li class="nav-item">
-          <router-link class="nav-link active" to="/"
+          <router-link class="nav-link active" :to="{ name: 'home' }"
+            >Home <span class="sr-only">(current)</span></router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'Product' }"
+            >Products <span class="sr-only">(current)</span></router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'Category' }"
+            >Categories <span class="sr-only">(current)</span></router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/"
             >Home <span class="sr-only">(current)</span></router-link
           >
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="#">Term of Service</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/about">About</router-link>
         </li>
       </ul>
       <ul class="navbar-nav nav-profile d-none d-lg-flex" v-if="token">
@@ -98,8 +117,17 @@
         <router-link class="nav-link active" to="/"
           >Home <span class="sr-only">(current)</span></router-link
         >
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'Product' }"
+            >Products <span class="sr-only">(current)</span></router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{ name: 'Category' }"
+            >Categories <span class="sr-only">(current)</span></router-link
+          >
+        </li>
         <router-link class="nav-link" to="#">Term of Service</router-link>
-        <router-link class="nav-link" to="/about">About</router-link>
         <li class="nav-item" v-if="countCart !== 0">
           <router-link
             to="/cart"

@@ -9,7 +9,7 @@
               <li class="breadcrumb-item">
                 <router-link :to="{ path: '/' }">Home</router-link>
               </li>
-              <li class="breadcrumb-item active">All Category</li>
+              <li class="breadcrumb-item active">Categories</li>
             </ol>
           </nav>
         </div>

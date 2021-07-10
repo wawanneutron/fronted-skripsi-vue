@@ -39,7 +39,10 @@
       <div class="row">
         <div class="col-12 text-center">
           <p class="pt-4 mb-2">2021 Copyright Store. All Rights Reserved.</p>
-          <span class="sub-footer">Dibuat dengan sepenuh 💖🇮🇩 </span>
+          <span class="sub-footer">Dibuat dengan sepenuh 💖🇮🇩 </span> <br />
+          <span class="sub-footer" style="margin-top: 10px">
+            Skripsi TA 2021 Wawan Setiawan (2017804143)
+          </span>
         </div>
       </div>
     </div>

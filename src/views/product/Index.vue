@@ -9,7 +9,6 @@
               >Cari Barang Kebutuhan Yuk..</span
             >
             <div class="search_box">
-              <div class="search_btn"><i class="fas fa-search"></i></div>
               <input
                 type="text"
                 :placeholder="`Hay ${username.name} mau nyari apa`"
@@ -74,7 +73,7 @@
             <span
               class="text-product-header all-category-product"
               style="font-size: 20px"
-              >Semua product...</span
+              >🎉 Banyak penawaran menarik 🎉</span
             >
           </div>
           <div

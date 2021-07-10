@@ -14,7 +14,7 @@
                   >Categories</router-link
                 >
               </li>
-              <li class="breadcrumb-item active">Product on category</li>
+              <li class="breadcrumb-item active">Products</li>
             </ol>
           </nav>
         </div>

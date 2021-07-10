@@ -2,7 +2,11 @@
   <section class="details-header-show"></section>
   <main id="dashboard-show">
     <!-- breadcrumb -->
-    <div class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="200">
+    <div
+      class="store-breadcrumbs-show"
+      data-aos="fade-down"
+      data-aos-delay="200"
+    >
       <div class="row">
         <div class="col-12">
           <nav>
