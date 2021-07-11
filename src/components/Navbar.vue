@@ -36,9 +36,6 @@
           >
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="#">Term of Service</router-link>
-        </li>
-        <li class="nav-item">
           <router-link class="nav-link" :to="{ name: 'register' }"
             >Sign up</router-link
           >
@@ -71,9 +68,6 @@
             >Home <span class="sr-only">(current)</span></router-link
           >
         </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="#">Term of Service</router-link>
-        </li>
       </ul>
       <ul class="navbar-nav nav-profile d-none d-lg-flex" v-if="token">
         <li class="nav-item dropdown">
@@ -90,7 +84,7 @@
             <router-link :to="{ name: 'dashboard' }" class="dropdown-item">
               Dashboard</router-link
             >
-            <a href="#" class="dropdown-item">Settings</a>
+
             <hr />
             <button
               class="dropdown-item"
@@ -154,7 +148,7 @@
             <router-link :to="{ name: 'dashboard' }" class="dropdown-item">
               Dashboard</router-link
             >
-            <a href="#" class="dropdown-item">Settings</a>
+
             <hr />
             <button
               data-toggle="modal"
