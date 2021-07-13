@@ -54,20 +54,26 @@
               <div class="card card-details-mobile">
                 <section class="store-heading">
                   <h5>🏷️ Details Product</h5>
-                  <div class="product-header mb-2">{{ product.title }}</div>
-                  <s
-                    class="product-price-coret"
-                    style="text-decoration-color: red"
-                  >
-                    Rp. {{ moneyFormat(product.price) }}
-                  </s>
-                  <br />
-                  <span class="badge badge-custom mr-3">
-                    💰 DISKON {{ product.discount }} %
-                  </span>
+                  <div class="price" v-if="!product.discount <= 0">
+                    <s
+                      class="product-price-coret"
+                      style="text-decoration-color: red"
+                    >
+                      Rp. {{ moneyFormat(product.price) }}
+                    </s>
+                    <br />
+                    <span class="badge badge-custom mr-3">
+                      💰 DISKON {{ product.discount }} %
+                    </span>
 
-                  <div class="mt-3 mr-4 price">
-                    Rp. {{ moneyFormat(calculateDiscount(product)) }}
+                    <div class="mt-3 mr-4 price">
+                      Rp. {{ moneyFormat(calculateDiscount(product)) }}
+                    </div>
+                  </div>
+                  <div class="price" v-else>
+                    <div class="mt-3 mr-4 price">
+                      Rp. {{ moneyFormat(product.price) }}
+                    </div>
                   </div>
                   <table class="table table-detail table-borderless mt-3">
                     <tbody>
@@ -343,19 +349,26 @@
               <h5>🏷️ Details Product</h5>
               <div class="card-body">
                 <div class="product-header mb-2">{{ product.title }}</div>
-                <s
-                  class="product-price-coret"
-                  style="text-decoration-color: red"
-                >
-                  Rp. {{ moneyFormat(product.price) }}
-                </s>
-                <br />
-                <span class="badge badge-custom mr-3">
-                  💰 DISKON {{ product.discount }} %
-                </span>
+                <div class="price" v-if="!product.discount <= 0">
+                  <s
+                    class="product-price-coret"
+                    style="text-decoration-color: red"
+                  >
+                    Rp. {{ moneyFormat(product.price) }}
+                  </s>
+                  <br />
+                  <span class="badge badge-custom mr-3">
+                    💰 DISKON {{ product.discount }} %
+                  </span>
 
-                <div class="mt-3 mr-4 price">
-                  Rp. {{ moneyFormat(calculateDiscount(product)) }}
+                  <div class="mt-3 mr-4 price">
+                    Rp. {{ moneyFormat(calculateDiscount(product)) }}
+                  </div>
+                </div>
+                <div class="price" v-else>
+                  <div class="mt-3 mr-4 price">
+                    Rp. {{ moneyFormat(product.price) }}
+                  </div>
                 </div>
                 <table class="table table-detail table-borderless mt-3">
                   <tbody>

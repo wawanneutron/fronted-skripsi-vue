@@ -61,7 +61,7 @@
                     {{ cart.product.weight }}(gram)
                   </div>
                 </td>
-                <td class="align-middle">
+                <td class="align-middle" v-if="!cart.product.discount <= 0">
                   <div class="product-price">
                     Rp.
                     {{
@@ -69,6 +69,11 @@
                     }}
                   </div>
                   <div class="product-price-coret">
+                    Rp. {{ cart.product.price.toLocaleString("id-ID") }}
+                  </div>
+                </td>
+                <td class="align-middle" v-else>
+                  <div class="product-price">
                     Rp. {{ cart.product.price.toLocaleString("id-ID") }}
                   </div>
                 </td>

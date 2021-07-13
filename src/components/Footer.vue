@@ -9,7 +9,8 @@
             Berikut ini adalah catatan mengenai ketentuan berbelanja di toko
             kami. Mohon dibaca dengan saksama agar tidak terjadi kesalahpahaman
             dan demi menciptakan pengalaman berbelanja yang menyenangkan.
-            <a href="#">Kebijakan Toko </a> 🙌🚀
+            <router-link :to="{ name: 'Term' }">Kebijakan Toko </router-link>
+            🙌🚀
           </div>
         </div>
         <div class="col-md-3">
@@ -41,7 +42,10 @@
           <p class="pt-4 mb-2">2021 Copyright Store. All Rights Reserved.</p>
           <span class="sub-footer">Dibuat dengan sepenuh 💖🇮🇩 </span> <br />
           <span class="sub-footer" style="margin-top: 10px">
-            Skripsi TA 2021 Wawan Setiawan (2017804143)
+            development by
+            <a href="https://github.com/wawanneutron" target="blank"
+              >Wawan Setiawan</a
+            >
           </span>
         </div>
       </div>

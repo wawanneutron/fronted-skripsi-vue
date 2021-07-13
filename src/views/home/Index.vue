@@ -65,6 +65,22 @@
           <router-link
             :to="{ name: 'detail', params: { slug: product.slug } }"
             class="component-product"
+            v-if="product.discount <= 0"
+          >
+            <div class="product-thumbnail">
+              <img :src="product.gallery[0].image" class="w-100" />
+            </div>
+            <div class="product-text">
+              <p>{{ product.title }}</p>
+            </div>
+            <div class="discount">
+              <span>Rp. {{ moneyFormat(product.price) }} </span>
+            </div>
+          </router-link>
+          <router-link
+            v-else
+            :to="{ name: 'detail', params: { slug: product.slug } }"
+            class="component-product"
           >
             <div class="product-thumbnail">
               <img :src="product.gallery[0].image" class="w-100" />
@@ -111,6 +127,22 @@
           <router-link
             :to="{ name: 'detail', params: { slug: product.slug } }"
             class="component-product"
+            v-if="product.discount <= 0"
+          >
+            <div class="product-thumbnail">
+              <img :src="product.gallery[0].image" class="w-100" />
+            </div>
+            <div class="product-text">
+              <p>{{ product.title }}</p>
+            </div>
+            <div class="discount">
+              <span>Rp. {{ moneyFormat(product.price) }} </span>
+            </div>
+          </router-link>
+          <router-link
+            v-else
+            :to="{ name: 'detail', params: { slug: product.slug } }"
+            class="component-product"
           >
             <div class="product-thumbnail">
               <img :src="product.gallery[0].image" class="w-100" />
@@ -121,21 +153,11 @@
             <div class="discount">
               <s>Rp. {{ moneyFormat(product.price) }} </s>
             </div>
-            <div>
-              <span
-                v-if="product.discount == null"
-                style="background-color: darkorange"
-                class="badge badge-pill badge-success text-white float-right"
-              >
-                DISKON 0 %
-              </span>
-              <span
-                v-else
-                style="background-color: darkorange"
-                class="badge badge-pill badge-success text-white float-right"
-                >DISKON {{ product.discount }} %</span
-              >
-            </div>
+            <span
+              style="background-color: darkorange"
+              class="badge badge-pill badge-success text-white float-right"
+              >DISKON {{ product.discount }} %</span
+            >
             <div class="product-price">
               <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
             </div>

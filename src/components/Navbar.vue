@@ -121,7 +121,6 @@
             >Categories <span class="sr-only">(current)</span></router-link
           >
         </li>
-        <router-link class="nav-link" to="#">Term of Service</router-link>
         <li class="nav-item" v-if="countCart !== 0">
           <router-link
             to="/cart"
