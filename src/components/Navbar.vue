@@ -5,7 +5,7 @@
     :class="{ 'navbar-hidden': !showNavbar }"
   >
     <router-link class="navbar-brand" to="/">
-      <img src="/images/logo.svg" alt="" />
+      <img src="/images/logo_toko.svg" alt="logo" class="w-100" />
     </router-link>
     <button
       class="navbar-toggler"
@@ -37,12 +37,12 @@
         </li>
         <li class="nav-item">
           <router-link class="nav-link" :to="{ name: 'register' }"
-            >Sign up</router-link
+            >Register</router-link
           >
         </li>
         <li class="nav-item">
           <router-link class="btn btn-success btn-lg" :to="{ name: 'login' }"
-            >Sign in</router-link
+            >Login</router-link
           >
         </li>
       </ul>
@@ -61,11 +61,6 @@
         <li class="nav-item">
           <router-link class="nav-link" :to="{ name: 'Category' }"
             >Categories <span class="sr-only">(current)</span></router-link
-          >
-        </li>
-        <li class="nav-item">
-          <router-link class="nav-link" to="/"
-            >Home <span class="sr-only">(current)</span></router-link
           >
         </li>
       </ul>
