@@ -1,168 +1,166 @@
 <template>
   <main id="home">
     <Carousel />
-    <div class="page-content">
-      <section class="header-title" data-aos="fade-up">
-        <div class="row">
-          <div class="col-md-12 col-12">
-            <span class="text-product-header">Belanja Makin Mudah</span>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-12">
-            <router-link class="show-all" to="/category-all"
-              >Tampilkan kategori lainnya</router-link
-            >
-          </div>
-        </div>
-      </section>
-      <section class="store-trend-categories">
-        <div class="row">
-          <div
-            class="col-6 col-md-3 col-lg-2"
-            data-aos="fade-up"
-            v-for="(category, index) in categories"
-            :key="index"
-          >
-            <router-link
-              :to="{ name: 'category_show', params: { slug: category.slug } }"
-              class="component-categories d-block"
-            >
-              <div class="categories-image">
-                <img :src="category.image" class="w-100" />
-              </div>
-              <p class="categories-text">{{ category.name }}</p>
-            </router-link>
-          </div>
-        </div>
-      </section>
-      <!-- product terlaris -->
-      <section class="header-title mt-4" data-aos="fade-up">
-        <div class="row">
-          <div class="col-md-6 col-12">
-            <span class="text-product-header">Product Terlaris</span>
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-12 col-md-8">
-            <!-- <router-link class="show-all" to="/product-all"
-              >Tampilkan product terlaris lainnya
-            </router-link> -->
-          </div>
-        </div>
-      </section>
+    <section class="header-title" data-aos="fade-up">
       <div class="row">
-        <div class="col-12" v-if="terlaris == ''">
-          <div class="text-center alert alert-warning">Kosong</div>
+        <div class="col-md-12 col-12">
+          <span class="text-product-header">Belanja Makin Mudah</span>
         </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-12">
+          <router-link class="show-all" to="/category-all"
+            >Tampilkan kategori lainnya</router-link
+          >
+        </div>
+      </div>
+    </section>
+    <section class="store-trend-categories">
+      <div class="row">
         <div
-          v-else
-          class="col-6 col-md-3 col-product"
-          v-for="(product, index) in terlaris"
-          :key="index"
+          class="col-6 col-md-3 col-lg-2"
           data-aos="fade-up"
+          v-for="(category, index) in categories"
+          :key="index"
         >
           <router-link
-            :to="{ name: 'detail', params: { slug: product.slug } }"
-            class="component-product"
-            v-if="product.discount <= 0"
+            :to="{ name: 'category_show', params: { slug: category.slug } }"
+            class="component-categories d-block"
           >
-            <div class="product-thumbnail">
-              <img :src="product.gallery[0].image" class="w-100" />
+            <div class="categories-image">
+              <img :src="category.image" class="w-100" />
             </div>
-            <div class="product-text">
-              <p>{{ product.title }}</p>
-            </div>
-            <div class="discount">
-              <span>Rp. {{ moneyFormat(product.price) }} </span>
-            </div>
-          </router-link>
-          <router-link
-            v-else
-            :to="{ name: 'detail', params: { slug: product.slug } }"
-            class="component-product"
-          >
-            <div class="product-thumbnail">
-              <img :src="product.gallery[0].image" class="w-100" />
-            </div>
-            <div class="product-text">
-              <p>{{ product.title }}</p>
-            </div>
-            <div class="discount">
-              <s>Rp. {{ moneyFormat(product.price) }} </s>
-            </div>
-            <span
-              style="background-color: darkorange"
-              class="badge badge-pill badge-success text-white float-right"
-              >DISKON {{ product.discount }} %</span
-            >
-            <div class="product-price">
-              <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
-            </div>
+            <p class="categories-text">{{ category.name }}</p>
           </router-link>
         </div>
       </div>
-      <!-- product random -->
-      <section class="header-title mt-4" data-aos="fade-up">
-        <div class="row">
-          <div class="col-md-6 col-12">
-            <span class="text-product-header">Belanja kebutuhanmu</span>
-          </div>
-        </div>
-        <div class="row mb-4">
-          <div class="col-12 col-md-8">
-            <router-link class="show-all" to="/product-all"
-              >Tampilkan semua product</router-link
-            >
-          </div>
-        </div>
-      </section>
+    </section>
+    <!-- product terlaris -->
+    <section class="header-title mt-4" data-aos="fade-up">
       <div class="row">
-        <div
-          class="col-6 col-md-3 col-product"
-          v-for="(product, index) in products"
-          :key="index"
-          data-aos="fade-up"
-        >
-          <router-link
-            :to="{ name: 'detail', params: { slug: product.slug } }"
-            class="component-product"
-            v-if="product.discount <= 0"
-          >
-            <div class="product-thumbnail">
-              <img :src="product.gallery[0].image" class="w-100" />
-            </div>
-            <div class="product-text">
-              <p>{{ product.title }}</p>
-            </div>
-            <div class="discount">
-              <span>Rp. {{ moneyFormat(product.price) }} </span>
-            </div>
-          </router-link>
-          <router-link
-            v-else
-            :to="{ name: 'detail', params: { slug: product.slug } }"
-            class="component-product"
-          >
-            <div class="product-thumbnail">
-              <img :src="product.gallery[0].image" class="w-100" />
-            </div>
-            <div class="product-text">
-              <p>{{ product.title }}</p>
-            </div>
-            <div class="discount">
-              <s>Rp. {{ moneyFormat(product.price) }} </s>
-            </div>
-            <span
-              style="background-color: darkorange"
-              class="badge badge-pill badge-success text-white float-right"
-              >DISKON {{ product.discount }} %</span
-            >
-            <div class="product-price">
-              <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
-            </div>
-          </router-link>
+        <div class="col-md-6 col-12">
+          <span class="text-product-header">Product Terlaris</span>
         </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12 col-md-8">
+          <!-- <router-link class="show-all" to="/product-all"
+              >Tampilkan product terlaris lainnya
+            </router-link> -->
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      <div class="col-12" v-if="terlaris == ''">
+        <div class="text-center alert alert-warning">Kosong</div>
+      </div>
+      <div
+        v-else
+        class="col-6 col-md-3 col-product"
+        v-for="(product, index) in terlaris"
+        :key="index"
+        data-aos="fade-up"
+      >
+        <router-link
+          :to="{ name: 'detail', params: { slug: product.slug } }"
+          class="component-product"
+          v-if="product.discount <= 0"
+        >
+          <div class="product-thumbnail">
+            <img :src="product.gallery[0].image" class="w-100" />
+          </div>
+          <div class="product-text">
+            <p>{{ product.title }}</p>
+          </div>
+          <div class="discount">
+            <span>Rp. {{ moneyFormat(product.price) }} </span>
+          </div>
+        </router-link>
+        <router-link
+          v-else
+          :to="{ name: 'detail', params: { slug: product.slug } }"
+          class="component-product"
+        >
+          <div class="product-thumbnail">
+            <img :src="product.gallery[0].image" class="w-100" />
+          </div>
+          <div class="product-text">
+            <p>{{ product.title }}</p>
+          </div>
+          <div class="discount">
+            <s>Rp. {{ moneyFormat(product.price) }} </s>
+          </div>
+          <span
+            style="background-color: darkorange"
+            class="badge badge-pill badge-success text-white float-right"
+            >DISKON {{ product.discount }} %</span
+          >
+          <div class="product-price">
+            <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+          </div>
+        </router-link>
+      </div>
+    </div>
+    <!-- product random -->
+    <section class="header-title mt-4" data-aos="fade-up">
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <span class="text-product-header">Belanja kebutuhanmu</span>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-12 col-md-8">
+          <router-link class="show-all" to="/product-all"
+            >Tampilkan semua product</router-link
+          >
+        </div>
+      </div>
+    </section>
+    <div class="row">
+      <div
+        class="col-6 col-md-3 col-product"
+        v-for="(product, index) in products"
+        :key="index"
+        data-aos="fade-up"
+      >
+        <router-link
+          :to="{ name: 'detail', params: { slug: product.slug } }"
+          class="component-product"
+          v-if="product.discount <= 0"
+        >
+          <div class="product-thumbnail">
+            <img :src="product.gallery[0].image" class="w-100" />
+          </div>
+          <div class="product-text">
+            <p>{{ product.title }}</p>
+          </div>
+          <div class="discount">
+            <span>Rp. {{ moneyFormat(product.price) }} </span>
+          </div>
+        </router-link>
+        <router-link
+          v-else
+          :to="{ name: 'detail', params: { slug: product.slug } }"
+          class="component-product"
+        >
+          <div class="product-thumbnail">
+            <img :src="product.gallery[0].image" class="w-100" />
+          </div>
+          <div class="product-text">
+            <p>{{ product.title }}</p>
+          </div>
+          <div class="discount">
+            <s>Rp. {{ moneyFormat(product.price) }} </s>
+          </div>
+          <span
+            style="background-color: darkorange"
+            class="badge badge-pill badge-success text-white float-right"
+            >DISKON {{ product.discount }} %</span
+          >
+          <div class="product-price">
+            <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+          </div>
+        </router-link>
       </div>
     </div>
     <hr />

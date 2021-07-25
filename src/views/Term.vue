@@ -19,7 +19,7 @@
             <div class="tab-content">
               Bertransaksi bisa kapan saja di toko online kami, akan tetapi kami
               memproses pesanan yang masuk sesuai jam kerja kami yaitu senin s/d
-              sabtu , jam 09.00 – 22.00 WIB <br />
+              sabtu jam 07.00 s/d 17.00, <br />
               pesanan yang lewat jam kerja akan di proses keesokan harinya
             </div>
           </div>

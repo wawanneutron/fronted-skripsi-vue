@@ -5,20 +5,20 @@
 .category-all {
   margin-top: -15px !important;
 }
-.page-content {
-  margin: 30px 0 30px;
+// .page-content {
+//   margin: 0px 0 30px;
+//   }
+.all-category-product {
+  margin-bottom: 30px;
+}
+.row {
+  margin: 0;
+  padding: 0;
+}
+.header-title {
+  margin-top: 50px;
   .all-category-product {
-    margin-bottom: 30px;
-  }
-  .row {
-    margin: 0;
-    padding: 0;
-  }
-  .header-title {
-    margin-top: 50px;
-    .all-category-product {
-      color: #fffffe;
-    }
+    color: #fffffe;
   }
 }
 

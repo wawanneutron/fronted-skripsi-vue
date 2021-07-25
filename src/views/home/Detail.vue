@@ -163,7 +163,9 @@
                       aria-controls="pills-size"
                       aria-selected="false"
                       v-if="
-                        category.name == 'Olahraga' || category.name == 'Sepatu'
+                        category.name == 'Sepatu Olahraga' ||
+                        category.name == 'Sepatu Santai' ||
+                        category.name == 'Sepatu Casual'
                       "
                       >Ukuran Sepatu</a
                     >
@@ -184,7 +186,9 @@
                     role="tabpanel"
                     aria-labelledby="pills-size-tab"
                     v-if="
-                      category.name == 'Olahraga' || category.name == 'Sepatu'
+                      category.name == 'Sepatu Olahraga' ||
+                      category.name == 'Sepatu Santai' ||
+                      category.name == 'Sepatu Casual'
                     "
                   >
                     <div
