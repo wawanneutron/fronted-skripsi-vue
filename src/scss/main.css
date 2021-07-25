@@ -752,6 +752,63 @@ footer span.sub-footer {
   width: 70px !important;
 }
 
+.midtrans .text-header {
+  font-weight: bold;
+  font-size: 32px;
+  color: #123049;
+}
+
+.midtrans .content {
+  margin-top: 20px;
+  color: #7686ab;
+}
+
+.midtrans .content ul {
+  padding-left: 0;
+}
+
+.midtrans .content ul li {
+  list-style: none;
+  margin-top: 20px;
+  color: #232f51;
+  font-weight: 500;
+}
+
+.midtrans .content ul li img {
+  margin-right: 20px !important;
+}
+
+.keamanan {
+  margin-top: 100px;
+}
+
+.keamanan .col-info .title {
+  color: #123049;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.keamanan .col-info .subtitle {
+  color: #7686ab;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.keamanan .col-info .img-info {
+  width: 98px;
+  height: 98px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.keamanan .col-info .img-info img {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
 .img-carousel {
   margin-top: 120px;
 }

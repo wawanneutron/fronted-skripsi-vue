@@ -316,19 +316,18 @@
                     <div class="term-service mt-3">
                       <ul>
                         <p>
-                          Selamat datang di Bayer Official Partner. Berikut ini
-                          adalah catatan mengenai ketentuan berbelanja di toko
-                          kami. Mohon dibaca dengan saksama agar tidak terjadi
-                          kesalahpahaman dan demi menciptakan pengalaman
-                          berbelanja yang menyenangkan.
-                          <router-link class="readmore" :to="{ path: '/terms' }"
+                          Berikut ini adalah catatan mengenai ketentuan
+                          berbelanja di toko kami. Mohon dibaca dengan saksama
+                          agar tidak terjadi kesalahpahaman dan demi menciptakan
+                          pengalaman berbelanja yang menyenangkan.
+                          <router-link class="readmore" :to="{ path: '/tos' }"
                             >Baca selengkapnya kebijakan toko</router-link
                           >
                         </p>
                         <h3 class="mt-4">Jam Operasional</h3>
                         <p>
                           <br />
-                          Senin s/d Sabtu 09.00 – 22.00 WIB
+                          Senin s/d Sabtu 07.00 - 17.00 WIB
                           <br />
                           Minggu & Tanggal Merah LIBUR.
                           <br />
