@@ -36,6 +36,14 @@ const product = {
       Api.get("/products-home")
         .then((response) => {
           commit("GET_PRODUCT_HOME", response.data.product);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getProductsTerlaris({ commit }) {
+      Api.get("/products-terlaris")
+        .then((response) => {
           commit("GET_PRODUCT_TERLARIS", response.data.terlaris);
         })
         .catch((error) => {

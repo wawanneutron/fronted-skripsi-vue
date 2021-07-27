@@ -116,7 +116,7 @@
     <div class="row mt-5">
       <div
         class="col-6 col-md-3 col-product"
-        v-for="(product, index) in datas"
+        v-for="(product, index) in products"
         :key="index"
         data-aos="fade-up"
       >
@@ -306,15 +306,15 @@ export default {
       store.dispatch("product/getProductsHome");
     });
     onMounted(() => {
-      store.dispatch("product/getProductsAll");
+      store.dispatch("product/getProductsTerlaris");
     });
 
-    const datas = computed(() => {
-      return store.getters["product/getProductsAll"];
-    });
     // get data  dari module  di vuex
     const products = computed(() => {
       return store.getters["product/getProductsHome"];
+    });
+    const terlaris = computed(() => {
+      return store.getters["product/getProductsTerlaris"];
     });
     const gallery = computed(() => {
       return store.getters["product/getGallery"];
@@ -322,17 +322,13 @@ export default {
     const categories = computed(() => {
       return store.getters["category/getCategoriesHome"];
     });
-    const terlaris = computed(() => {
-      return store.getters["product/getProductsTerlaris"];
-    });
 
     return {
       store,
       categories,
       products,
-      terlaris,
       gallery,
-      datas,
+      terlaris,
     };
   },
 };
