@@ -57,3 +57,27 @@ body {
 .mt-global {
   margin-top: 140px !important;
 }
+
+/* scrom */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #16161a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f2ad5f;
+  border-radius: 15px;
+  &:hover {
+    background: #986121;
+  }
+}
+
+/* firefox */
+:root {
+  overflow-y: scroll;
+  scrollbar-color: #f2ad5f #16161a !important;
+  scrollbar-width: thin !important;
+}

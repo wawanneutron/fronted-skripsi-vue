@@ -495,7 +495,7 @@ export default {
         state.service_courier = "";
         state.grandTotal = 0;
         state.courier_deliv = false;
-        state.disabled_checkout = true;
+        state.disabled_checkout = false;
         state.buttonCheckout = false;
         state.service = false;
       }
@@ -569,6 +569,7 @@ export default {
         alert("tampaknya tidak ada barang di keranjang");
         return;
       }
+
       Api.post("/rajaongkir/check-ongkir", {
         city_destination: state.city_id,
         weight: cartWeight.value,

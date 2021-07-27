@@ -7,9 +7,9 @@
         <div class="row align-items-center justify-content-center row-login">
           <div class="col-lg-7 col-md-6 text-center">
             <img
-              src="/images/img_login.jpg"
+              src="/images/midtrans_banner.png"
               alt=""
-              class="w-50 mb-4 mb-lg-none"
+              class="w-100 mb-4 mb-lg-none"
             />
           </div>
           <div class="col-lg-5 col-md-6">

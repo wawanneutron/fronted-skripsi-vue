@@ -1,5 +1,14 @@
 // show dashboard
 #dashboard-show {
+  .col-bread {
+    padding: 0 !important;
+  }
+  .card-body {
+    padding: 20px 0;
+  }
+  .order-details {
+    padding: 0;
+  }
   .card-img {
     max-width: 250px;
     padding: 3px;
@@ -65,6 +74,9 @@
       margin-bottom: 20px;
     }
   }
+  .shadow {
+    padding: 10px;
+  }
   .card-list {
     background: #e5e5e5;
     margin-bottom: 10px;
@@ -105,14 +117,19 @@
       color: #9191a9;
     }
   }
+
   // dashboard-transactions
   .dashboard-content {
+    .border-0 {
+      padding: 10px 0px;
+    }
     .nav-pills {
       .nav-link {
         font-weight: normal;
         font-size: 18px;
         color: #9191a9;
         border-radius: 0;
+        padding: 0 5px;
 
         &.active {
           font-weight: 500;

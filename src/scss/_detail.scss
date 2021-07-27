@@ -201,6 +201,12 @@
       }
     }
   }
+  .col-detail {
+    padding: 0;
+    .card {
+      padding: 15px;
+    }
+  }
   .product-header {
     font-size: 21px !important;
   }

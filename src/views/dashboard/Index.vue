@@ -65,7 +65,7 @@
                   data-aos="fade-up"
                 >
                   <div class="container-fluid">
-                    <div class="dashboard-heading">
+                    <div class="dashboard-heading mt-5">
                       <div
                         class="alert alert-info alert-dismissible fade show"
                         role="alert"
@@ -92,7 +92,7 @@
                           Kami akan mengirimkan email notifikasi beserta detail
                           pembayran ke email
                           <b>{{ user.email }}</b> jika anda sudah melakukan
-                          proses chackout.
+                          proses pembayaran.
                         </p>
                         <button
                           type="button"
@@ -114,7 +114,7 @@
                 aria-labelledby="pills-profile-tab"
               >
                 <!-- transaction table -->
-                <div class="card border-0 rounded shadow">
+                <div class="card rounded">
                   <div>
                     <h5 class="font-weight-bold">
                       <i class="fas fa-shopping-cart mr-2"></i>My Order

@@ -65,6 +65,31 @@ body {
   margin-top: 140px !important;
 }
 
+/* scrom */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #16161a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f2ad5f;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #986121;
+}
+
+/* firefox */
+:root {
+  overflow-y: scroll;
+  scrollbar-color: #f2ad5f #16161a !important;
+  scrollbar-width: thin !important;
+}
+
 .navbar {
   background: #fffffe;
   -webkit-transform: translate3d(0, 0, 0);
@@ -231,7 +256,7 @@ body {
   #category,
   #dashboard,
   #dashboard-show {
-    padding: 0 15px !important;
+    padding: 0 12px !important;
   }
 }
 
@@ -436,6 +461,12 @@ body {
   .store-gallery .description .detail {
     margin: 30px 0 30px;
   }
+  .col-detail {
+    padding: 0;
+  }
+  .col-detail .card {
+    padding: 15px;
+  }
   .product-header {
     font-size: 21px !important;
   }
@@ -586,6 +617,18 @@ footer span.sub-footer {
   }
 }
 
+#dashboard-show .col-bread {
+  padding: 0 !important;
+}
+
+#dashboard-show .card-body {
+  padding: 20px 0;
+}
+
+#dashboard-show .order-details {
+  padding: 0;
+}
+
 #dashboard-show .card-img {
   max-width: 250px;
   padding: 3px;
@@ -662,6 +705,10 @@ footer span.sub-footer {
   margin-bottom: 20px;
 }
 
+#dashboard-show .shadow {
+  padding: 10px;
+}
+
 #dashboard-show .card-list {
   background: #e5e5e5;
   margin-bottom: 10px;
@@ -699,11 +746,16 @@ footer span.sub-footer {
   color: #9191a9;
 }
 
+#dashboard .dashboard-content .border-0 {
+  padding: 10px 0px;
+}
+
 #dashboard .dashboard-content .nav-pills .nav-link {
   font-weight: normal;
   font-size: 18px;
   color: #9191a9;
   border-radius: 0;
+  padding: 0 5px;
 }
 
 #dashboard .dashboard-content .nav-pills .nav-link.active {
@@ -750,6 +802,10 @@ footer span.sub-footer {
 
 #dashboard .card-list .card-body .img-list {
   width: 70px !important;
+}
+
+.midtrans {
+  margin-top: 100px !important;
 }
 
 .midtrans .text-header {
@@ -1014,7 +1070,7 @@ footer span.sub-footer {
 
 @media (max-width: 510px) {
   .col-product {
-    padding: 0 7px;
+    padding: 0 10px;
   }
   .col-product .component-product span {
     float: none !important;

@@ -20,7 +20,7 @@
     <section class="store-gallery">
       <div class="row justify-content-around">
         <!-- product image -->
-        <div class="col-md-6">
+        <div class="col-md-6 col-detail">
           <div class="card">
             <!-- card header -->
             <transition
