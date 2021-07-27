@@ -20,7 +20,7 @@
         <!-- <i class="fa fa-shopping-cart mr-2"></i> -->
         🛍️ Order Details
       </div>
-      <div class="row" data-aos="fade-up">
+      <div class="row">
         <div class="col-12 table-responsive">
           <table class="table table-borderless table-cart">
             <thead>
@@ -65,11 +65,11 @@
                   <div class="product-price">
                     Rp.
                     {{
-                      calculateDiscount(cart.product).toLocaleString("id-ID")
+                      moneyFormat(calculateDiscount(cart.product))
                     }}
                   </div>
                   <div class="product-price-coret">
-                    Rp. {{ cart.product.price.toLocaleString("id-ID") }}
+                    Rp. {{ moneyFormat(cart.product.price) }}
                   </div>
                 </td>
                 <td class="align-middle" v-else>
@@ -102,7 +102,7 @@
           class="col-lg-6 payment-informations store-cart mb-4 d-none d-lg-flex"
         >
           <div class="header-information">
-            <div class="text-product-header" data-aos="fade-up">
+            <div class="text-product-header">
               <!-- <i class="fas fa-money-check-alt"></i> -->
               💰 Payment informations
             </div>
@@ -113,7 +113,11 @@
               Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
               lengkap
             </div>
-            <div class="row payment-informations mt-5" data-aos="fade-in">
+            <div
+              class="row payment-informations mt-5"
+              data-aos="fade-in"
+              data-aos-delay="100"
+            >
               <div class="col-6 col-lg-3 mb-3">
                 <div class="number">{{ countCart }} (pcs)</div>
                 <div class="sub-title">Jumlah Pemesanan</div>
@@ -373,7 +377,7 @@
           "
         >
           <div class="header-information">
-            <div class="text-product-header" data-aos="fade-up">
+            <div class="text-product-header">
               <!-- <i class="fas fa-money-check-alt"></i> -->
               💰 Payment informations
             </div>

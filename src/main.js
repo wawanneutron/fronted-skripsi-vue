@@ -3,7 +3,10 @@ import App from "./App.vue";
 import "./scss/main.css";
 import router from "./router/index";
 import store from "./store";
-
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 const app = createApp(App);
 
 //gunakan router di vue js dengan plugin "use"

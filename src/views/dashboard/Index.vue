@@ -105,7 +105,7 @@
                       table-responsive-lg
                     "
                   >
-                    <thead class="text-uppercase thead-dark">
+                    <thead class="text-uppercase table-info">
                       <tr class="text-center">
                         <th>invoice</th>
                         <th>Full name</th>
@@ -115,8 +115,8 @@
                       </tr>
                     </thead>
                   </table>
-                  <div class="alert alert-danger text-center h5">
-                    Data Kosong
+                  <div class="alert alert-danger text-center mt-5 h6">
+                    <i>Tidak ada transaksi</i>
                   </div>
                 </div>
                 <hr />

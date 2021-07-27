@@ -163,17 +163,17 @@
     <hr />
     <div class="row midtrans">
       <div class="col-md-6">
-        <div class="text-header">
+        <div class="text-header" data-aos="fade-up" data-aos-delay="300">
           Menerima variasi <br />
           metode pembayaran
         </div>
-        <div class="content">
+        <div class="content" data-aos="fade-up" data-aos-delay="300">
           Dengan Midtrans, Anda dapat menerima pembayaran dari 24 metode: kartu
           kredit/debit, transfer bank, e-Money, dan masih banyak lagi. <br />
           <br />
           Anda dapat mengaktifkan beberapa metode pembayaran saja, atau semuanya
           - pilih sesuai kebutuhan Anda.
-          <ul>
+          <ul data-aos="fade-up" data-aos-delay="300">
             <li>
               <img src="/images/check-icon.svg" class="mr-2" />Kartu
               kredit/Debit
@@ -193,21 +193,21 @@
           </ul>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="700">
         <img src="/images/midtrans_banner.png" alt="midtrans" class="w-100" />
       </div>
     </div>
     <div class="row keamanan midtrans justify-content-between">
       <div class="col-md-6">
         <div class="row text-center justify-content-center">
-          <div class="col-md-6 mb-5 col-info">
+          <div class="col-md-6 mb-5 col-info" data-aos="fade-up">
             <div class="img-info">
               <img src="/images/bi.png" alt="" />
             </div>
             <div class="title">Bank Indonesia</div>
             <div class="subtitle">Memiliki Izin dari Bank Indonesia</div>
           </div>
-          <div class="col-md-6 col-info">
+          <div class="col-md-6 col-info" data-aos="fade-up">
             <div class="img-info">
               <img src="/images/kominfo.png" alt="" />
             </div>
@@ -218,14 +218,14 @@
               Terdaftar sebagai Penyelenggara Sistem Elektronik
             </div>
           </div>
-          <div class="col-md-6 mt-5 col-info">
+          <div class="col-md-6 mt-5 col-info" data-aos="fade-up">
             <div class="img-info">
               <img src="/images/aes.png" alt="" />
             </div>
             <div class="title">AES 256</div>
             <div class="subtitle">Standar Enkripsi Lanjutan</div>
           </div>
-          <div class="col-md-6 mt-5 col-info">
+          <div class="col-md-6 mt-5 col-info" data-aos="fade-up">
             <div class="img-info">
               <img src="/images/pci.png" alt="" />
             </div>
@@ -234,7 +234,7 @@
               Industri Kartu Pembayaran Standar Keamanan Data
             </div>
           </div>
-          <div class="col-md-6 mt-5 mb-5 col-info">
+          <div class="col-md-6 mt-5 mb-5 col-info" data-aos="fade-up">
             <div class="img-info">
               <img src="/images/iso.png" alt="" />
             </div>
@@ -246,15 +246,15 @@
         </div>
       </div>
       <div class="col-md-5">
-        <div class="text-header">
+        <div class="text-header" data-aos="fade-up">
           Midtrans <br />
           Aman dari segala sisi
         </div>
-        <div class="content">
+        <div class="content" data-aos="fade-up" data-aos-delay="300">
           Sistem deteksi anomali kami menggabungkan AI, machine learning, dan
           rumus kompleks untuk melindungi transaksi Anda. Hemat waktu dan biaya
           agar Anda dapat fokus mengembangkan bisnis.
-          <ul>
+          <ul data-aos="fade-up" data-aos-delay="300">
             <li>
               <img src="/images/check-icon.svg" class="mr-2" />Kartu Lisensi
               dari Bank Indonesia
@@ -270,14 +270,18 @@
       </div>
     </div>
     <div class="row midtrans justify-content-center mt-5">
-      <div class="col-12 text-center">
+      <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="300">
         <div class="text-header">Exspedisi Suport <br /></div>
-        <div class="content">
+        <div class="content" data-aos="fade-up" data-aos-delay="300">
           Sistem mendukung beberapa jenis exspedisi pengiriman barang, <br />
           kedepannya akan di suport bebrbagai jenis exspedisi pengiriman
         </div>
       </div>
-      <div class="col-md-6 justify-content-center mt-5">
+      <div
+        class="col-md-6 justify-content-center mt-5"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
         <img src="/images/exspedisi.png" alt="midtrans" class="w-100" />
       </div>
     </div>
