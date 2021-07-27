@@ -163,6 +163,45 @@
         </router-link>
       </div>
     </div>
+    <!-- test -->
+    <div class="row">
+      <div class="col-12 mb-3">
+        <span
+          class="text-product-header all-category-product"
+          style="font-size: 20px"
+          >🎉 Banyak penawaran menarik 🎉</span
+        >
+      </div>
+      <div
+        class="col-6 col-md-3 col-lg-3 col-product"
+        v-for="(product, index) in products"
+        :key="index"
+        data-aos="fade-up"
+      >
+        <router-link
+          :to="{ name: 'detail', params: { slug: product.slug } }"
+          class="component-product"
+        >
+          <div class="product-thumbnail">
+            <img :src="product.gallery[0].image" class="w-100" />
+          </div>
+          <div class="product-text">
+            <p>{{ product.title }}</p>
+          </div>
+          <div class="discount">
+            <s>Rp. {{ moneyFormat(product.price) }} </s>
+          </div>
+          <span
+            style="background-color: darkorange"
+            class="badge badge-pill badge-success text-white float-right"
+            >DISKON {{ product.discount }} %</span
+          >
+          <div class="product-price">
+            <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+          </div>
+        </router-link>
+      </div>
+    </div>
     <hr />
     <div class="row midtrans">
       <div class="col-md-6">
