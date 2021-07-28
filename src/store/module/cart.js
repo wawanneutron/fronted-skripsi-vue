@@ -27,7 +27,16 @@ const cart = {
 
   actions: {
     // action addToCart
-    addToCart({ commit }, product) {
+    addToCart({ commit, dispatch }, product) {
+      // alert
+      dispatch(
+        "addNotification",
+        {
+          type: "success",
+          message: "Product aded to cart",
+        },
+        { root: true }
+      );
       // get data token dan user di localStorage
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));

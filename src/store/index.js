@@ -7,6 +7,8 @@ import product from "./module/product";
 import auth from "./module/auth";
 import order from "./module/order";
 import cart from "./module/cart";
+import alert from "./module/alert";
+
 // create store vuex
 export default createStore({
   modules: {
@@ -16,5 +18,6 @@ export default createStore({
     auth,
     order,
     cart,
+    alert,
   },
 });

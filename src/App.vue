@@ -9,11 +9,13 @@
     </div>
   </a>
   <router-view></router-view>
+  <notifications-list/>
   <Footer></Footer>
 </template>
 
 <script>
 import { defineAsyncComponent } from "@vue/runtime-core";
+import NotificationsList from "./components/NotificationsList.vue";
 
 const Navbar = defineAsyncComponent(() => import("././components/Navbar.vue"));
 const Footer = defineAsyncComponent(() => import("././components/Footer.vue"));
@@ -23,6 +25,7 @@ export default {
   components: {
     Navbar: Navbar,
     Footer: Footer,
+    NotificationsList
   },
 };
 </script>
