@@ -28,20 +28,33 @@ const cart = {
   actions: {
     // action addToCart
     addToCart({ commit, dispatch }, product) {
-      // alert
-      dispatch(
-        "addNotification",
-        {
-          type: "success",
-          message: "Product aded to cart",
-        },
-        { root: true }
-      );
       // get data token dan user di localStorage
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));
 
       Api.defaults.headers.common["Authorization"] = "Bearer " + token;
+
+      // alert
+      if (!token) {
+        dispatch(
+          "addNotification",
+          {
+            type: "danger",
+            message: "You are not logged in",
+          },
+          { root: true }
+        );
+      } else {
+        dispatch(
+          "addNotification",
+          {
+            type: "success",
+            message: "Success aded to cart",
+          },
+          { root: true }
+        );
+      }
+
       // kirim data keserver
       Api.post("/cart", {
         product_id: product.product_id,
