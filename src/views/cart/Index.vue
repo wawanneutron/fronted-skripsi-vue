@@ -64,9 +64,7 @@
                 <td class="align-middle" v-if="!cart.product.discount <= 0">
                   <div class="product-price">
                     Rp.
-                    {{
-                      moneyFormat(calculateDiscount(cart.product))
-                    }}
+                    {{ moneyFormat(calculateDiscount(cart.product)) }}
                   </div>
                   <div class="product-price-coret">
                     Rp. {{ moneyFormat(cart.product.price) }}
@@ -74,7 +72,7 @@
                 </td>
                 <td class="align-middle" v-else>
                   <div class="product-price">
-                    Rp. {{ cart.product.price.toLocaleString("id-ID") }}
+                    Rp. {{ moneyFormat(cart.product.price) }}
                   </div>
                 </td>
                 <td class="align-middle">
