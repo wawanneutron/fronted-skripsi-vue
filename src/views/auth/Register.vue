@@ -6,13 +6,21 @@
         <div class="row align-items-center justify-content-center row-login">
           <div class="col-lg-4 col-md-6">
             <h2>
-              Memulai untuk jual beli <br />
-              dengan cara terbaru
+              Nikamti kenyamanan <br />
+              dalam berbelanja online
             </h2>
             <form @submit.prevent="register" class="mt-4">
               <div class="form-group">
                 <label for="">Full Name</label>
                 <input
+                  v-if="validation.name"
+                  type="text"
+                  class="form-control is-invalid"
+                  v-model="user.name"
+                  autofocus
+                />
+                <input
+                  v-else
                   type="text"
                   class="form-control"
                   v-model="user.name"
@@ -28,7 +36,18 @@
               </div>
               <div class="form-group">
                 <label for="">Email Address</label>
-                <input type="email" class="form-control" v-model="user.email" />
+                <input
+                  v-if="validation.email"
+                  type="email"
+                  class="form-control is-invalid"
+                  v-model="user.email"
+                />
+                <input
+                  v-else
+                  type="email"
+                  class="form-control"
+                  v-model="user.email"
+                />
               </div>
               <div
                 class="mt-2 alert alert-danger"
@@ -40,6 +59,15 @@
               <div class="form-group">
                 <label for="">Password</label>
                 <input
+                  v-if="validation.password"
+                  type="password"
+                  class="form-control is-invalid"
+                  name="password"
+                  v-model="user.password"
+                  id="password"
+                />
+                <input
+                  v-else
                   type="password"
                   class="form-control"
                   name="password"
@@ -57,6 +85,15 @@
               <div class="form-group">
                 <label for="">Confirm Password</label>
                 <input
+                  v-if="validation.password"
+                  type="password"
+                  class="form-control is-invalid"
+                  name="confirm"
+                  v-model="user.password_confirmation"
+                  id="confirm"
+                />
+                <input
+                  v-else
                   type="password"
                   class="form-control"
                   name="confirm"
@@ -69,7 +106,7 @@
                 v-if="validation.password_confirmation"
                 role=" alert"
               >
-                {{ validation.password_confirmation[0] }}
+                {{ validation.password[0] }}
               </div>
               <button type=" submit" class="btn btn-success btn-block mt-4">
                 Sign Up Now

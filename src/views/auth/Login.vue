@@ -17,24 +17,46 @@
               Belanja kebutuhan mu,<br />
               menjadi lebih mudah
             </h2>
-            <div v-if="validation.message" class="mt-2 alert alert-danger">
-              {{ validation.message }}
-            </div>
             <form @submit.prevent="login" class="mt-3">
               <div class="form-group">
                 <label for="">Email Address</label>
-                <input type="email" class="form-control" v-model="user.email" />
+                <input
+                  v-if="validation.email || validation.message"
+                  type="email"
+                  class="form-control is-invalid"
+                  v-model="user.email"
+                />
+                <input
+                  v-else
+                  type="email"
+                  class="form-control"
+                  v-model="user.email"
+                />
               </div>
               <div
-                class="mt-2 alert alert-danger"
                 v-if="validation.email"
+                class="mt-2 alert alert-danger"
                 role=" alert"
               >
                 {{ validation.email[0] }}
               </div>
+              <div
+                v-if="validation.message"
+                class="mt-2 alert alert-danger"
+                role=" alert"
+              >
+                {{ validation.message }}
+              </div>
               <div class="form-group">
                 <label for="">Password</label>
                 <input
+                  v-if="validation.password || validation.message"
+                  type="password"
+                  class="form-control is-invalid"
+                  v-model="user.password"
+                />
+                <input
+                  v-else
                   type="password"
                   class="form-control"
                   v-model="user.password"
