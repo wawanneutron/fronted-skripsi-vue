@@ -16,10 +16,7 @@
       </div>
     </section>
     <section class="store-cart card card-body shadow">
-      <div class="text-product-header">
-        <!-- <i class="fa fa-shopping-cart mr-2"></i> -->
-        🛍️ Order Details
-      </div>
+      <div class="text-product-header">🛍️ Order Details</div>
       <div class="row">
         <div class="col-12 table-responsive">
           <table class="table table-borderless table-cart">
@@ -100,15 +97,9 @@
           class="col-lg-6 payment-informations store-cart mb-4 d-none d-lg-flex"
         >
           <div class="header-information">
-            <div class="text-product-header">
-              <!-- <i class="fas fa-money-check-alt"></i> -->
-              💰 Payment informations
-            </div>
-            <!-- <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
-              Ini adalah jumlah yang akan anda bayarkan
-            </div> -->
+            <div class="text-product-header">💰 Payment informations</div>
             <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
-              Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
+              Sebelum melakukan chackout pastikan alamat pengiriman diisi dengan
               lengkap
             </div>
             <div
@@ -164,7 +155,7 @@
               <!-- button chackout -->
               <div
                 class="col-12 col-lg-12 mt-4 mb-4"
-                v-if="state.buttonCheckout"
+                v-if="state.buttonCheckout || checkout.length > 0"
               >
                 <button
                   @click.prevent="checkout"
@@ -173,7 +164,17 @@
                   Checkout Now
                 </button>
               </div>
-              <div
+              <!-- checkout loading process-->
+              <div class="col-12 col-lg-12 mt-4 mb-4" v-else>
+                <div v-if="state.buttonLoading">
+                  <button class="btn btn-lg btn-block btn-success">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <i class="ml-3">Loading...</i>
+                  </button>
+                </div>
+              </div>
+              <!-- disabled -->
+              <!-- <div
                 class="col-12 col-lg-12 mt-4 mb-4"
                 v-if="state.disabled_checkout"
               >
@@ -183,16 +184,13 @@
                 >
                   Checkout Now
                 </button>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
         <!-- shipping details -->
         <div class="col-lg-6 store-cart">
-          <div class="text-product-header">
-            <!-- <i class="fas fa-shipping-fast mr-2"></i> -->
-            📝 Shipping Details
-          </div>
+          <div class="text-product-header">📝 Shipping Details</div>
           <div class="row mt-5">
             <div class="col-md-6">
               <div class="form-grop">
@@ -375,15 +373,9 @@
           "
         >
           <div class="header-information">
-            <div class="text-product-header">
-              <!-- <i class="fas fa-money-check-alt"></i> -->
-              💰 Payment informations
-            </div>
-            <!-- <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
-              Ini adalah jumlah yang akan anda bayarkan
-            </div> -->
+            <div class="text-product-header">💰 Payment informations</div>
             <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
-              Sebelum melakukan chackout pastikan alamat lengkap diisi dengan
+              Sebelum melakukan chackout pastikan alamat pengiriman diisi dengan
               lengkap
             </div>
             <div class="row payment-informations mt-5" data-aos="fade-in">
@@ -435,7 +427,7 @@
               <!-- button chackout -->
               <div
                 class="col-12 col-lg-12 mt-4 mb-4"
-                v-if="state.buttonCheckout"
+                v-if="state.buttonCheckout || checkout.length > 0"
               >
                 <button
                   @click.prevent="checkout"
@@ -443,6 +435,15 @@
                 >
                   Checkout Now
                 </button>
+              </div>
+              <!-- checkout loading process-->
+              <div class="col-12 col-lg-12 mt-4 mb-4" v-else>
+                <div v-if="state.buttonLoading">
+                  <button class="btn btn-lg btn-block btn-success">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <i class="ml-3">Loading...</i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -499,6 +500,7 @@ export default {
         state.courier_deliv = false;
         state.disabled_checkout = false;
         state.buttonCheckout = false;
+        state.buttonLoading = false;
         state.service = false;
       }
     };
@@ -522,6 +524,7 @@ export default {
       service: false,
       etd: false,
       buttonCheckout: false,
+      buttonLoading: false,
       disabled_checkout: false,
       full_address: false,
       note: false,
@@ -595,8 +598,6 @@ export default {
     };
     // fungsi mendapatkan
     const getCostService = () => {
-      // state.buttonCheckout = true;
-      state.disabled_checkout = false;
       state.buttonCheckout = true;
       state.full_address = true;
 
@@ -633,6 +634,9 @@ export default {
         state.note_pembelian &&
         cartWeight.value
       ) {
+        // ubag state tombol chackout ketika klik checkout
+        state.buttonLoading = true;
+        state.buttonCheckout = false;
         // define variable
         let data = {
           courier: state.courier,
