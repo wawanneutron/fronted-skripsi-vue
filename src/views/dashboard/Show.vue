@@ -54,13 +54,11 @@
               </button>
             </div>
             <div
-              class="alert alert-warning alert-dismissible fade show"
+              class="alert alert-success alert-dismissible fade show"
               role="alert"
               v-if="detailOrder.status == 'payment-success'"
             >
-              <p>
-                Pesanan anda akan segera di proses oleh kami, silahkan tunggu...
-              </p>
+              <p>Pesanan anda akan segera di proses, silahkan tunggu...</p>
               <button
                 type="button"
                 class="close"
@@ -71,7 +69,7 @@
               </button>
             </div>
             <div
-              class="alert alert-warning alert-dismissible fade show"
+              class="alert alert-info alert-dismissible fade show"
               role="alert"
               v-if="detailOrder.status == 'process'"
             >
@@ -89,7 +87,7 @@
               </button>
             </div>
             <div
-              class="alert alert-info alert-dismissible fade show"
+              class="alert alert-success alert-dismissible fade show"
               role="alert"
               v-if="detailOrder.status == 'shipping'"
             >
@@ -111,6 +109,38 @@
               v-if="detailOrder.status == 'success'"
             >
               <p>Transaksi Selesai.</p>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              v-if="detailOrder.status == 'expired'"
+            >
+              <p>
+                Transaksi sudah kadaluarsa, silahkan melakukan checkout lagi.
+              </p>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              v-if="detailOrder.status == 'failed'"
+            >
+              <p>Transaksi gagal, silahkan melakukan checkout lagi.</p>
               <button
                 type="button"
                 class="close"
@@ -247,6 +277,19 @@
                             >
                               <i class="fas fa-times-circle mr-2 fa-lg"></i>
                               Pembayaran Gagal
+                            </button>
+                          </div>
+                          <div
+                            class="col-12 col-sm-6 col-md-6 col-lg-4"
+                            v-if="detailOrder.status == 'expired'"
+                          >
+                            <div class="product-title">Payment Status</div>
+                            <button
+                              type="submit"
+                              class="btn btn-danger mt-2 mb-3"
+                            >
+                              <i class="fas fa-times-circle mr-2 fa-lg"></i>
+                              Pembayaran Expired
                             </button>
                           </div>
                           <div class="col-12 col-sm-6 col-md-6 col-lg-4">
