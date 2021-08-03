@@ -1,5 +1,5 @@
 <template>
-  <section class="img-carousel">
+  <section class="img-carousel" v-if="sliders.length > 0">
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-12 col-img" data-aos="zoom-in">
@@ -45,12 +45,19 @@
       </div>
     </div>
   </section>
+  <div v-else>
+    <content-loader />
+  </div>
 </template>
 <script>
 import { computed, onMounted } from "@vue/runtime-core";
 import { useStore } from "vuex";
+import { ContentLoader } from "vue-content-loader";
 
 export default {
+  components: {
+    ContentLoader,
+  },
   setup() {
     const store = useStore();
 

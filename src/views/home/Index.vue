@@ -15,7 +15,7 @@
         </div>
       </div>
     </section>
-    <section class="store-trend-categories">
+    <section class="store-trend-categories" v-if="categories.length > 0">
       <div class="row">
         <div
           class="col-6 col-md-3 col-lg-2"
@@ -35,27 +35,32 @@
         </div>
       </div>
     </section>
+    <div v-else>
+      <div class="row">
+        <div class="col-6 col-md-3 col-lg-3">
+          <list-loader />
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <list-loader />
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <list-loader />
+        </div>
+        <div class="col-6 col-md-3 col-lg-3">
+          <list-loader />
+        </div>
+      </div>
+    </div>
     <!-- product terlaris -->
-    <section class="header-title mt-4" data-aos="fade-up">
+    <section class="header-title mt-4 mb-3" data-aos="fade-up">
       <div class="row">
         <div class="col-md-6 col-12">
           <span class="text-product-header">Product Terlaris</span>
         </div>
       </div>
-      <div class="row mb-4">
-        <div class="col-12 col-md-8">
-          <!-- <router-link class="show-all" to="/product-all"
-              >Tampilkan product terlaris lainnya
-            </router-link> -->
-        </div>
-      </div>
     </section>
-    <div class="row">
-      <div class="col-12" v-if="terlaris == ''">
-        <div class="text-center alert alert-warning">Kosong</div>
-      </div>
+    <div class="row" v-if="terlaris.length > 0">
       <div
-        v-else
         class="col-6 col-md-3 col-product"
         v-for="(product, index) in terlaris"
         :key="index"
@@ -101,6 +106,22 @@
         </router-link>
       </div>
     </div>
+    <div v-else>
+      <div class="row">
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+      </div>
+    </div>
     <!-- product random -->
     <section class="header-title mt-4" data-aos="fade-up">
       <div class="row">
@@ -113,7 +134,7 @@
         </div>
       </div>
     </section>
-    <div class="row mt-5">
+    <div class="row mt-5" v-if="products.length > 0">
       <div
         class="col-6 col-md-3 col-product"
         v-for="(product, index) in products"
@@ -158,6 +179,22 @@
             <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
           </div>
         </router-link>
+      </div>
+    </div>
+    <div v-else>
+      <div class="row">
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
+        <div class="col-md-3">
+          <instagram-loader />
+        </div>
       </div>
     </div>
     <hr />
@@ -290,6 +327,8 @@
 <script>
 import { computed, defineAsyncComponent, onMounted } from "vue";
 import { useStore } from "vuex";
+import { ListLoader } from "vue-content-loader";
+import { InstagramLoader } from "vue-content-loader";
 
 // import component with lazy load
 const Carousel = defineAsyncComponent(() =>
@@ -298,6 +337,8 @@ const Carousel = defineAsyncComponent(() =>
 export default {
   components: {
     Carousel: Carousel,
+    ListLoader,
+    InstagramLoader,
   },
   setup() {
     const store = useStore();
