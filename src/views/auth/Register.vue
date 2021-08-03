@@ -28,7 +28,7 @@
               Nikamti kenyamanan <br />
               dalam berbelanja online
             </h2>
-            <form @submit.prevent="register" class="mt-4">
+            <form class="mt-4">
               <div class="form-group">
                 <label for="">Full Name</label>
                 <input
@@ -127,9 +127,33 @@
               >
                 {{ validation.password[0] }}
               </div>
-              <button type=" submit" class="btn btn-success btn-block mt-4">
-                Sign Up Now
-              </button>
+              <div v-if="user.buttonCheckout || register.length">
+                <button
+                  @click.prevent="register"
+                  class="btn btn-success btn-block mt-4"
+                >
+                  Sign Up Now
+                </button>
+              </div>
+              <!-- checkout loading process-->
+              <div v-else>
+                <div v-if="user.buttonLoading">
+                  <button class="btn btn-success btn-block mt-4">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <i class="ml-3">Loading...</i>
+                  </button>
+                </div>
+                <div v-if="user.buttonValid || validation.value">
+                  {{ (user.buttonLoading = null) }}
+                  <button
+                    @click.prevent="register"
+                    class="btn btn-danger btn-block mt-4"
+                  >
+                    <!-- <i class="fa fa-spinner fa-spin"></i> -->
+                    <i class="ml-3">Try Again</i>
+                  </button>
+                </div>
+              </div>
             </form>
             <div class="btn-register">
               <router-link
@@ -162,6 +186,9 @@ export default {
       email: "",
       password: "",
       password_confirmation: "",
+      buttonLoading: true,
+      buttonCheckout: true,
+      buttonValid: false,
     });
 
     const validation = ref([]);
@@ -174,6 +201,8 @@ export default {
       let email = user.email;
       let password = user.password;
       let password_confirmation = user.password_confirmation;
+      user.buttonLoading = true;
+      user.buttonCheckout = false;
 
       // panggil action register didalam module vuex
       store
@@ -189,7 +218,7 @@ export default {
         })
         .catch((error) => {
           validation.value = error;
-          console.log(validation.value);
+          user.buttonValid = true;
         });
     };
 

@@ -68,9 +68,27 @@
               >
                 {{ validation.password[0] }}
               </div>
-              <button type=" submit" class="btn btn-success btn-block mt-4">
-                Sign In to My Account
-              </button>
+              <div v-if="user.buttonLogin || login.length">
+                <button type=" submit" class="btn btn-success btn-block mt-4">
+                  Sign In to My Account
+                </button>
+              </div>
+              <!-- checkout loading process-->
+              <div v-else>
+                <div v-if="user.buttonLoading">
+                  <button type=" submit" class="btn btn-success btn-block mt-4">
+                    <i class="fa fa-spinner fa-spin"></i>
+                    <i class="ml-3">Loading...</i>
+                  </button>
+                </div>
+                <div v-if="user.buttonValid || validation.value">
+                  {{ (user.buttonLoading = null) }}
+                  <button type=" submit" class="btn btn-danger btn-block mt-4">
+                    <!-- <i class="fa fa-spinner fa-spin"></i> -->
+                    <i class="ml-3">Try Again</i>
+                  </button>
+                </div>
+              </div>
               <router-link
                 :to="{ name: 'register' }"
                 class="btn btn-signup btn-block mt-3"
@@ -104,12 +122,18 @@ export default {
     const user = reactive({
       email: "",
       password: "",
+      buttonLogin: true,
+      buttonLoading: false,
+      buttonValid: false,
     });
 
     let login = () => {
       // defina variable
       let email = user.email;
       let password = user.password;
+      // aktifkan tombol loading
+      user.buttonLogin = false;
+      user.buttonLoading = true;
       // panggil action login dari module auth vuex
       store
         .dispatch("auth/login", {
@@ -122,6 +146,7 @@ export default {
         })
         .catch((error) => {
           validation.value = error;
+          user.buttonValid = true;
         });
     };
 
