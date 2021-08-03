@@ -1,5 +1,24 @@
 <template>
   <!--page-login -->
+  <div class="alert-auth" style="margin-top: 100px">
+    <div
+      class="alert alert-info alert-dismissible text-center fade show"
+      role="alert"
+    >
+      <span
+        >Harap mengunakan email aktif saat registrasi, sebagai notifikasi saat
+        transaksi</span
+      >
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
   <div class="page-content page-auth" id="register">
     <section class="section-store-auth" data-aos="fade-up">
       <div class="container">

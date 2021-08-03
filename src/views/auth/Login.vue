@@ -1,6 +1,5 @@
 <template>
   <!--page-login -->
-  <Navbar></Navbar>
   <div class="page-content page-auth">
     <section class="section-store-auth" data-aos="fade-up">
       <div class="container">
