@@ -99,8 +99,10 @@
           <div class="header-information">
             <div class="text-product-header">💰 Payment informations</div>
             <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
-              Sebelum melakukan chackout pastikan alamat pengiriman diisi dengan
-              lengkap
+              <span
+                >Sebelum melakukan chackout pastikan alamat pengiriman diisi
+                dengan lengkap</span
+              >
             </div>
             <div
               class="row payment-informations mt-5"
@@ -374,9 +376,8 @@
         >
           <div class="header-information">
             <div class="text-product-header">💰 Payment informations</div>
-            <div class="alert alert-warning mt-4" v-if="state.buttonCheckout">
-              Sebelum melakukan chackout pastikan alamat pengiriman diisi dengan
-              lengkap
+            <div class="alert alert-info mt-4" v-if="state.buttonCheckout">
+              <span> Pastikan alamat di isi dengan lengkap </span>
             </div>
             <div class="row payment-informations mt-5" data-aos="fade-in">
               <div class="col-6 col-lg-3 mb-3">
@@ -548,6 +549,8 @@ export default {
 
     // function mendapatkan kota sesuai id provinsi
     const getCities = () => {
+      state.service = false;
+      state.courier_deliv = false;
       Api.get("/rajaongkir/cities", {
         params: {
           province_id: state.province_id,
