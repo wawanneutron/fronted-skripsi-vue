@@ -46,7 +46,11 @@
     </div>
   </section>
   <div v-else>
-    <content-loader />
+    <div class="container-fluid">
+      <div class="row mt-5">
+        <content-loader />
+      </div>
+    </div>
   </div>
 </template>
 <script>

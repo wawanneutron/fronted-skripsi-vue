@@ -95,11 +95,6 @@ const routes = [
     name: "Cart",
     component: () => import("../views/cart/Index.vue"),
   },
-  {
-    path: "/auth",
-    name: "Auth",
-    component: () => import("../views/Auth.vue"),
-  },
 ];
 
 //create router

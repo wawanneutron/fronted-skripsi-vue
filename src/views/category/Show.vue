@@ -24,7 +24,7 @@
       <section class="header-title" data-aos="fade-up">
         <div class="row">
           <span class="text-product-header all-category-product"
-            >All Categories <i>" {{ category.name }} "</i></span
+            >Products on Categories <i>"{{ category.name }}"</i></span
           >
         </div>
       </section>
@@ -46,6 +46,22 @@
             data-aos="fade-up"
           >
             <router-link
+              :to="{ name: 'detail', params: { slug: product.slug } }"
+              class="component-product"
+              v-if="product.discount <= 0"
+            >
+              <div class="product-thumbnail">
+                <img :src="product.gallery[0].image" class="w-100" />
+              </div>
+              <div class="product-text">
+                <p>{{ product.title }}</p>
+              </div>
+              <div class="discount">
+                <span>Rp. {{ moneyFormat(product.price) }} </span>
+              </div>
+            </router-link>
+            <router-link
+              v-else
               :to="{ name: 'detail', params: { slug: product.slug } }"
               class="component-product"
             >

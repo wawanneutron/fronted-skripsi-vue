@@ -141,7 +141,7 @@
                     class="form-control mb-4"
                     id="address"
                     rows="5"
-                    placeholder="Note: Sepatu warna cream uk 42"
+                    placeholder="contoh: Sepatu warna cream uk 42"
                   ></textarea>
                   <div
                     v-if="validation.note_pembelian"
@@ -215,7 +215,7 @@
                 <input
                   type="text"
                   class="form-control mb-4"
-                  placeholder="0877584586"
+                  placeholder="your number phone"
                   id="mobile"
                   v-model="state.phone"
                 />
@@ -354,7 +354,7 @@
                   id="address"
                   rows="5"
                   v-model="state.address"
-                  placeholder="Alamat Lengkap&#10;&#10;Contoh: kp. Pete Ds. Pete - kecamatan Tigaraksa Kab. Tangerang"
+                  placeholder="Contoh: kp. rambutan Ds. pasir awi, gg rajawali no 33"
                 ></textarea>
                 <div v-if="validation.address" class="alert alert-danger">
                   Masukan alamat lengkap anda
@@ -412,7 +412,7 @@
                     class="form-control mb-4"
                     id="address"
                     rows="5"
-                    placeholder="Note: Sepatu warna cream uk 42"
+                    placeholder="Contoh: Sepatu warna cream uk 42"
                   ></textarea>
                   <div
                     v-if="validation.note_pembelian"
@@ -551,6 +551,10 @@ export default {
     const getCities = () => {
       state.service = false;
       state.courier_deliv = false;
+      // kembalikan ke awal
+      state.cost_courier = "";
+      state.grandTotal = 0;
+
       Api.get("/rajaongkir/cities", {
         params: {
           province_id: state.province_id,
@@ -568,10 +572,20 @@ export default {
     const getCourier = () => {
       // set corier menjadi true
       state.courier_deliv = true;
+      state.service = false;
+      state.courier = null;
+
+      // kembalikan ke awal
+      state.cost_courier = "";
+      state.grandTotal = 0;
     };
 
     // fungsi mendapatkan ongkos kirim
     const getOngkir = () => {
+      state.cost_courier = "";
+      state.grandTotal = 0;
+      state.costService = null;
+
       // cek berat terlebih dahulu
       if (cartWeight.value == 0) {
         alert("tampaknya tidak ada barang di keranjang");

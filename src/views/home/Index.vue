@@ -37,17 +37,23 @@
     </section>
     <div v-else>
       <div class="row">
-        <div class="col-6 col-md-3 col-lg-3">
-          <list-loader />
+        <div class="col-6 col-md-3 col-lg-2">
+          <instagram-loader />
         </div>
-        <div class="col-6 col-md-3 col-lg-3">
-          <list-loader />
+        <div class="col-6 col-md-3 col-lg-2">
+          <instagram-loader />
         </div>
-        <div class="col-6 col-md-3 col-lg-3">
-          <list-loader />
+        <div class="col-6 col-md-3 col-lg-2">
+          <instagram-loader />
         </div>
-        <div class="col-6 col-md-3 col-lg-3">
-          <list-loader />
+        <div class="col-6 col-md-3 col-lg-2">
+          <instagram-loader />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <instagram-loader />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <instagram-loader />
         </div>
       </div>
     </div>
@@ -327,7 +333,6 @@
 <script>
 import { computed, defineAsyncComponent, onMounted } from "vue";
 import { useStore } from "vuex";
-import { ListLoader } from "vue-content-loader";
 import { InstagramLoader } from "vue-content-loader";
 
 // import component with lazy load
@@ -337,7 +342,6 @@ const Carousel = defineAsyncComponent(() =>
 export default {
   components: {
     Carousel: Carousel,
-    ListLoader,
     InstagramLoader,
   },
   setup() {

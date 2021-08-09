@@ -1,8 +1,20 @@
 <template>
   <div class="term container mt-global">
-    <div class="alert alert-info">
-      autan aturan ini dibuat demi kenyamanan bersama
+    <div
+      class="alert alert-info alert-dismissible text-center fade show"
+      role="alert"
+    >
+      <span> Aturan-aturan ini dibuat demi kenyamanan bersama </span>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+
     <h2 class="text-center">Aturan Berbelanja Online</h2>
     <p class="text-center">
       Berikut ini adalah catatan mengenai ketentuan berbelanja di toko kami.

@@ -17,8 +17,8 @@
           <div class="header">Contact</div>
           <div class="child">
             <ul>
-              <li>08956455624</li>
-              <li>sport.store@gmail.com</li>
+              <li>02185252626</li>
+              <li>hello@adminsport.my.id</li>
             </ul>
           </div>
         </div>
@@ -34,7 +34,10 @@
         </div>
         <div class="col-md-3">
           <div class="header">Address</div>
-          <div class="child">Jl Raya Serang km 60 Cikupa Tangerang</div>
+          <div class="child">
+            Jl. Raya Serang No.6, Cangkudu, Kec. Balaraja, Tangerang, Banten
+            15610
+          </div>
         </div>
       </div>
       <div class="row">

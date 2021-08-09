@@ -18,9 +18,6 @@
               />
             </div>
           </div>
-          <!-- <div class="col-md-7 justify-content-center">
-            
-          </div> -->
         </div>
       </section>
       <section class="store-new-products">
@@ -44,6 +41,22 @@
             data-aos="fade-up"
           >
             <router-link
+              :to="{ name: 'detail', params: { slug: product.slug } }"
+              class="component-product"
+              v-if="product.discount <= 0"
+            >
+              <div class="product-thumbnail">
+                <img :src="product.gallery[0].image" class="w-100" />
+              </div>
+              <div class="product-text">
+                <p>{{ product.title }}</p>
+              </div>
+              <div class="discount">
+                <span>Rp. {{ moneyFormat(product.price) }} </span>
+              </div>
+            </router-link>
+            <router-link
+              v-else
               :to="{ name: 'detail', params: { slug: product.slug } }"
               class="component-product"
             >
@@ -76,72 +89,35 @@
               >🎉 Banyak penawaran menarik 🎉</span
             >
           </div>
-          <div
-            class="col-6 col-md-3 col-lg-3 col-product"
-            v-for="(product, index) in products"
-            :key="index"
-            data-aos="fade-up"
-          >
-            <router-link
-              :to="{ name: 'detail', params: { slug: product.slug } }"
-              class="component-product"
-            >
-              <div class="product-thumbnail">
-                <img :src="product.gallery[0].image" class="w-100" />
-              </div>
-              <div class="product-text">
-                <p>{{ product.title }}</p>
-              </div>
-              <div class="discount">
-                <s>Rp. {{ moneyFormat(product.price) }} </s>
-              </div>
-              <span
-                style="background-color: darkorange"
-                class="badge badge-pill badge-success text-white float-right"
-                >DISKON {{ product.discount }} %</span
-              >
-              <div class="product-price">
-                <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
-              </div>
-            </router-link>
-          </div>
+          <products-component />
         </div>
       </section>
     </div>
   </main>
 </template>
 
-
-
 <script>
-import { computed, defineAsyncComponent, onMounted } from "@vue/runtime-core";
+import { defineAsyncComponent } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import Api from "../../api/Api";
 
 const sliders = defineAsyncComponent(() =>
   import("../../components/Carousel.vue")
 );
+const ProductsComponent = defineAsyncComponent(() =>
+  import("../../components/Products.vue")
+);
 
 export default {
   components: {
     slider: sliders,
+    ProductsComponent: ProductsComponent,
   },
   setup() {
     const store = useStore();
-
-    onMounted(() => {
-      store.dispatch("product/getProductsAll");
-    });
-
-    const products = computed(() => {
-      return store.getters["product/getProductsAll"];
-    });
-
     const username = store.state.auth.user;
-
     return {
       store,
-      products,
       username,
     };
   },
@@ -154,7 +130,6 @@ export default {
     };
   },
   /* search method */
-
   methods: {
     search() {
       let keyword = this.keyword;

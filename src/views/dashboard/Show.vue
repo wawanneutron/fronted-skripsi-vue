@@ -600,7 +600,7 @@
 import { computed, onMounted, reactive } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import Api from "../../api/Jne";
+import Api from "../../api/Resi";
 
 export default {
   setup() {
@@ -616,6 +616,8 @@ export default {
     const detailOrder = computed(() => {
       return store.getters["order/detailOrder"];
     });
+
+    console.log(detailOrder);
 
     const productInOrder = computed(() => {
       return store.getters["order/productInOrder"];
@@ -658,7 +660,7 @@ export default {
 
     let state = reactive({
       api_key:
-        "a4020d997938fd6b233b295bab207e442a6bab2e697a10bb5149d7418586f168",
+        "978c636e99c92e58a30d021fa384fc76039664f2984a3b113ff7d01385b83378",
       data_resi: {},
       details: {},
       histories: [], //history pengiriman
@@ -688,8 +690,54 @@ export default {
           .catch((error) => {
             console.log(error);
           });
-      } else {
-        alert("anada tidak memekai jne");
+      } else if (detailOrder.value.courier == "pos") {
+        Api.get("/v1/track", {
+          params: {
+            api_key: state.api_key,
+            courier: detailOrder.value.courier,
+            awb: detailOrder.value.resi,
+          },
+        })
+          .then((response) => {
+            let sumary = response.data.data.summary;
+            let dataHistory = response.data.data.history;
+            let detail = response.data.data.detail;
+
+            const history = dataHistory.map((elmn) => {
+              return elmn;
+            });
+
+            state.histories = history;
+            state.data_resi = sumary;
+            state.details = detail;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else if (detailOrder.value.courier == "tiki") {
+        Api.get("/v1/track", {
+          params: {
+            api_key: state.api_key,
+            courier: detailOrder.value.courier,
+            awb: detailOrder.value.resi,
+          },
+        })
+          .then((response) => {
+            let sumary = response.data.data.summary;
+            let dataHistory = response.data.data.history;
+            let detail = response.data.data.detail;
+
+            const history = dataHistory.map((elmn) => {
+              return elmn;
+            });
+
+            state.histories = history;
+            state.data_resi = sumary;
+            state.details = detail;
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       }
     };
 
