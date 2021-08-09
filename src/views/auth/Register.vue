@@ -25,7 +25,7 @@
         <div class="row align-items-center justify-content-center row-login">
           <div class="col-lg-4 col-md-6">
             <h2>
-              Nikamti kenyamanan <br />
+              Nikmati kenyamanan <br />
               dalam berbelanja online
             </h2>
             <form class="mt-4">

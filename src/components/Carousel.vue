@@ -46,8 +46,8 @@
     </div>
   </section>
   <div v-else>
-    <div class="container-fluid">
-      <div class="row mt-5">
+    <div class="img-carousel">
+      <div class="container-fluid">
         <content-loader />
       </div>
     </div>

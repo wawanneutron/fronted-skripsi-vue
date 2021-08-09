@@ -6,12 +6,15 @@
         <div class="row mb-5 justify-content-center text-center">
           <div class="col-md-8 col-search mb-3">
             <span class="text-product-header all-category-product"
-              >Cari Barang Kebutuhan Yuk..</span
+              >Cari barang kesukaan kamu disini</span
             >
             <div class="search_box">
               <input
+                autofocus
                 type="text"
-                :placeholder="`Hay ${username.name} mau nyari apa`"
+                :placeholder="`Hay ${
+                  username.name ? username.name : 'kamu'
+                } cari disini yuk..`"
                 class="input_search"
                 v-model="keyword"
                 @input="search"
