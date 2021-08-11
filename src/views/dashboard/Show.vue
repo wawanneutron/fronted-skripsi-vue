@@ -34,7 +34,7 @@
       <div class="dashboard-content-show">
         <div class="row">
           <!-- notifikasi -->
-          <div class="col-12">
+          <div class="col-12 col-notif">
             <div
               class="alert alert-info alert-dismissible fade show"
               role="alert"
@@ -154,7 +154,7 @@
           <!-- end notifikasi -->
           <div class="col-12 order-details">
             <div class="row mb-3">
-              <div class="col-12">
+              <div class="col-12 col-details">
                 <div class="card shadow">
                   <h5 class="font-weight-bold">
                     <i class="fas fa-shopping-cart mr-2"></i>Details Order
@@ -359,7 +359,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12">
+          <div class="col-12 order-details">
             <div class="card">
               <h5 class="font-weight-bold">
                 <i class="fas fa-shopping-cart mr-2"></i>Items Order
@@ -371,7 +371,7 @@
                 :key="index"
               >
                 <div class="row">
-                  <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+                  <div class="col-12 col-sm-4 col-md-4 col-lg-4 mb-3">
                     <div class="card-img">
                       <router-link
                         :to="{
@@ -388,7 +388,7 @@
                       </router-link>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-8 col-md-8 col-lg-8">
+                  <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-details">
                     <div class="row">
                       <div class="col-12 col-sm-6 col-md-6 col-lg-6">
                         <div class="product-title">Product Name</div>

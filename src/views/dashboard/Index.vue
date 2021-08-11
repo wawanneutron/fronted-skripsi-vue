@@ -50,7 +50,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 mt-2">
+          <div class="col-12 table-list mt-2">
             <!-- transaction table -->
             <div class="card rounded">
               <div>

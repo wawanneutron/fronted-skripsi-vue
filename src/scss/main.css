@@ -613,6 +613,8 @@ footer span.sub-footer {
 .shipping-details {
   line-height: 40px;
   font-weight: 500;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media (max-width: 991px) {
@@ -630,6 +632,10 @@ footer span.sub-footer {
 }
 
 #dashboard-show .order-details {
+  padding: 0;
+}
+
+#dashboard-show .order-details .col-details {
   padding: 0;
 }
 
@@ -690,6 +696,10 @@ footer span.sub-footer {
   margin-bottom: 100px !important;
 }
 
+#dashboard-show .dashboard-content-show .col-notif {
+  padding: 0;
+}
+
 #dashboard-show .dashboard-content-show h5 {
   color: #232946;
 }
@@ -748,6 +758,10 @@ footer span.sub-footer {
   font-weight: 300;
   font-size: 16px;
   color: #9191a9;
+}
+
+#dashboard .dashboard-content .table-list {
+  padding: 0;
 }
 
 #dashboard .dashboard-content .border-0 {

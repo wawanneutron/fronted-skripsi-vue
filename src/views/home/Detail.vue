@@ -53,7 +53,10 @@
             <div class="d-md-none d-block">
               <div class="card card-details-mobile">
                 <section class="store-heading">
-                  <h5>🏷️ Details Product</h5>
+                  <h5 class="mb-4">🏷️ Details Product</h5>
+                  <div class="product-header mb-2">
+                    {{ product.title }}
+                  </div>
                   <div class="price" v-if="!product.discount <= 0">
                     <s
                       class="product-price-coret"
