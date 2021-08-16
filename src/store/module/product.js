@@ -53,7 +53,7 @@ const product = {
     getProductsAll({ commit }) {
       Api.get("/products")
         .then((response) => {
-          commit("GET_PRODUCT_ALL", response.data.product.data);
+          commit("GET_PRODUCT_ALL", response.data.product);
         })
         .catch((error) => {
           console.log(error);

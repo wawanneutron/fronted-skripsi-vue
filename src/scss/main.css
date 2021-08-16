@@ -264,8 +264,9 @@ body {
   }
 }
 
-.content {
+.content-detail {
   color: #2e2f3e;
+  text-align: justify;
 }
 
 .store-gallery .table-detail {
@@ -286,7 +287,7 @@ body {
 }
 
 .store-gallery .card-details-mobile {
-  padding: 0;
+  padding: 0 !important;
   margin-top: 30px;
 }
 
@@ -435,6 +436,14 @@ body {
   margin-left: 3px;
   height: 2px;
   background-color: #e53170;
+}
+
+.store-gallery .term-service {
+  text-align: justify;
+}
+
+.store-gallery .term-service ul {
+  padding-left: 0;
 }
 
 @media (max-width: 1979.98px) {

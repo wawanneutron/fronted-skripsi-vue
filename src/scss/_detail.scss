@@ -1,5 +1,6 @@
-.content {
+.content-detail {
   color: #2e2f3e;
+  text-align: justify;
 }
 
 .store-gallery {
@@ -18,7 +19,7 @@
     }
   }
   .card-details-mobile {
-    padding: 0;
+    padding: 0 !important;
     margin-top: 30px;
     .store-heading {
       h5 {
@@ -164,6 +165,12 @@
           background-color: #e53170;
         }
       }
+    }
+  }
+  .term-service {
+    text-align: justify;
+    ul {
+      padding-left: 0;
     }
   }
 }

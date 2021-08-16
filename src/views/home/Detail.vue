@@ -42,7 +42,7 @@
               >
                 <main @click="changeActive(index)">
                   <img
-                    class="w-100 img-thumbnail float-left"
+                    class="w-100 img-thumbnail mt-5 float-left"
                     :src="item.image"
                     :class="{ active: index == photoActive }"
                   />
@@ -181,7 +181,7 @@
                     role="tabpanel"
                     aria-labelledby="pills-detail-tab"
                   >
-                    <div class="content" v-html="product.content"></div>
+                    <div class="content-detail" v-html="product.content"></div>
                   </div>
                   <div
                     class="tab-pane fade"
