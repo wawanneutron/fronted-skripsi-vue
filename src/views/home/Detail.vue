@@ -42,7 +42,7 @@
               >
                 <main @click="changeActive(index)">
                   <img
-                    class="w-100 img-thumbnail mt-5 float-left"
+                    class="w-100 img-thumbnail float-left"
                     :src="item.image"
                     :class="{ active: index == photoActive }"
                   />
@@ -116,7 +116,7 @@
                   </table>
                   <div v-if="product.stock == 0">
                     <button
-                      class="btn btn-danger"
+                      class="btn btn-danger btn-block"
                       data-toggle="modal"
                       data-target="#kosong"
                     >
@@ -125,7 +125,7 @@
                   </div>
                   <div v-if="product.stock > 0">
                     <button
-                      class="btn btn-checkout"
+                      class="btn btn-checkout btn-block"
                       @click.prevent="
                         addToCart(
                           product.id,
@@ -414,7 +414,7 @@
                 </table>
                 <div v-if="product.stock == 0">
                   <button
-                    class="btn btn-danger"
+                    class="btn btn-danger btn-block"
                     data-toggle="modal"
                     data-target="#kosong"
                   >
@@ -423,7 +423,7 @@
                 </div>
                 <div v-if="product.stock > 0">
                   <button
-                    class="btn btn-checkout"
+                    class="btn btn-checkout btn-block"
                     @click.prevent="
                       addToCart(
                         product.id,
