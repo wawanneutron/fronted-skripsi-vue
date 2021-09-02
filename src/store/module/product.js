@@ -10,6 +10,7 @@ const product = {
     productDetail: {},
     gallery: [],
     category: {},
+    reviews: [],
   },
   mutations: {
     GET_PRODUCT_HOME(state, products) {
@@ -29,6 +30,9 @@ const product = {
     },
     CATEGORY(state, category) {
       state.category = category;
+    },
+    GET_REVIEWS(state, review) {
+      state.reviews = review;
     },
   },
   actions: {
@@ -65,6 +69,7 @@ const product = {
           commit("GET_DETAIL_PRODUCT", response.data.product);
           commit("GALLERY", response.data.product.gallery);
           commit("CATEGORY", response.data.product.category);
+          commit("GET_REVIEWS", response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -89,6 +94,9 @@ const product = {
     },
     getCategory(state) {
       return state.category;
+    },
+    getReviews(state) {
+      return state.reviews;
     },
   },
 };

@@ -617,8 +617,6 @@ export default {
       return store.getters["order/detailOrder"];
     });
 
-    console.log(detailOrder);
-
     const productInOrder = computed(() => {
       return store.getters["order/productInOrder"];
     });

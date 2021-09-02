@@ -67,7 +67,7 @@
     </section>
     <div class="row" v-if="terlaris.length > 0">
       <div
-        class="col-6 col-md-3 col-product"
+        class="col-md-4 col-lg-3 col-product"
         v-for="(product, index) in terlaris"
         :key="index"
         data-aos="fade-up"
@@ -86,6 +86,19 @@
           <div class="discount">
             <span>Rp. {{ moneyFormat(product.price) }} </span>
           </div>
+          <div
+            class="rating d-flex justify-content-center"
+            style="display: inline-block; margin: 0 auto"
+          >
+            <star-rating
+              :show-rating="false"
+              :star-size="23"
+              :read-only="true"
+              :increment="0.01"
+              :rating="product.avg_rating"
+            ></star-rating>
+            <span>{{ product.reviews.length }} (ulasan)</span>
+          </div>
         </router-link>
         <router-link
           v-else
@@ -101,13 +114,28 @@
           <div class="discount">
             <s>Rp. {{ moneyFormat(product.price) }} </s>
           </div>
-          <span
-            style="background-color: darkorange"
-            class="badge badge-pill badge-success text-white float-right"
-            >DISKON {{ product.discount }} %</span
-          >
+          <div class="float-right" style="margin-top: -30px; font-size: 15px">
+            <span
+              style="background-color: darkorange"
+              class="badge badge-pill badge-success text-white"
+              >DISKON {{ product.discount }} %</span
+            >
+          </div>
           <div class="product-price">
             <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+          </div>
+          <div
+            class="rating d-flex justify-content-center"
+            style="display: inline-block; margin: 0 auto"
+          >
+            <star-rating
+              :show-rating="false"
+              :star-size="23"
+              :read-only="true"
+              :increment="0.01"
+              :rating="product.avg_rating"
+            ></star-rating>
+            <span>{{ product.reviews.length }} (ulasan)</span>
           </div>
         </router-link>
       </div>
@@ -142,7 +170,7 @@
     </section>
     <div class="row mt-5" v-if="products.length > 0">
       <div
-        class="col-6 col-md-3 col-product"
+        class="col-md-4 col-lg-3 col-product"
         v-for="(product, index) in products"
         :key="index"
         data-aos="fade-up"
@@ -161,6 +189,21 @@
           <div class="discount">
             <span>Rp. {{ moneyFormat(product.price) }} </span>
           </div>
+          <div>
+            <div
+              class="rating d-flex justify-content-center"
+              style="display: inline-block; margin: 0 auto"
+            >
+              <star-rating
+                :show-rating="false"
+                :star-size="23"
+                :read-only="true"
+                :increment="0.01"
+                :rating="product.avg_rating"
+              ></star-rating>
+              <span>{{ product.total_reviews }} (ulasan)</span>
+            </div>
+          </div>
         </router-link>
         <router-link
           v-else
@@ -176,13 +219,30 @@
           <div class="discount">
             <s>Rp. {{ moneyFormat(product.price) }} </s>
           </div>
-          <span
-            style="background-color: darkorange"
-            class="badge badge-pill badge-success text-white float-right"
-            >DISKON {{ product.discount }} %</span
-          >
+          <div class="float-right" style="margin-top: -30px; font-size: 15px">
+            <span
+              style="background-color: darkorange"
+              class="badge badge-pill badge-success text-white"
+              >DISKON {{ product.discount }} %</span
+            >
+          </div>
           <div class="product-price">
             <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+          </div>
+          <div>
+            <div
+              class="rating justify-content-center d-flex"
+              style="display: inline-block; margin: 0 auto"
+            >
+              <star-rating
+                :show-rating="false"
+                :star-size="23"
+                :read-only="true"
+                :increment="0.01"
+                :rating="product.avg_rating"
+              ></star-rating>
+              <span>{{ product.total_reviews }} (ulasan)</span>
+            </div>
           </div>
         </router-link>
       </div>
@@ -334,6 +394,7 @@
 import { computed, defineAsyncComponent, onMounted } from "vue";
 import { useStore } from "vuex";
 import { InstagramLoader } from "vue-content-loader";
+import StarRating from "vue-star-rating";
 
 // import component with lazy load
 const Carousel = defineAsyncComponent(() =>
@@ -343,6 +404,7 @@ export default {
   components: {
     Carousel: Carousel,
     InstagramLoader,
+    StarRating,
   },
   setup() {
     const store = useStore();

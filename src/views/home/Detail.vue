@@ -143,7 +143,11 @@
             <!-- description -->
             <section class="description">
               <main class="content-store mt-5">
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <ul
+                  class="nav nav-pills nav-tabs mb-3"
+                  id="pills-tab"
+                  role="tablist"
+                >
                   <li class="nav-item" role="presentation">
                     <a
                       class="nav-link active detail"
@@ -153,7 +157,7 @@
                       role="tab"
                       aria-controls="pills-detail"
                       aria-selected="true"
-                      >Deskripsi</a
+                      >Detail</a
                     >
                   </li>
                   <li class="nav-item" role="presentation">
@@ -165,13 +169,18 @@
                       role="tab"
                       aria-controls="pills-size"
                       aria-selected="false"
-                      v-if="
-                        category.name == 'Sepatu Olahraga' ||
-                        category.name == 'Sepatu Santai' ||
-                        category.name == 'Sepatu Casual'
-                      "
-                      >Ukuran Sepatu</a
                     >
+                      <star-rating
+                        :show-rating="true"
+                        :star-size="23"
+                        :read-only="true"
+                        :increment="0.01"
+                        :rating="reviewsAvg"
+                      ></star-rating>
+                      <span
+                        >( <b>{{ countReviews }}</b> ulasan)</span
+                      >
+                    </a>
                   </li>
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
@@ -185,6 +194,78 @@
                   </div>
                   <div
                     class="tab-pane fade"
+                    id="pills-size"
+                    role="tabpanel"
+                    aria-labelledby="pills-size-tab"
+                    v-if="reviews !== null"
+                  >
+                    <div class="ulasan mt-5">
+                      <ul class="list-unstyled">
+                        <div
+                          class="card-review mb-4"
+                          v-for="data in reviews"
+                          :key="data.id"
+                        >
+                          <li class="media">
+                            <img
+                              :src="`https://ui-avatars.com/api/?name=${data.customer.name}&background=1f1235&color=ffffff`"
+                              class="mr-3 rounded-circle"
+                              width="50"
+                              alt="profile"
+                            />
+                            <div class="media-body">
+                              <star-rating
+                                :show-rating="false"
+                                :star-size="21"
+                                :read-only="true"
+                                :increment="0.01"
+                                :rating="data.rating"
+                              ></star-rating>
+                              <h5>
+                                {{ data.customer.name }}
+                              </h5>
+                              <p>{{ data.review }}</p>
+                            </div>
+                          </li>
+                        </div>
+                        <!-- jika tidak ada ulasan -->
+                        <div class="mt-5" v-if="reviews == 0">
+                          <li class="media">
+                            <div class="media-body">
+                              <div class="alert alert-info text-center">
+                                Belum ada ulasan
+                              </div>
+                            </div>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </main>
+              <main class="content-store mt-5">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a
+                      class="nav-link active detail"
+                      id="pills-size-tab"
+                      data-toggle="pill"
+                      href="#pills-size"
+                      role="tab"
+                      aria-controls="pills-size"
+                      aria-selected="true"
+                      v-if="
+                        category.name == 'Sepatu Olahraga' ||
+                        category.name == 'Sepatu Santai' ||
+                        category.name == 'Sepatu Casual'
+                      "
+                      >Ukuran Sepatu</a
+                    >
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                  <div
+                    class="tab-pane fade show active"
                     id="pills-size"
                     role="tabpanel"
                     aria-labelledby="pills-size-tab"
@@ -477,7 +558,12 @@
 import { useStore } from "vuex";
 import { computed, onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
+import StarRating from "vue-star-rating";
+
 export default {
+  components: {
+    StarRating,
+  },
   setup() {
     const store = useStore();
     const route = useRoute();
@@ -501,6 +587,17 @@ export default {
 
     const user = computed(() => {
       return store.getters["auth/getUser"];
+    });
+
+    /* reviews customer */
+    const reviews = computed(() => {
+      return store.getters["product/getReviews"].reviews;
+    });
+    const countReviews = computed(() => {
+      return store.getters["product/getReviews"].reviews_count;
+    });
+    const reviewsAvg = computed(() => {
+      return store.getters["product/getReviews"].reviews_avg_rating;
     });
 
     // function addToCart
@@ -528,6 +625,9 @@ export default {
       user,
       addToCart,
       category,
+      reviews,
+      countReviews,
+      reviewsAvg,
     };
   },
   data: () => ({

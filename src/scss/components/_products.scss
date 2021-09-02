@@ -47,14 +47,18 @@
 
 .col-product {
   padding: 0 20px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
   .component-product {
+    .rating {
+      span {
+        color: #7686ab;
+        font-size: 15px;
+      }
+    }
     &:hover {
       text-decoration: none;
     }
-    span.badge {
-      margin-top: -40px;
-    }
+
     .discount {
       color: #e53170;
       font-weight: 500;
@@ -113,10 +117,6 @@
     padding: 0 10px;
 
     .component-product {
-      span {
-        float: none !important;
-        margin-bottom: 15px;
-      }
       .discount {
         font-size: 14px;
         margin-top: -10px;

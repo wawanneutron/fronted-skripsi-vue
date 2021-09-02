@@ -90,36 +90,37 @@
       margin: 40px 0 50px;
       .nav-link {
         margin-bottom: 20px;
-        // color: rgb(3, 172, 14);
         color: #2e2f3e;
-        padding-right: 20px !important;
+        padding: 8px 18px !important;
+        font-weight: normal;
       }
       .nav-pills {
         .nav-item {
-          a.nav-link {
-            padding: 0 40px 0 0px;
-          }
           a.nav-link.active {
             background-color: transparent;
             color: #e53170;
-            &::before {
-              content: "";
-              position: absolute;
-              top: 15px;
-              width: 90px;
-              height: 9px;
-              background-color: rgba(197, 16, 76, 0.151) !important;
-            }
           }
           .detail {
-            color: #0f0e17;
-            font-weight: 500;
+            color: #123049;
             font-size: 18px;
-            position: relative;
           }
         }
       }
       .tab-content {
+        .card-review {
+          border: 1px solid rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          padding: 15px 10px;
+          h5 {
+            color: #123049;
+            margin-top: 10px !important;
+          }
+          p {
+            margin-bottom: 0;
+            margin-top: 15px;
+            color: #232f51;
+          }
+        }
         span.text-descripsi {
           line-height: 30px;
           font-size: 18px;
@@ -203,8 +204,31 @@
   .store-gallery {
     // margin-top: -50px !important;
     .description {
-      .detail {
-        margin: 30px 0 30px;
+      .content-store {
+        margin: 40px 0 50px;
+        .detail {
+          margin: 30px 0 30px;
+        }
+        .nav-link {
+          margin-bottom: 20px;
+          color: #2e2f3e;
+          padding: 8px 10px !important;
+          font-weight: normal;
+        }
+        .tab-content {
+          .card-review {
+            border: 1px solid rgba(0, 0, 0, 0.075);
+            border-radius: 8px;
+            padding: 15px 5px;
+            h5 {
+              font-weight: 500;
+              font-size: 18px;
+            }
+            p {
+              font-size: 15px;
+            }
+          }
+        }
       }
     }
   }
@@ -215,6 +239,6 @@
     }
   }
   .product-header {
-    font-size: 21px !important;
+    font-size: 20px !important;
   }
 }

@@ -57,6 +57,19 @@
               <div class="discount">
                 <span>Rp. {{ moneyFormat(product.price) }} </span>
               </div>
+              <div
+                class="rating d-flex justify-content-center"
+                style="display: inline-block; margin: 0 auto"
+              >
+                <star-rating
+                  :show-rating="false"
+                  :star-size="23"
+                  :read-only="true"
+                  :increment="0.01"
+                  :rating="product.avg_rating"
+                ></star-rating>
+                <span>{{ product.total_reviews }} (ulasan)</span>
+              </div>
             </router-link>
             <router-link
               v-else
@@ -72,13 +85,31 @@
               <div class="discount">
                 <s>Rp. {{ moneyFormat(product.price) }} </s>
               </div>
-              <span
-                style="background-color: darkorange"
-                class="badge badge-pill badge-success text-white float-right"
-                >DISKON {{ product.discount }} %</span
+              <div
+                class="float-right"
+                style="margin-top: -30px; font-size: 15px"
               >
+                <span
+                  style="background-color: darkorange"
+                  class="badge badge-pill badge-success text-white"
+                  >DISKON {{ product.discount }} %</span
+                >
+              </div>
               <div class="product-price">
                 <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
+              </div>
+              <div
+                class="rating d-flex justify-content-center"
+                style="display: inline-block; margin: 0 auto"
+              >
+                <star-rating
+                  :show-rating="false"
+                  :star-size="23"
+                  :read-only="true"
+                  :increment="0.01"
+                  :rating="product.avg_rating"
+                ></star-rating>
+                <span>{{ product.total_reviews }} (ulasan)</span>
               </div>
             </router-link>
           </div>
@@ -103,6 +134,7 @@
 import { defineAsyncComponent } from "@vue/runtime-core";
 import { useStore } from "vuex";
 import Api from "../../api/Api";
+import StarRating from "vue-star-rating";
 
 const sliders = defineAsyncComponent(() =>
   import("../../components/Carousel.vue")
@@ -115,6 +147,7 @@ export default {
   components: {
     slider: sliders,
     ProductsComponent: ProductsComponent,
+    StarRating,
   },
   setup() {
     const store = useStore();

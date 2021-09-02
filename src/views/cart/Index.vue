@@ -468,7 +468,6 @@ export default {
     const carts = computed(() => {
       return store.getters["cart/getCart"];
     });
-    console.log(store.getters["cart/getCart"]);
 
     const countCart = computed(() => {
       return store.getters["cart/countCart"];
