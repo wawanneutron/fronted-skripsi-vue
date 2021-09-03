@@ -189,8 +189,7 @@
           <div class="discount">
             <span>Rp. {{ moneyFormat(product.price) }} </span>
           </div>
-          <div>
-            <div
+          <div
               class="rating d-flex justify-content-center"
               style="display: inline-block; margin: 0 auto"
             >
@@ -203,7 +202,6 @@
               ></star-rating>
               <span>{{ product.total_reviews }} (ulasan)</span>
             </div>
-          </div>
         </router-link>
         <router-link
           v-else
@@ -229,7 +227,6 @@
           <div class="product-price">
             <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
           </div>
-          <div>
             <div
               class="rating justify-content-center d-flex"
               style="display: inline-block; margin: 0 auto"
@@ -243,7 +240,6 @@
               ></star-rating>
               <span>{{ product.total_reviews }} (ulasan)</span>
             </div>
-          </div>
         </router-link>
       </div>
     </div>

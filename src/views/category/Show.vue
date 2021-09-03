@@ -59,6 +59,19 @@
               <div class="discount">
                 <span>Rp. {{ moneyFormat(product.price) }} </span>
               </div>
+              <div
+                class="rating d-flex justify-content-center"
+                style="display: inline-block; margin: 0 auto"
+              >
+                <star-rating
+                  :show-rating="false"
+                  :star-size="23"
+                  :read-only="true"
+                  :increment="0.01"
+                  :rating="product.avg_rating"
+                ></star-rating>
+                <span>{{ product.total_reviews }} (ulasan)</span>
+              </div>
             </router-link>
             <router-link
               v-else
@@ -82,13 +95,26 @@
               <div class="product-price">
                 <p>Rp. {{ moneyFormat(calculateDiscount(product)) }}</p>
               </div>
+              <div
+                class="rating d-flex justify-content-center"
+                style="display: inline-block; margin: 0 auto"
+              >
+                <star-rating
+                  :show-rating="false"
+                  :star-size="23"
+                  :read-only="true"
+                  :increment="0.01"
+                  :rating="product.avg_rating"
+                ></star-rating>
+                <span>{{ product.total_reviews }} (ulasan)</span>
+              </div>
             </router-link>
           </div>
         </div>
         <!-- kalo kosong -->
         <div class="row justify-content-center" v-else>
-          <div class="alert alert-warning">
-            <h4>Product Kosong</h4>
+          <div class="alert alert-info">
+            <span>Product sedang kosong 🙏</span>
           </div>
         </div>
       </section>
@@ -100,7 +126,12 @@
 import { computed, onMounted } from "@vue/runtime-core";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import StarRating from "vue-star-rating";
+
 export default {
+  components: {
+    StarRating
+  },
   setup() {
     const store = useStore();
     const route = useRoute();
