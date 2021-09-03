@@ -38,7 +38,7 @@
             </div>
           </div>
           <div
-            class="col-6 col-md-3 col-lg-3 col-product"
+            class="col-md-3 col-lg-3 col-product"
             v-for="(product, index) in dataProducts"
             :key="index"
             data-aos="fade-up"
