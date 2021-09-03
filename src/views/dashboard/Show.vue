@@ -466,6 +466,105 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-12 text-right">
+                  <button
+                    class="btn btn-info mt-4 margin"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    @click="
+                      (stateReview.order_id = item.id) &&
+                        (stateReview.product_id = item.product_id)
+                    "
+                    @click.prevent="cekOrderId"
+                    v-if="detailOrder.status == 'success'"
+                  >
+                    Berikan ulasan
+                  </button>
+                </div>
+                <!-- modal review -->
+                <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          Ulasan Produk
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="false">&times;</span>
+                        </button>
+                      </div>
+                      <!-- handle inputan -->
+                      <div class="modal-body">
+                        <div class="row justify-content-center">
+                          <div style="display: inline-block; margin: 0 auto">
+                            <star-rating
+                              :star-size="50"
+                              :show-rating="false"
+                              :increment="0.5"
+                              v-model:rating="stateReview.rating"
+                            >
+                            </star-rating>
+                          </div>
+                        </div>
+                        <div class="form-group mt-5">
+                          <label class="font-weight-bold" for="ulasan"
+                            >Tulis Ulasan</label
+                          >
+                          <textarea
+                            id="ulasan"
+                            rows="3"
+                            placeholder="Masukkan Ulasan Produk"
+                            class="form-control"
+                            spellcheck="false"
+                            v-model="stateReview.reviewCustomer"
+                          ></textarea>
+                          <!-- <div class="alert alert-danger" v-if="validation">
+                              {{ validation.value }}
+                            </div> -->
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <div
+                          v-if="
+                            stateReview.buttonKirim || submitReview.length > 0
+                          "
+                        >
+                          <button
+                            @click.prevent="submitReview"
+                            class="btn btn-primary"
+                          >
+                            Kirim
+                          </button>
+                        </div>
+                        <div v-else>
+                          <div v-if="stateReview.buttonLoading">
+                            <button class="btn btn-primary">
+                              <i class="fa fa-spinner fa-spin"></i>Loading
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <hr />
               </div>
             </div>
@@ -600,9 +699,15 @@
 import { computed, onMounted, reactive } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
+import StarRating from "vue-star-rating";
+
 import Api from "../../api/Resi";
+import ApiServer from "../../api/Api";
 
 export default {
+  components: {
+    StarRating,
+  },
   setup() {
     const store = useStore();
     const route = useRoute();
@@ -663,6 +768,7 @@ export default {
       details: {},
       histories: [], //history pengiriman
     });
+    // cek resi
     const cekResi = () => {
       if (detailOrder.value.courier == "jne") {
         Api.get("/v1/track", {
@@ -739,6 +845,17 @@ export default {
       }
     };
 
+    // state review ulasan
+    let stateReview = reactive({
+      order_id: "",
+      product_id: "",
+      rating: "",
+      reviewCustomer: "",
+      status: [],
+      buttonKirim: false,
+      buttonLoading: false,
+    });
+
     return {
       detailOrder,
       productInOrder,
@@ -747,7 +864,120 @@ export default {
       payment,
       cekResi,
       state,
+      stateReview,
     };
+  },
+  methods: {
+    // fungsi untuk mengecek length review
+    cekOrderId() {
+      this.stateReview.buttonKirim = true;
+      /* rating atau reaview product oleh customer */
+      // get data token dan user
+      const token = localStorage.getItem("token");
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      Api.defaults.headers.common["Authorization"] = "Bearer " + token;
+      let orderId = this.stateReview.order_id;
+      // kirim ke server untuk di cek
+      ApiServer.post("/reviewcek", {
+        order_id: orderId,
+        user_id: user.id,
+      })
+        .then((response) => {
+          this.stateReview.status = response.data.review;
+          console.log(this.stateReview.status);
+          // cek jika array belum ada isi nya
+          if (this.stateReview.status.length == 0) {
+            this.$swal("silahkan isi ulasan anda");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    // fungsi untuk menambahkan review / ulasan dan rating
+    submitReview() {
+      this.stateReview.buttonKirim = false;
+      this.stateReview.buttonLoading = true;
+      /* rating atau reaview product oleh customer */
+      // get data token dan user
+      const token = localStorage.getItem("token");
+      const user = JSON.parse(localStorage.getItem("user"));
+
+      Api.defaults.headers.common["Authorization"] = "Bearer " + token;
+      let orderId = this.stateReview.order_id;
+      let productId = this.stateReview.product_id;
+      let rating = this.stateReview.rating;
+      let review = this.stateReview.reviewCustomer;
+      // cek apakah data ada ?
+      if (this.stateReview.status.length <= 0) {
+        ApiServer.post("/review", {
+          customer_id: user.id,
+          order_id: orderId,
+          product_id: productId,
+          rating: rating,
+          review: review,
+        })
+          .then(() => {
+            this.$swal({
+              icon: "success",
+              title: "Yeay...",
+              text: "Terimakasih sudah memebrikan ulasan",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            // hapus data di form
+            this.stateReview.rating = "";
+            this.stateReview.reviewCustomer = "";
+            this.stateReview.buttonKirim = true;
+            this.stateReview.buttonLoading = false;
+            // cek lagi isi reviewnya
+            ApiServer.post("/reviewcek", {
+              order_id: orderId,
+              user_id: user.id,
+            })
+              .then((response) => {
+                this.stateReview.status = response.data.review;
+                console.log(this.stateReview.status);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch(() => {
+            // hapus data di form
+            this.stateReview.rating = "";
+            this.stateReview.reviewCustomer = "";
+            this.stateReview.buttonLoading = false;
+            this.stateReview.buttonKirim = true;
+
+            this.$swal({
+              icon: "error",
+              title: "Oops...",
+              text: "Harap diisi dengan lengkap",
+            });
+          });
+      } else {
+        // Use sweetalert2
+        this.$swal({
+          icon: "error",
+          title: "Oops...",
+          text: "Anda sudah memberikan ulasan",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        this.stateReview.buttonLoading = false;
+        // hapus data di form
+        this.stateReview.rating = "";
+        this.stateReview.reviewCustomer = "";
+      }
+
+      console.log(this.stateReview.reviewCustomer);
+      console.log(this.stateReview.rating);
+      console.log(this.stateReview.order_id);
+      console.log(this.stateReview.product_id);
+    },
   },
 };
 </script>
