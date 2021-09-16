@@ -1,7 +1,5 @@
 # frontend-shop-vue
 
-## live Demo
-https://frontend-store-vue.netlify.app/
 
 ## Project setup
 ```
